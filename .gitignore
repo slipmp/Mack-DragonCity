@@ -7,3 +7,10 @@
 build
 dist
 manifest.mf
+.settings
+.classpath
+.project
+resources
+web
+nbproject
+target
