@@ -2,20 +2,29 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>group</groupId>
-	<artifactId>artifact</artifactId>
+	<groupId>mackenzie</groupId>
+	<artifactId>blank-project</artifactId>
 	<packaging>war</packaging>
 	<version>1.0</version>
-	<name>Name</name>
-	<url>http://www.lalla.com.br</url>
-	<description>Description</description>
+	<url>http://www.mackenzie.br</url>
+	<description>This is a blank project used in software development courses</description>
 	<properties>
-		<java.version>1.7</java.version>
-		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<java.version>1.6</java.version>
+		<project.build.sourceEncoding>ISO-8859-1</project.build.sourceEncoding>
 		<org.springframework.version>3.1.2.RELEASE</org.springframework.version>
 	</properties>
 	<dependencies>
 		<!-- Hibernate annotation -->
+		<dependency>
+			<groupId>javax.mail</groupId>
+			<artifactId>mail</artifactId>
+			<version>1.4.5</version>
+		</dependency>
+		<dependency>
+			<groupId>velocity</groupId>
+			<artifactId>velocity</artifactId>
+			<version>1.3.1</version>
+		</dependency>
 		<dependency>
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-core</artifactId>
@@ -37,6 +46,7 @@
 			<artifactId>slf4j-jcl</artifactId>
 			<version>1.6.1</version>
 		</dependency>
+		
 		<dependency>
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
@@ -296,9 +306,11 @@
 			<plugin>
 				<groupId>org.mortbay.jetty</groupId>
 				<artifactId>jetty-maven-plugin</artifactId>
-				<version>7.5.4.v20111024</version>
+				<version>8.1.7.v20120910</version>
 				<configuration>
 					<scanIntervalSeconds>10</scanIntervalSeconds>
+					<!-- http://dev.eclipse.org/mhonarc/lists/jetty-users/msg02016.html -->
+					<jettyEnvXml>${basedir}/src/main/webapps/WEB-INF/jetty-env.xml</jettyEnvXml>
 					<connectors>
 						<connector implementation="org.eclipse.jetty.server.nio.SelectChannelConnector">
 							<port>30016</port>
@@ -358,5 +370,5 @@
 			</extension>
 		</extensions>
 	</build>
-
+    <name>MackDragonCity</name>
 </project>
