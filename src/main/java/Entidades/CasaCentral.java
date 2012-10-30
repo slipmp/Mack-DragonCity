@@ -11,11 +11,6 @@ public class CasaCentral extends Construcao implements java.io.Serializable{
     public void setOvo(Dragao ovo) {
         this.ovo = ovo;
     }
-
-    public void ColocarOvoNoHabitat(MapaLocal oMapaLocal) {
-
-    }
-
     @Override
     public String getNome() {
         return "Casa Central";
