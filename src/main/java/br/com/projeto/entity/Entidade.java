@@ -1,13 +1,30 @@
-package Entidades;
+package br.com.projeto.entity;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Table;
+import javax.persistence.Id;
+
+@Entity
+@Table(name = "tbEntidade")
 public abstract class Entidade implements java.io.Serializable
 {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	@Id
+	@Column(name = "ID")
     protected int codigo;
     
+	@Column(name ="PontosXP")
     protected int pontosXP;
 
+	@Column(name ="Imagem")
     protected String imagem;
 
+	@Column(name ="Valor")
     protected int valor;
         
     public int getCodigo() {

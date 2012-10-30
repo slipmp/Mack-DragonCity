@@ -1,15 +1,37 @@
-package Entidades;
+package br.com.projeto.entity;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "tbDragao")
 public class Dragao extends Entidade implements java.io.Serializable{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -7653491723166797269L;
+
+	@Column(name = "NomeDragao")
     private String nomeDragao;
 
+	@Column(name = "TotalExperiencia")
     private int totalExperiencia;
 
+	@SuppressWarnings("unused")
+	@Column(name = "Level")
     private int level;
 
+	@OneToMany
+	@JoinColumn(name = "IdJogo")
     private Jogo jogo;
 
+	@ManyToOne
+	@JoinColumn(name = "IdDragaoTipo")
     private DragaoTipo dragaoTipo;
 
     public String getNomeDragao() {
@@ -57,10 +79,6 @@ public class Dragao extends Entidade implements java.io.Serializable{
         this.dragaoTipo = dragaoTipo;
     }
 
-    public void Alimentar(Fruta oFruta) 
-    {
-
-    }
     public DragaoEstado getDragaoEstado()
     {
         DragaoEstado oDragaoEstado=new DragaoEstado();

@@ -1,9 +1,22 @@
-package Entidades;
+package br.com.projeto.entity;
 
+import javax.persistence.Entity;
+import javax.persistence.Table;
+import javax.persistence.Column;
+
+@Entity
+@Table(name = "tbFruta")
 public class Fruta extends Entidade implements java.io.Serializable{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 7389177097659219117L;
+
+	@Column(name="Nome")
     private String nome;
 
+	@Column(name="QuantidadeAlimento")
     private int quantidadeAlimento;
 
     public Fruta()

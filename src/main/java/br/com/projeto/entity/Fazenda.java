@@ -1,8 +1,18 @@
-package Entidades;
+package br.com.projeto.entity;
 
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "tbFazenda")
 public class Fazenda extends Construcao implements java.io.Serializable{
 
-    public Fazenda()
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = -1126552086164361362L;
+
+	public Fazenda()
     {
         //Esses valores estão fixos. Porém o certo é vir de um banco de dados ou de um arquivo de configuração.
         //Para simplificar eu o deixei aqui. Diferente dos Habitats que cada um tem o seu valor próprio.

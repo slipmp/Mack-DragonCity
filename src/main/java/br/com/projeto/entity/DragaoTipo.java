@@ -1,19 +1,44 @@
-package Entidades;
+package br.com.projeto.entity;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "tbDragaoTipo")
 public class DragaoTipo  implements java.io.Serializable{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -4025796556269695227L;
+
+	@Id
+	@GeneratedValue
+	@Column(name="Id")
     private int codigo;
 
+	@Column(name="NomeTipoDragao")
     private String nomeTipoDragao;
 
+	@Column(name="LevelJogadorRequerido")
     private int levelJogadorRequerido;
 
+	@OneToOne
+	@JoinColumn(name="IdHabitatTipo")
     private HabitatTipo oHabitatTipo;  
     
+	@Column(name="Valor")
     private int valor;
     
+	@Column(name="OuroFornece")
     private int ouroFornece;
     
+	@Column(name="PontosXPFornece")
     private int pontosXPFornece;
     
     public int getCodigo() {

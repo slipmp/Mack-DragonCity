@@ -1,19 +1,39 @@
-package Entidades;
+package br.com.projeto.entity;
 
 import java.util.List;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "tbJogo")
 public class Jogo implements java.io.Serializable{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 3077288306332878109L;
+
+	@Column(name="VlrTotalOuro")
     private int vlrTotalOuro;
 
+	@Column(name="VlrTotalComida")
     private int vlrTotalComida;
 
+	@Column(name="QtdTotalPontosXP")
     private int qtdTotalPontosXP;
 
+    @OneToOne
+	@JoinColumn(name = "IdJogador")
     private Jogador jogador;
 
     private List<Dragao> listDragao;
 
+    @OneToOne
+	@JoinColumn(name = "IdMapa")
     private Mapa mapa;
 
     public int getVlrTotalOuro() {
