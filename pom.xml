@@ -322,6 +322,15 @@
                     <stopPort/>
                 </configuration>
 			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-eclipse-plugin</artifactId>
+				<configuration>
+					<downloadSources>true</downloadSources>
+					<downloadJavadocs>true</downloadJavadocs>
+					<wtpversion>2.0</wtpversion>
+				</configuration>
+			</plugin>	
      
 			<plugin>
 				<!-- run "mvn hibernate3:hbm2ddl" to generate a schema -->
