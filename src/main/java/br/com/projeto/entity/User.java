@@ -27,6 +27,9 @@ public class User {
 	@Column(name = "DATA_ATUALIZACAO")
 	private Date updateDate;
 
+	@Column(name = "Teste")
+	private Date Teste;
+	
 	public Long getId() {
 		return id;
 	}
