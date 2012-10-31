@@ -14,3 +14,5 @@ resources
 web
 nbproject
 target
+build.xml
+build.properties
