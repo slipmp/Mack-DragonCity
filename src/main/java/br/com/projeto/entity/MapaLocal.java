@@ -2,6 +2,7 @@ package br.com.projeto.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
@@ -16,6 +17,10 @@ public class MapaLocal implements java.io.Serializable{
 	 */
 	private static final long serialVersionUID = -2226221138819724242L;
 
+	@Id
+	@Column(name = "ID")
+    protected int codigo;
+	
 	@Column(name="PosicaoX")
     private int posicaoX;
 

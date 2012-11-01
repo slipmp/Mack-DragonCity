@@ -1,5 +1,7 @@
 package br.com.projeto.entity;
 
+import java.util.Set;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -35,7 +37,7 @@ public class DragaoEstado implements java.io.Serializable{
 
 	@OneToMany(cascade=CascadeType.ALL)
 	@JoinTable(name="DragaoTipo")
-    private DragaoTipo dragaoTipo;
+    private Set<DragaoTipo> oListdragaoTipo;
 
 	@Column(name="Imagem")
     private String imagem;
@@ -72,14 +74,6 @@ public class DragaoEstado implements java.io.Serializable{
         this.levelPara = levelPara;
     }
 
-    public DragaoTipo getDragaoTipo() {
-        return dragaoTipo;
-    }
-
-    public void setDragaoTipo(DragaoTipo dragaoTipo) {
-        this.dragaoTipo = dragaoTipo;
-    }
-
     public String getImagem() {
         return imagem;
     }
@@ -87,5 +81,13 @@ public class DragaoEstado implements java.io.Serializable{
     public void setImagem(String imagem) {
         this.imagem = imagem;
     }
+
+	public void setoListdragaoTipo(Set<DragaoTipo> oListdragaoTipo) {
+		this.oListdragaoTipo = oListdragaoTipo;
+	}
+
+	public Set<DragaoTipo> getoListdragaoTipo() {
+		return oListdragaoTipo;
+	}
 
 }
