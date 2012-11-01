@@ -1,9 +1,11 @@
 package br.com.projeto.entity;
 
 import javax.persistence.Entity;
+import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 
 @Entity
+@PrimaryKeyJoinColumn(name="IdFazenda")
 @Table(name = "tbFazenda")
 public class Fazenda extends Construcao implements java.io.Serializable{
 

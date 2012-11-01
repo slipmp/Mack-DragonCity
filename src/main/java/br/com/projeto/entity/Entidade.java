@@ -2,10 +2,13 @@ package br.com.projeto.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
 import javax.persistence.Table;
 import javax.persistence.Id;
 
 @Entity
+@Inheritance(strategy=InheritanceType.JOINED)
 @Table(name = "tbEntidade")
 public abstract class Entidade implements java.io.Serializable
 {

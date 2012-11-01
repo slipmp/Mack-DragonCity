@@ -36,7 +36,7 @@ public class LoginController {
 				return "redirect:/adm";
 			}
 		}
-		return "redirect:/adm/login.jsp?error=Usu·rio e/ou senha inv·lidos";
+		return "redirect:/adm/login.jsp?error=Usu√°rio e/ou senha inv√°lidos";
 	}
 	
 	@RequestMapping("/adm/logout")

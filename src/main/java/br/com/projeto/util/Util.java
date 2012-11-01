@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package Utils;
+package br.com.projeto.util;
 
 /**
  *
@@ -14,7 +14,7 @@ public class Util {
     {
         try
         {
-            int iEntrada=Integer.parseInt(strEntrada);
+            Integer.parseInt(strEntrada);
 
             return true;
         }

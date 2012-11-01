@@ -1,10 +1,12 @@
 package br.com.projeto.entity;
 
 import javax.persistence.Entity;
+import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 import javax.persistence.Column;
 
 @Entity
+@PrimaryKeyJoinColumn(name="IdFruta")
 @Table(name = "tbFruta")
 public class Fruta extends Entidade implements java.io.Serializable{
 

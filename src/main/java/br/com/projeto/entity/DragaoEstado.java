@@ -1,10 +1,12 @@
 package br.com.projeto.entity;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -31,8 +33,8 @@ public class DragaoEstado implements java.io.Serializable{
 	@Column(name="LevalPara")
     private int levelPara;
 
-	@OneToMany
-	@JoinColumn(name="IdDragaoTipo")
+	@OneToMany(cascade=CascadeType.ALL)
+	@JoinTable(name="DragaoTipo")
     private DragaoTipo dragaoTipo;
 
 	@Column(name="Imagem")

@@ -19,7 +19,7 @@
 		<property name="jpaVendorAdapter">
 			<bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter" />
 		</property>
-		<property name="persistenceXmlLocation" value="/WEB-INF/classes/persistence.xml"/>
+		<property name="persistenceXmlLocation" value="/WEB-INF/classes/META-INF/persistence.xml"/>
 	</bean>
 
 	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">

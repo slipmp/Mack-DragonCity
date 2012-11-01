@@ -1,10 +1,11 @@
 package br.com.projeto.entity;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -28,8 +29,7 @@ public class DragaoTipo  implements java.io.Serializable{
 	@Column(name="LevelJogadorRequerido")
     private int levelJogadorRequerido;
 
-	@OneToOne
-	@JoinColumn(name="IdHabitatTipo")
+	@OneToOne(fetch=FetchType.LAZY,mappedBy="codigo",cascade=CascadeType.ALL)
     private HabitatTipo oHabitatTipo;  
     
 	@Column(name="Valor")

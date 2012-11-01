@@ -4,9 +4,11 @@ import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 
 @Entity
+@PrimaryKeyJoinColumn(name="IdHabitat")
 @Table(name = "tbHabitat")
 public class Habitat extends Construcao implements java.io.Serializable{
 

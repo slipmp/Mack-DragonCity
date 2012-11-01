@@ -65,7 +65,7 @@ public class PaginationTag extends TagSupport {
 		}
 		
 		//start pagination
-		buffer.append("<!-- Paginação -->");
+		buffer.append("<!-- PaginaÃ§Ã£o -->");
 		buffer.append("<script type=\"text/javascript\">");
 		buffer.append("	function doPagination(idForm, action, pagina) {");
 		buffer.append("		if(action!=null && action!='' && action!='null'){");
@@ -128,7 +128,7 @@ public class PaginationTag extends TagSupport {
 				//next link
 				if (pagination.getStart() < pagination.getPagesTotal()) {
 					buffer.append("<li class='next'>");
-					makeListLink(buffer, pagination.getStart()+1, "próxima");
+					makeListLink(buffer, pagination.getStart()+1, "prï¿½xima");
 					buffer.append("</li>");
 				}
 				
@@ -160,12 +160,12 @@ public class PaginationTag extends TagSupport {
 		
 		//end pagination
 		buffer.append("</div>");
-		buffer.append("<!-- Paginação -->");
+		buffer.append("<!-- PaginaÃ§Ã£o -->");
 		
 		try {
 			pageContext.getOut().write(buffer.toString());
 		} catch (IOException e) {
-			LOGGER.error("PaginationTag, doStartTag: Erro ao criar a paginação", e);
+			LOGGER.error("PaginationTag, doStartTag: Erro ao criar a paginaÃ§Ã£o", e);
 		}
 		
 		return SKIP_BODY;
