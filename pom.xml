@@ -3,14 +3,14 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>mackenzie</groupId>
-	<artifactId>blank-project</artifactId>
+	<artifactId>mack-dragon-city</artifactId>
 	<packaging>war</packaging>
 	<version>1.0</version>
 	<url>http://www.mackenzie.br</url>
 	<description>This is a blank project used in software development courses</description>
 	<properties>
 		<java.version>1.6</java.version>
-		<project.build.sourceEncoding>ISO-8859-1</project.build.sourceEncoding>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<org.springframework.version>3.1.2.RELEASE</org.springframework.version>
 	</properties>
 	<dependencies>
@@ -341,8 +341,8 @@
 					<components>
 						<component>
 							<name>hbm2ddl</name>
-							<implementation>jdbcconfiguration</implementation>
-<!--							<implementation>jpaconfiguration</implementation>-->
+<!-- 							<implementation>jdbcconfiguration</implementation>  -->
+							<implementation>jpaconfiguration</implementation>
 
 						</component>
 					</components>
@@ -353,7 +353,7 @@
 						-->
 						<hibernate.dialect>org.hibernate.dialect.MySQLInnoDBDialect</hibernate.dialect>
 						<!--												        <componentProperties>-->
-						<persistenceunit>Default</persistenceunit>
+						<persistenceunit>projeto</persistenceunit>
 						<outputfilename>schema.ddl</outputfilename>
 						<drop>false</drop>
 						<create>true</create>
