@@ -29,7 +29,7 @@ public class DragaoTipo  implements java.io.Serializable{
 	@Column(name="LevelJogadorRequerido")
     private int levelJogadorRequerido;
 
-	@OneToOne(fetch=FetchType.LAZY,mappedBy="codigo",cascade=CascadeType.ALL)
+	@OneToOne(fetch=FetchType.LAZY)
     private HabitatTipo oHabitatTipo;  
     
 	@Column(name="Valor")

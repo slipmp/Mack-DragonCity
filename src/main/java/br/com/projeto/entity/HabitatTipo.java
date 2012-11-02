@@ -1,7 +1,9 @@
 package br.com.projeto.entity;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
@@ -25,8 +27,7 @@ public class HabitatTipo implements java.io.Serializable{
 	@Column(name = "Tipo")
     private String tipo;
     
-	@OneToOne
-	@JoinColumn(name="IdDragaoTipo")
+	@OneToOne(fetch=FetchType.LAZY,mappedBy="oHabitatTipo",cascade=CascadeType.ALL)
     private DragaoTipo oDragaoTipo;
     
     @Column(name = "Valor")

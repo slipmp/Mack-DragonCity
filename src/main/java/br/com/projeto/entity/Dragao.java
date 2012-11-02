@@ -1,5 +1,6 @@
 package br.com.projeto.entity;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
@@ -28,11 +29,11 @@ public class Dragao extends Entidade implements java.io.Serializable{
 	@Column(name = "Level")
     private int level;
 
-	@OneToMany
+	@ManyToOne(cascade=CascadeType.ALL)
 	@JoinColumn(name = "IdJogo")
     private Jogo jogo;
 
-	@ManyToOne
+	@ManyToOne(cascade=CascadeType.ALL)
 	@JoinColumn(name = "IdDragaoTipo")
     private DragaoTipo dragaoTipo;
 

@@ -2,11 +2,11 @@ package br.com.projeto.entity;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -27,8 +27,7 @@ public class Mapa implements java.io.Serializable{
         oListMapaLocal=null;
     }
     
-    @ManyToOne
-    @JoinColumn(name="IdMapaLocal")
+    @OneToMany(mappedBy="mapa",cascade=CascadeType.ALL)
     private List<MapaLocal> oListMapaLocal;
 
     public List<MapaLocal> getoListMapaLocal() {

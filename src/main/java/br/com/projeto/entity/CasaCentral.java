@@ -1,10 +1,8 @@
 package br.com.projeto.entity;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.OneToOne;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -15,7 +13,8 @@ public class CasaCentral extends Construcao implements java.io.Serializable{
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	@OneToOne(fetch=FetchType.LAZY,mappedBy="codigo",cascade=CascadeType.ALL)
+	@ManyToOne
+	@JoinColumn(name="IdOvo")
     private Dragao ovo;
 
     public Dragao getOvo() {

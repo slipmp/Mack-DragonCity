@@ -1,9 +1,11 @@
 package br.com.projeto.entity;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
@@ -27,7 +29,7 @@ public class MapaLocal implements java.io.Serializable{
 	@Column(name="PosicaoY")
     private int posicaoY;
 
-	@OneToMany
+	@ManyToOne(cascade=CascadeType.ALL)
 	@JoinColumn(name="IdMapa")
     private Mapa mapa;
 
