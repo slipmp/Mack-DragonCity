@@ -1,0 +1,81 @@
+@charset "utf-8";
+*{
+	margin: 0;
+	padding: 0;
+}
+body
+{
+	background-color:#003399;
+}
+.cabecalho 
+{
+	background-image: url(Imagens/bg_cabecalho.jpg);
+	background-repeat: no-repeat;
+	background-position: center top;
+	height: 81px;
+}
+.pontuacao {
+	background-image: url(Imagens/bg_pontuacao.jpg);
+	background-repeat: no-repeat;
+	background-position: center top;
+	position:relative;
+	height: 48px;
+	font-family:Arial, Helvetica, sans-serif;
+	color:#FFFFFF;
+	font-size:14px;
+}
+#qtd_ouro{
+	position:relative;
+	top:20px;
+	left:22px;
+	text-align:right;
+	width: 62px;
+}
+
+#qtd_alimento{
+	position:relative;
+	top:20px;
+	left:70px;
+	text-align:right;
+	width: 72px;
+}
+
+#qtd_diamante{
+	position:relative;
+	top:20px;
+	left:75px;
+	text-align:right;
+	width: 110px;
+}
+
+.novoJogo {
+	background-image:url(Imagens/bg_novo_jogo.jpg);
+	background-repeat: no-repeat;
+	background-position: center top;
+	height: 49px;
+}
+.fundoConstrucao {
+	background-image: url(Imagens/bg_fundo_construcao.jpg);
+	background-repeat: no-repeat;
+	background-position: center top;
+	height: 626px;
+	position:relative;
+	width:1024px;
+	margin:0px auto;
+}
+.fundoConstrucao a{
+	width:80px;
+	height:60px;
+	position:absolute;
+	border:solid 1px red;
+	display:block;
+	left: 209px;
+	top: 179px;
+}
+.fundoConstrucao a:hover{
+	border:solid 1px blue;
+}
+#botao1{
+	top:178px;
+	left:126px;
+}

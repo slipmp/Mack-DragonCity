@@ -1,0 +1,83 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Mack - Dragon City</title>
+<!--<script src="enderecoArquivoJquery"></script>-->
+<link href="jogo.css" rel="stylesheet" type="text/css" />
+<script>
+	var pontucao = 0;
+	function funcaoClick(id){
+		alert(id);
+		/*
+		pontuacao += 10;
+		$('#'+id).css('background-image','url('')');
+		*/
+	}
+</script>
+</head>
+
+<body> <!-- id="fundo"-->
+<div class="cabecalho"></div>
+<div class="pontuacao">
+	<label id="qtd_ouro"><b>2342.40</b></label>
+	<label id="qtd_alimento"><b>46.161</b></label>
+	<label id="qtd_diamante"><b>33</b></label>
+	<label id="qtd_dragao"><b>58</b></label>       
+	<label id="qtd_pontos"><b>28205340</b></label>    
+	<label id="nmr_nivel"><b>22</b></label>            
+  <label id="qtd_ponto">Jogador: Dayane Bortolin</label>    
+</div>
+<div class="novoJogo"></div>
+<div class="fundoConstrucao">
+<!--  <a id="botao1x1" href="javascript:funcaoClick('botao1x1')"></a>
+    <a id="botao1x2" href="javascript:funcaoClick('botao1x2')"></a> 
+    <a id="botao1x3" href="javascript:funcaoClick('botao1x3')"></a>--> 
+	<br />
+	<br />
+	<br />
+	<table width="810" height="371" border="0" align="center" cellpadding="0" cellspacing="0">
+      <tr>
+        <th width="135" height="80" align="left" valign="top" scope="col"><input type="image" name="btn_terra_ovo30" id="btn_terra_ovo30" src="Imagens/btn_construcao.gif" /></th>
+        <th width="135" height="80" align="left" valign="top" scope="col"><input type="image" name="btn_terra_ovo" id="btn_terra_ovo" src="Imagens/btn_terra_ovo.gif" /></th>
+        <th width="135" height="80" align="left" valign="top" scope="col"><input type="image" name="btn_terra_ovo2" id="btn_terra_ovo2" src="Imagens/btn_terra_filhote.gif" /></th>
+        <th width="135" height="80" align="left" valign="top" scope="col"><input type="image" name="btn_terra_ovo3" id="btn_terra_ovo3" src="Imagens/btn_terra_jovem.gif" /></th>
+        <th width="135" height="80" align="left" valign="top" scope="col"><input type="image" name="btn_terra_ovo4" id="btn_terra_ovo4" src="Imagens/btn_terra_adulto.gif" /></th>
+        <th width="135" height="80" align="left" valign="top" scope="col"><input type="image" name="btn_terra_ovo5" id="btn_terra_ovo5" src="Imagens/btn_vegetal_ovo.gif" /></th>
+      </tr>
+      <tr>
+        <th width="135" height="51" align="left" valign="top" scope="row"><input type="image" name="btn_terra_ovo6" id="btn_terra_ovo6" src="Imagens/btn_vegetal_filhote.gif" /></th>
+        <td width="135" height="51" align="left" valign="top"><input type="image" name="btn_terra_ovo7" id="btn_terra_ovo7" src="Imagens/btn_vegetal_jovem.gif" /></td>
+        <td width="135" height="51" align="left" valign="top"><input type="image" name="btn_terra_ovo8" id="btn_terra_ovo8" src="Imagens/btn_vegetal_adulto.gif" /></td>
+        <td width="135" height="51" align="left" valign="top"><input type="image" name="btn_terra_ovo9" id="btn_terra_ovo9" src="Imagens/btn_fogo_ovo.gif" /></td>
+        <td width="135" height="51" align="left" valign="top"><input type="image" name="btn_terra_ovo10" id="btn_terra_ovo10" src="Imagens/btn_fogo_filhote.gif" /></td>
+        <td width="135" height="51" align="left" valign="top"><input type="image" name="btn_terra_ovo11" id="btn_terra_ovo11" src="Imagens/btn_fogo_jovem.gif" /></td>
+      </tr>
+      <tr>
+        <th width="135" height="80" align="left" valign="top" scope="row"><input type="image" name="btn_terra_ovo12" id="btn_terra_ovo12" src="Imagens/btn_fogo_adulto.gif" /></th>
+        <td width="135" height="80" align="left" valign="top"><input type="image" name="btn_terra_ovo13" id="btn_terra_ovo13" src="Imagens/btn_aquatico_ovo.gif" /></td>
+        <td width="135" height="80" align="left" valign="top"><input type="image" name="btn_terra_ovo14" id="btn_terra_ovo14" src="Imagens/btn_aquatico_filhote.gif" /></td>
+        <td width="135" height="80" align="left" valign="top"><input type="image" name="btn_terra_ovo15" id="btn_terra_ovo15" src="Imagens/btn_aquatico_jovem.gif" /></td>
+        <td width="135" height="80" align="left" valign="top"><input type="image" name="btn_terra_ovo16" id="btn_terra_ovo16" src="Imagens/btn_aquatico_adulto.gif" /></td>
+        <td width="135" height="80" align="left" valign="top"><input type="image" name="btn_terra_ovo17" id="btn_terra_ovo17" src="Imagens/btn_gelo_ovo.gif" /></td>
+      </tr>
+      <tr>
+        <th width="135" height="80" align="left" valign="top" scope="row"><input type="image" name="btn_terra_ovo18" id="btn_terra_ovo18" src="Imagens/btn_gelo_filhote.gif" /></th>
+        <td width="135" height="80" align="left" valign="top"><input type="image" name="btn_terra_ovo19" id="btn_terra_ovo19" src="Imagens/btn_gelo_jovem.gif" /></td>
+        <td width="135" height="80" align="left" valign="top"><input type="image" name="btn_terra_ovo20" id="btn_terra_ovo20" src="Imagens/btn_gelo_adulto.gif" /></td>
+        <td width="135" height="80" align="left" valign="top"><input type="image" name="btn_terra_ovo21" id="btn_terra_ovo21" src="Imagens/btn_metal_ovo.gif" /></td>
+        <td width="135" height="80" align="left" valign="top"><input type="image" name="btn_terra_ovo22" id="btn_terra_ovo22" src="Imagens/btn_metal_filhote.gif" /></td>
+        <td width="135" height="80" align="left" valign="top"><input type="image" name="btn_terra_ovo23" id="btn_terra_ovo23" src="Imagens/btn_metal_jovem.gif" /></td>
+      </tr>
+      <tr>
+        <th width="135" height="80" align="left" valign="top" scope="row"><input type="image" name="btn_terra_ovo24" id="btn_terra_ovo24" src="Imagens/btn_metal_adulto.gif" /></th>
+        <td width="135" height="80" align="left" valign="top"><input type="image" name="btn_terra_ovo25" id="btn_terra_ovo25" src="Imagens/btn_metal_ovo.gif" /></td>
+        <td width="135" height="80" align="left" valign="top"><input type="image" name="btn_terra_ovo26" id="btn_terra_ovo26" src="Imagens/btn_metal_ovo.gif" /></td>
+        <td width="135" height="80" align="left" valign="top"><input type="image" name="btn_terra_ovo27" id="btn_terra_ovo27" src="Imagens/btn_metal_ovo.gif" /></td>
+        <td width="135" height="80" align="left" valign="top"><input type="image" name="btn_terra_ovo28" id="btn_terra_ovo28" src="Imagens/btn_metal_ovo.gif" /></td>
+        <td width="135" height="80" align="left" valign="top"><input type="image" name="btn_terra_ovo29" id="btn_terra_ovo29" src="Imagens/btn_metal_ovo.gif" /></td>
+      </tr>
+  </table>
+</div>
+</body>
+</html>
