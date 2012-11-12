@@ -10,7 +10,7 @@ manifest.mf
 .settings
 .classpath
 .project
-resources
+/resources
 web
 nbproject
 target
