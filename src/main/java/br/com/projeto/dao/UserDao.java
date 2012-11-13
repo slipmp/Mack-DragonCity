@@ -9,20 +9,22 @@ import org.springframework.stereotype.Repository;
 import br.com.projeto.entity.User;
 
 @Repository
-public class UserDao  {
-
-	protected EntityManager em;
+public class UserDao extends GenericDao {
 
 	@PersistenceContext
 	public void setEntityManager(EntityManager em) {
-		this.em = em;
+		super.em = em;
 	}
 
-	public User get(String login,String password) {
-		Query query = em.createQuery("from User u where u.login = :login and u.password = :password ");
+	public User getUser(String login,String password) {
+		Query query = super.em.createQuery("from User u where u.login = :login and u.password = :password ");
 		query.setParameter("login", login);
 		query.setParameter("password", password);
-		return (User)query.getSingleResult();
+		if (query.getResultList().size() == 1) {
+			return (User) query.getResultList().get(0);
+		} else {
+			return null;
+		}
 	}
 
 }

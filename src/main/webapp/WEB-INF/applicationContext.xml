@@ -31,7 +31,7 @@
 	    <property name="maxUploadSize" value="10000000"/>
 	</bean>
 
-	
+
 	<!-- 
 	<bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
 		<property name="host"><value>${mail.smtp}</value></property>

@@ -1,31 +1,41 @@
 package br.com.projeto.entity;
 
-import java.sql.Date;
+import java.util.Calendar;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 @Entity
 @Table(name = "tbUsuario")
 public class User {
 
 	@Id
-	@Column(name = "ID")
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
-	
-	@Column(name = "LOGIN")
+
+	@Column(name = "login")
 	private String login;
-	
-	@Column(name = "SENHA")
+
+	@Column(name = "senha")
 	private String password;
-	
-	@Column(name = "DATA_INSERCAO")
-	private Date insertDate;
-	
-	@Column(name = "DATA_ATUALIZACAO")
-	private Date updateDate;
+
+	@Temporal(TemporalType.TIMESTAMP)
+	@Column(name = "data_insercao", nullable = true)
+	private Calendar insertDate;
+
+	@Temporal(TemporalType.TIMESTAMP)
+	@Column(name = "data_atualizacao", nullable = true)
+	private Calendar updateDate;
+
+	public User() {
+		this.insertDate = Calendar.getInstance();
+	}
 
 	public Long getId() {
 		return id;
@@ -51,23 +61,27 @@ public class User {
 		this.password = password;
 	}
 
-	public Date getInsertDate() {
+	public Calendar getInsertDate() {
 		return insertDate;
 	}
 
-	public void setInsertDate(Date insertDate) {
+	public void setInsertDate(Calendar insertDate) {
 		this.insertDate = insertDate;
 	}
 
-	public Date getUpdateDate() {
+	public Calendar getUpdateDate() {
 		return updateDate;
 	}
 
-	public void setUpdateDate(Date updateDate) {
+	public void setUpdateDate(Calendar updateDate) {
 		this.updateDate = updateDate;
 	}
 
-	
-	
+	@Override
+	public String toString() {
+		return login;
+	}
+
+
 
 }
