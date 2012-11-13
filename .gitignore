@@ -10,6 +10,8 @@ manifest.mf
 .settings
 .classpath
 .project
+.idea
+*.iml
 /resources
 web
 nbproject
