@@ -63,7 +63,7 @@ public class UserDaoTest {
 		while(rs.next()) {
 			System.out.println(rs.getString(0)+"-"+ rs.getString(1));
 		}*/
-		dao.findById(User.class, 1);
+		dao.findById(User.class, 1l);
 		System.out.println("testFindById");
 
 		System.out.println("testInsert");
