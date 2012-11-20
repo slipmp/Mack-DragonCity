@@ -7,7 +7,7 @@
 <body>
 <div id="conteudo">
 	<div id="header">
-	   <div id="logo"><img src="Imagens/logo_mackenzie.png" /></div>
+	   <div id="logo"><img src="Imagens/logo_mackenzie_fundo.png" /></div>
 	   <div id="links">
 		   <ul class="menu">			   
 			   <li><a href="#">Sobre o Jogo|</a></li>
@@ -50,7 +50,7 @@
 	</div>    
 	
 	<div id="footer">
-		<img src="Imagens/Layout_footer.png" />
+		<img src="Imagens/Footer.png" />
 	</div>       
 </div>
 </body>
