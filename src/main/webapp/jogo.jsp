@@ -29,13 +29,13 @@
     &nbsp;&nbsp;<input id="traco_04" type="image" src="Imagens/bg_cabecalho_traco.gif" align="middle"/>
 </div>
 <div class="pontuacao">
-	<label id="qtd_ouro"><b>${quantidadedeouro}</b></label>
-	<label id="qtd_alimento"><b>46.161</b></label>
-	<label id="qtd_diamante"><b>33</b></label>
-	<label id="qtd_dragao"><b>58</b></label>       
-	<label id="qtd_pontos"><b>28205340</b></label>    
-	<label id="nmr_nivel"><b>22</b></label>            
-  	<label id="nme_jogador"><b>Jogador(a): Dayane Bortolin</b></label>
+	<label id="qtd_ouro"><b>${qtd_ouro}</b></label>
+	<label id="qtd_alimento"><b>${qtd_alimento}</b></label>
+	<label id="qtd_diamante"><b>${qtd_diamente}</b></label>
+	<label id="qtd_dragao"><b>${qtd_dragao}</b></label>       
+	<label id="qtd_pontos"><b>${qtd_pontos}</b></label>    
+	<label id="nmr_nivel"><b>${nmr_nivel}</b></label>            
+  	<label id="nme_jogador"><b>${nme_jogador}</b></label>
 </div>
 <div class="novoJogo">
 	<a id="novo_jogo" href="">Novo Jogo</a> 
