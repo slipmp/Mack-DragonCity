@@ -8,6 +8,7 @@
     <div id="container">
 		<%@ include file="/adm/inc/header.jsp" %>
     </div>
+    
     Logado
 </body>
 </html>

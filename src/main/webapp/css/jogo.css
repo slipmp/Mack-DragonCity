@@ -1,0 +1,230 @@
+@charset "utf-8";
+*{
+	margin: 0;
+	padding: 0;
+}
+body
+{
+	background-color:#003399;
+}
+.cabecalho 
+{
+	background-image: url(../Imagens/bg_cabecalho.jpg);
+	background-repeat: no-repeat;
+	background-position: center top;
+	position:relative;
+	width:1024px;	
+	height: 81px;
+	margin:0px auto;	
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:10px;
+	color:#333333;			
+}
+
+#traco_01 {
+	position:absolute;
+	display:block;	
+	top:66px;
+	left:640px;
+	text-align:left;
+	width: 1px;
+}
+
+#traco_02 {
+	position:absolute;
+	display:block;	
+	top:66px;
+	left:718px;
+	text-align:left;
+	width: 1px;
+}
+
+#traco_03 {
+	position:absolute;
+	display:block;	
+	top:66px;
+	left:791px;
+	text-align:left;
+	width: 1px;
+}
+
+#traco_04 {
+	position:absolute;
+	display:block;	
+	top:66px;
+	left:640px;
+	text-align:left;
+	width: 1px;
+}
+
+#cadastrar_jogador {
+	position:absolute;
+	display:block;	
+	top:66px;
+	left:550px;
+	text-align:left;
+	width: 150px;
+	color:#333333;	
+}
+
+#sobre_jogo {
+	position:absolute;
+	display:block;	
+	top:66px;
+	left:650px;
+	text-align:left;
+	width: 150px;
+	color:#333333;
+}
+
+#contate-nos {
+	position:absolute;
+	display:block;	
+	top:66px;
+	left:728px;
+	text-align:left;
+	width: 150px;
+	color:#333333;
+}
+
+#sair {
+	position:absolute;
+	display:block;	
+	top:66px;
+	left:800px;
+	text-align:left;
+	width: 150px;
+	color:#333333;
+}
+
+.pontuacao {
+	background-image: url(../Imagens/bg_pontuacao.jpg);
+	background-repeat: no-repeat;
+	background-position: center top;
+	position:relative;
+	width:1024px;
+	height: 48px;
+	margin:0px auto;	
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:14px;
+	color:#FFFFFF;	
+}
+#qtd_ouro{
+	position:absolute;
+	display:block;	
+	top:22px;
+	left:30px;
+	text-align:right;
+	width: 67px;
+}
+
+#qtd_alimento{
+	position:absolute;
+	display:block;	
+	top:22px;
+	left:157px;
+	text-align:right;
+	width: 65px;
+}
+
+#qtd_diamante{
+	position:absolute;
+	display:block;	
+	top:22px;
+	left:277px;
+	text-align:right;
+	width: 67px;
+}
+
+#qtd_dragao{
+	position:absolute;
+	display:block;	
+	top:22px;
+	left:415px;
+	text-align:right;
+	width: 50px;
+}
+
+#qtd_pontos{
+	position:absolute;
+	display:block;	
+	top:22px;
+	left:522px;
+	text-align:right;
+	width: 85px;
+}
+
+#nmr_nivel{
+	position:absolute;
+	display:block;	
+	top:20px;
+	left:613px;
+	color:#000000;
+	text-align:right;
+	width: 26px;
+}
+
+#nme_jogador{
+	position:absolute;
+	display:block;	
+	top:04px;
+	left:650px;
+	text-align:right;
+	width: 370px;
+	font-size:10px;
+}
+
+.novoJogo {
+	background-image:url(../Imagens/bg_novo_jogo.jpg);
+	background-repeat: no-repeat;
+	background-position: center top;
+	position:relative;
+	width:1024px;
+	height: 48px;
+	margin:0px auto;	
+	font-family:Arial, Helvetica, sans-serif;
+	color:#FFFFFF;	
+}
+
+#novo_jogo{
+	position:absolute;
+	display:block;	
+	top:25px;
+	left:28px;
+	text-align:left;
+	width: 80px;
+	font-size:12px;
+	color:#FFFFFF;
+}
+
+.fundoConstrucao {
+	background-image: url(../Imagens/bg_fundo_construcao.jpg);
+	background-repeat: no-repeat;
+	background-position: center top;
+	height: 626px;
+	position:relative;
+	width:1024px;
+	margin:0px auto;
+}
+.fundoConstrucao table{
+	position:absolute;
+	display:block;	
+	left: 105px;
+	top: 45px;
+}
+.fundoConstrucao a:hover{
+	border:solid 1px blue;
+}
+#botao1{
+	top:178px;
+	left:126px;
+}
+
+.ovoChocadeira {
+	/*background-image:url(Imagens/btn_ovo_fogo_chocadeira.gif);*/
+	background-repeat: no-repeat;
+	background-position: center top;
+	position:absolute;
+	width:135px;
+	height: 80px;
+}
