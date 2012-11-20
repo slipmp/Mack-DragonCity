@@ -74,7 +74,7 @@ public class UserDaoTest {
 		dao.insert(u);
 		
 	    System.out.println("testCreate Concluido!");
-	}
+	} 
 
 	@Test
 	public void testRetrieve() throws SQLException {
