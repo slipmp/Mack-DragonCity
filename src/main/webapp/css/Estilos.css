@@ -1,0 +1,14 @@
+body
+{
+}
+.menu li{display:inline}
+body{margin:0px}
+#header {height:90px; margin:0 auto;background-image: url('../Imagens/Footer.png');}
+#logo {width:100px; float:left;}
+#links {float:right; margin-top:40px}
+#conteudo {width:1023px;margin:0 auto;}
+#form {display:block;clear:both}
+#footer {width:100px; float:left;}
+.btn_enviar {width:100px;height:29px}
+.SeparadorHorizontalFiltro{height:2px; background-color:#dfdfdf;}
+.titulo_centralizado{text-align:center;font-family:Arial; font-weight:bold;}

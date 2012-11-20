@@ -1,13 +1,13 @@
+<%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <html>
 <head>
-
-		<title>Dragon City</title>
-		<link href="Css/Estilos.css" rel="stylesheet" type="text/css" />
+	<title>Dragon City</title>
+	<link href="css/Estilos.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
 <div id="conteudo">
 	<div id="header">
-	   <div id="logo"><img src="Imagens/logo_mackenzie.png" /></div>
+	   <div id="logo"><img src="imagens/logo_mackenzie_fundo.png" /></div>
 	   <div id="links">
 		   <ul class="menu">			   
 			   <li><a href="#">Sobre o Jogo|</a></li>
@@ -43,14 +43,12 @@
                         </tr>
 			<tr><td>&nbsp;</td></tr>
 		</table>
-
-					
 		<!--<div class="SeparadorHorizontalFiltro"></div>!-->
-			
+	</form>		
 	</div>    
 	
 	<div id="footer">
-		<img src="Imagens/Layout_footer.png" />
+		<img src="imagens/Footer.png" />
 	</div>       
 </div>
 </body>
