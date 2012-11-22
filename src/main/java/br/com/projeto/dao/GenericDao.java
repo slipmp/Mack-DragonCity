@@ -15,8 +15,12 @@ public class GenericDao  {
 	public void setEntityManager(EntityManager em) {
 		this.em = em;
 	}
-	
-	@Transactional
+
+    public EntityManager getEntityManager() {
+        return em;
+    }
+
+    @Transactional
 	public <T> void insert(T entity) {
 		em.persist(entity);
 	}
