@@ -13,12 +13,14 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
+import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.AbstractTransactionalJUnit4SpringContextTests;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import br.com.projeto.dao.UserDao;
 import br.com.projeto.entity.User;
+import org.springframework.test.context.transaction.AfterTransaction;
 import org.springframework.test.context.transaction.TransactionConfiguration;
 
 import javax.persistence.EntityManager;
@@ -36,6 +38,8 @@ public class UserDaoTest extends AbstractTransactionalJUnit4SpringContextTests {
 
     @Autowired
     private UserDao dao;
+
+    private Long idToDelete;
 
     @Autowired
     private DriverManagerDataSource ds;
@@ -60,24 +64,15 @@ public class UserDaoTest extends AbstractTransactionalJUnit4SpringContextTests {
 
 
     @Test
+    @Rollback(true)
     public void testCreate() throws SQLException {
         System.out.println("testCreate Iniciando!");
         User u = new User();
         u.setLogin("juca");
         u.setPassword("123");
         dao.insert(u);
-        Connection con = ds.getConnection();
-        Statement s = con.createStatement();
-        ResultSet rs = s.executeQuery(" select * from tbUsuario where login='juca' ");
-        if (rs.next()) {
-            limpaLixo(rs.getLong("id"));
-            s.close();
-            con.close();
-        } else {
-            s.close();
-            con.close();
-            fail("Nao foi inserido um juca");
-        }
+        User u2 = dao.getUser("juca", "123");
+        assertNotNull(u2);
         System.out.println("testCreate Concluido!");
     }
 
@@ -101,10 +96,13 @@ public class UserDaoTest extends AbstractTransactionalJUnit4SpringContextTests {
         User u2 = dao.getUser("joao-upd", "456");
         assertNotNull(u2);
         assertEquals(u2.getLogin(), "joao-upd");
+        dao.remove(User.class,u.getId());
         System.out.println("testUpdate Concluido!");
-        limpaLixo(u.getId());
-        //fail("Not yet implemented");
     }
+
+
+
+
 
     @Test
     public void testDelete() throws SQLException {
@@ -114,6 +112,5 @@ public class UserDaoTest extends AbstractTransactionalJUnit4SpringContextTests {
         User u2 = dao.getUser("joaoD", "456");
         assertNull(u2);
         System.out.println("testDelete Concluido!");
-        //fail("Not yet implemented");
     }
 }
