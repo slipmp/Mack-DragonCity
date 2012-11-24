@@ -1,13 +1,14 @@
+
 <html>
 <head>
-
 		<title>Dragon City</title>
-		<link href="Css/Estilos.css" rel="stylesheet" type="text/css" />
+		<link rel="stylesheet" type="text/css" href="css/Estilos.css" /> 
+		
 </head>
 <body>
 <div id="conteudo">
 	<div id="header">
-	   <div id="logo"><img src="Imagens/logo_mackenzie_fundo.png" /></div>
+	   <div id="logo"><img src="/imagens/Logo_mackenzie_fundo.png" /></div>
 	   <div id="links">
 		   <ul class="menu">
 			   <li><a href="#">Cadastrar Jogador|</a></li>
@@ -17,7 +18,7 @@
 	   </div>
 	</div> 
 	<div align="center">
-	    <img src="Imagens/Logo_jogo.png" />	
+	    <img src="imagens/Logo_jogo.png" />	
     </div>  
     <p class="titulo_centralizado"><em>Seja bem vindo!Ao jogo do Ano, Dragon City!!!!<br/>Para jogar é necessário realizar o login</em></p>
 	<div id="form">
@@ -32,7 +33,7 @@
 				</tr>		
 				<tr>
 				    <td>Primeiro acesso?</td>
-			        <td><a href="cadastro_jogador.html">Clique aqui e cadastre-se</td>
+			        <td><a href="/cadastro.jsp">Clique aqui e cadastre-se</a></td>
 				</tr>
 			</table>
 			<p align="center"> </p>
@@ -41,7 +42,7 @@
 	</div>    
 	
 	<div id="footer">
-		<img src="Imagens/Footer.png" />
+		<img src="/imagens/Footer.png" />
 	</div>       
 </div>
 </body>

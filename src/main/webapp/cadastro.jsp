@@ -1,4 +1,4 @@
-<%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+
 <html>
 <head>
 	<title>Dragon City</title>
@@ -7,7 +7,7 @@
 <body>
 <div id="conteudo">
 	<div id="header">
-	   <div id="logo"><img src="imagens/logo_mackenzie_fundo.png" /></div>
+	   <div id="logo"><img src="/imagens/logo_mackenzie_fundo.png" /></div>
 	   <div id="links">
 		   <ul class="menu">			   
 			   <li><a href="#">Sobre o Jogo|</a></li>
@@ -43,7 +43,6 @@
                         </tr>
 			<tr><td>&nbsp;</td></tr>
 		</table>
-		<!--<div class="SeparadorHorizontalFiltro"></div>!-->
 	</form>		
 	</div>    
 	
