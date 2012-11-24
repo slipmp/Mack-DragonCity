@@ -3,7 +3,7 @@
 <head>
 		<title>Dragon City</title>
 		<link rel="stylesheet" type="text/css" href="css/Estilos.css" /> 
-		
+		<%@ include file="/adm/inc/taghead.jsp" %>
 </head>
 <body>
 <div id="conteudo">
@@ -33,7 +33,7 @@
 				</tr>		
 				<tr>
 				    <td>Primeiro acesso?</td>
-			        <td><a href="/cadastro.jsp">Clique aqui e cadastre-se</a></td>
+			        <td><a href="/cadastro.jsp"><c:out value></c>Clique aqui e cadastre-se</a></td>
 				</tr>
 			</table>
 			<p align="center"> </p>
