@@ -46,7 +46,7 @@
 	</div>    
 	
 	<div id="footer">
-		<img src="imagens/Footer.png" />
+		<img src="/imagens/Footer.png" />
 	</div>       
 </div>
 </body>
