@@ -8,7 +8,7 @@
 <body>
 <div id="conteudo">
 	<div id="header">
-	   <div id="logo"><img src="/imagens/Logo_mackenzie_fundo.png" /></div>
+	   <div id="logo"><img src="Imagens/Logo_mackenzie_fundo.png" /></div>
 	   <div id="links">
 		   <ul class="menu">
 			   <li><a href="#">Cadastrar Jogador|</a></li>
@@ -18,7 +18,7 @@
 	   </div>
 	</div> 
 	<div align="center">
-	    <img src="imagens/Logo_jogo.png" />	
+	    <img src="Imagens/Logo_jogo.png" />	
     </div>  
     <p class="titulo_centralizado"><em>Seja bem vindo!Ao jogo do Ano, Dragon City!!!!<br/>Para jogar é necessário realizar o login</em></p>
 	<div id="form">
@@ -42,7 +42,7 @@
 	</div>    
 	
 	<div id="footer">
-		<img src="/imagens/Footer.png" />
+		<img src="Imagens/Footer.png" />
 	</div>       
 </div>
 </body>

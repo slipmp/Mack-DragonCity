@@ -9,7 +9,7 @@
 <body>
 <div id="conteudo">
 	<div id="header">
-	   <div id="logo"><img src="/imagens/logo_mackenzie_fundo.png" /></div>
+	   <div id="logo"><img src="Imagens/logo_mackenzie_fundo.png" /></div>
 	   <div id="links">
 		   <ul class="menu">			   
 			   <li><a href="#">Sobre o Jogo|</a></li>
@@ -18,7 +18,7 @@
 	   </div>
 	</div> 
   	<div >
-   	<form action="/usuario/cadastrar.action" method="post" >
+   	<form action="usuario/cadastrar.action" method="post" >
    		<p class="titulo_centralizado">Cadastrar Jogador</p>
 		<table align="center">
 			<tr>
@@ -28,7 +28,7 @@
 	
 			<tr>
     			    <td>Senha:</td>
-    			    <td><input type="password" name="senha" id="senha" value="${password}"></td>	
+    			    <td><input type="password" name="password" id="password" value="${password}"></td>	
 			</tr>
 			<tr>
 			    <td>Confirmar:</td>
@@ -46,7 +46,7 @@
 	</div>    
 	
 	<div id="footer">
-		<img src="/imagens/Footer.png" />
+		<img src="Imagens/Footer.png" />
 	</div>       
 </div>
 </body>
