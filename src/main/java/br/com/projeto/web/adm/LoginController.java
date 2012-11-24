@@ -30,7 +30,7 @@ public class LoginController {
 						 @RequestParam(value="senha",required=false) String password,
 						 @RequestParam(value="requestedUrl",required=false) String requestedUrl) throws ServletException, IOException {
 		if(service.login(login, password)!=null){
-			if(StringUtils.isNotBlank(requestedUrl)){
+			if(StringUtils.isNotBlank(requestedUrl)){		
 				return"redirect:"+requestedUrl.replaceAll("\\$10","?").replaceAll("\\$11","&");
 			}else{
 				return "redirect:/adm";

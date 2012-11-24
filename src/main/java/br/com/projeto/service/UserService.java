@@ -40,6 +40,13 @@ public class UserService {
 
 	}
 
+	public void logout(User user) {
+		ServletRequestAttributes attr = (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();
+		HttpSession session = attr.getRequest().getSession(true);
+		
+		if(session.getAttribute(Constants.USER_ADMIN) != null)
+			session.removeAttribute(Constants.USER_ADMIN);
+	}
 	
 
 }
