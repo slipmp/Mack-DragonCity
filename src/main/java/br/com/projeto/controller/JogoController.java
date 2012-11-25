@@ -40,6 +40,7 @@ public class JogoController {
 			session.setAttribute("jogador", jogador);
 			session.setAttribute("jogo", jogo);
 			session.setAttribute("qtd_total_ouro", jogo.getVlrTotalOuro());
+			return "redirect:/jogo.jsp?legal";
 		}
 		
 		return "redirect:/jogo.jsp";
