@@ -29,7 +29,7 @@
     &nbsp;&nbsp;<input id="traco_04" type="image" src="Imagens/bg_cabecalho_traco.gif" align="middle"/>
 </div>
 <div class="pontuacao">
-	<label id="qtd_ouro"><b>${qtd_ouro}</b></label>
+	<label id="qtd_ouro"><b>${qtd_total_ouro}</b></label>
 	<label id="qtd_alimento"><b>${qtd_alimento}</b></label>
 	<label id="qtd_diamante"><b>${qtd_diamente}</b></label>
 	<label id="qtd_dragao"><b>${qtd_dragao}</b></label>       
