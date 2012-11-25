@@ -30,6 +30,7 @@ public class UserService {
 		
 		User user = dao.getUser(login, CryptUtils.md5(password));
 		
+		System.out.println(login);
 		if (user == null) {
 			return null;
 		}
