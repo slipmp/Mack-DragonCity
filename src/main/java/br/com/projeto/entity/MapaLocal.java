@@ -3,6 +3,7 @@ package br.com.projeto.entity;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -20,6 +21,7 @@ public class MapaLocal implements java.io.Serializable{
 	private static final long serialVersionUID = -2226221138819724242L;
 
 	@Id
+	@GeneratedValue
 	@Column(name = "ID")
     protected int codigo;
 	
@@ -37,6 +39,14 @@ public class MapaLocal implements java.io.Serializable{
 	@JoinColumn(name="IdConstrucao")
     private Construcao construcao;
 
+    public int getCodigo() {
+        return codigo;
+    }
+
+    public void setCodigo(int codigo) {
+        this.codigo = codigo;
+    }
+    
     public int getPosicaoX() {
         return posicaoX;
     }

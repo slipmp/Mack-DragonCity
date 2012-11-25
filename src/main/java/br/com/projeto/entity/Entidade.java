@@ -2,6 +2,7 @@ package br.com.projeto.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.Table;
@@ -18,6 +19,7 @@ public abstract class Entidade implements java.io.Serializable
 	private static final long serialVersionUID = 1L;
 
 	@Id
+	@GeneratedValue
 	@Column(name = "ID")
     protected int codigo;
     

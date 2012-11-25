@@ -5,6 +5,7 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
@@ -21,6 +22,7 @@ public class Jogo implements java.io.Serializable{
 	private static final long serialVersionUID = 3077288306332878109L;
 
 	@Id
+	@GeneratedValue
 	@Column(name = "ID")
     protected int codigo;
 	
@@ -44,6 +46,14 @@ public class Jogo implements java.io.Serializable{
 	@JoinColumn(name = "IdMapa")
     private Mapa mapa;
 
+    public int getCodigo() {
+        return codigo;
+    }
+
+    public void setCodigo(int codigo) {
+        this.codigo = codigo;
+    }
+    
     public int getVlrTotalOuro() {
         return vlrTotalOuro;
     }

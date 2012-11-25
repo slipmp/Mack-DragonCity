@@ -24,7 +24,6 @@ public class DragaoEstado implements java.io.Serializable{
 	private static final long serialVersionUID = -9041013752895695287L;
 
 	@Id
-	@GeneratedValue
 	@Column(name="Id")
     private int codigo;
 

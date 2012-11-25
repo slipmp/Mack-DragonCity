@@ -19,7 +19,6 @@ public class DragaoTipo  implements java.io.Serializable{
 	private static final long serialVersionUID = -4025796556269695227L;
 
 	@Id
-	@GeneratedValue
 	@Column(name="Id")
     private int codigo;
 

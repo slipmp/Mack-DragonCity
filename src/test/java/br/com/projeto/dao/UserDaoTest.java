@@ -20,6 +20,8 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import br.com.projeto.dao.UserDao;
 import br.com.projeto.entity.User;
+import br.com.projeto.util.CryptUtils;
+
 import org.springframework.test.context.transaction.AfterTransaction;
 import org.springframework.test.context.transaction.TransactionConfiguration;
 
@@ -39,78 +41,57 @@ public class UserDaoTest extends AbstractTransactionalJUnit4SpringContextTests {
     @Autowired
     private UserDao dao;
 
-    private Long idToDelete;
-
     @Autowired
     private DriverManagerDataSource ds;
 
-    private void criaJoao(String n) throws SQLException {
-        System.out.println("Cria o joao" + n + " para usar nos testes");
-        Connection con = ds.getConnection();
-        Statement s = con.createStatement();
-        s.executeUpdate(" insert into tbUsuario (data_insercao,login,senha,data_atualizacao) values ('2012-02-02','joao" + n + "','456','2012-02-02') ");
-        s.close();
-        con.close();
+    @Test
+    public void testIniciandoTestes()
+    {
+    	System.out.println("Iniciando tests. Nao foi feito nenhum println para os dados aqui propositalmente.");
     }
-
-    private void limpaLixo(Long id) throws SQLException {
-        System.out.println("Apaga o joao usado nos testes - " + id);
-        Connection con = ds.getConnection();
-        Statement s = con.createStatement();
-        s.executeUpdate(" delete from tbUsuario where id = " + id);
-        s.close();
-        con.close();
-    }
-
 
     @Test
-    @Rollback(true)
+    @Rollback(true) //Esse codigo faz com que tudo que for executado aqui nesse metodo, seja dado Rollback.
     public void testCreate() throws SQLException {
-        System.out.println("testCreate Iniciando!");
         User u = new User();
         u.setLogin("juca");
-        u.setPassword("123");
+        u.setPassword(CryptUtils.md5("123"));
         dao.insert(u);
-        User u2 = dao.getUser("juca", "123");
-        assertNotNull(u2);
         System.out.println("testCreate Concluido!");
     }
 
     @Test
+    @Rollback(true)
     public void testRetrieve() throws SQLException {
-        criaJoao("retrieve");
-        User u = dao.getUser("joaoretrieve", "456");
-        assertNotNull(u);
-        assertEquals(u.getLogin(), "joaoretrieve");
+    	User u = CreateToUseInTests();
+        User u2=dao.findById(User.class, u.getId());
+        assertNotNull(u2);
         System.out.println("testRetrieve Concluido!");
-        limpaLixo(u.getId());
     }
 
-
     @Test
+    @Rollback(true)
     public void testUpdate() throws SQLException {
-        criaJoao("U");
-        User u = dao.getUser("joaoU", "456");
-        u.setLogin("joao-upd");
+    	User u = CreateToUseInTests();
+    	u.setLogin("teste");
         dao.update(u);
-        User u2 = dao.getUser("joao-upd", "456");
-        assertNotNull(u2);
-        assertEquals(u2.getLogin(), "joao-upd");
-        dao.remove(User.class,u.getId());
         System.out.println("testUpdate Concluido!");
     }
 
-
-
-
-
     @Test
+    @Rollback(true)
     public void testDelete() throws SQLException {
-        criaJoao("D");
-        User u = dao.getUser("joaoD", "456");
-        dao.remove(User.class, u.getId());
-        User u2 = dao.getUser("joaoD", "456");
-        assertNull(u2);
+    	User u = CreateToUseInTests();
+    	dao.remove(User.class,u.getId());
         System.out.println("testDelete Concluido!");
+    }
+    
+    private User CreateToUseInTests()
+    {
+        User u = new User();
+        u.setLogin("juca");
+        u.setPassword(CryptUtils.md5("123"));
+        dao.insert(u);
+        return u;
     }
 }

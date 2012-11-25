@@ -7,6 +7,7 @@ import javax.persistence.Query;
 import org.springframework.stereotype.Repository;
 
 import br.com.projeto.entity.User;
+import br.com.projeto.util.CryptUtils;
 
 @Repository
 public class UserDao extends GenericDao {
@@ -19,7 +20,7 @@ public class UserDao extends GenericDao {
 	public User getUser(String login,String password) {
 		Query query = super.em.createQuery("from User u where u.login = :login and u.password = :password ");
 		query.setParameter("login", login);
-		query.setParameter("password", password);
+		query.setParameter("password", CryptUtils.md5(password));
 		if (query.getResultList().size() == 1) {
 			return (User) query.getResultList().get(0);
 		} else {

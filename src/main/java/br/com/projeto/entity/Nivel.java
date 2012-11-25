@@ -16,7 +16,6 @@ public class Nivel implements java.io.Serializable{
 	private static final long serialVersionUID = -454116298696352773L;
 
 	@Id
-	@GeneratedValue
 	@Column(name = "ID")
     private int codigo;
 
