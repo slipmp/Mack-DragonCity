@@ -21,7 +21,7 @@ import br.com.projeto.util.Constants;
 public class LoginFilter implements Filter {
 	
 	private static String LOGIN_URI = "/adm/login.jsp";
-	private static String LOGGED_IN_URI = "/adm";
+	private static String LOGGED_IN_URI = "/index.jsp";
 	private static String[] AUTHORIZED_URIS = new String[] {
 		LOGIN_URI,
 		"/adm/login.action",

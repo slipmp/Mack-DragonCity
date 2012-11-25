@@ -1,6 +1,7 @@
 package br.com.projeto.web.adm;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpSession;
@@ -11,6 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import br.com.projeto.entity.User;
 import br.com.projeto.service.UserService;
 import br.com.projeto.util.Constants;
 
@@ -29,14 +31,21 @@ public class LoginController {
 	public String login(@RequestParam(value="usuario",required=false) String login,
 						 @RequestParam(value="senha",required=false) String password,
 						 @RequestParam(value="requestedUrl",required=false) String requestedUrl) throws ServletException, IOException {
-		if(service.login(login, password)!=null){
-			if(StringUtils.isNotBlank(requestedUrl)){		
+		
+		User user = service.login(login, password);
+		
+		if(user!=null)
+		{
+			if(StringUtils.isNotBlank(requestedUrl))
+			{		
 				return"redirect:"+requestedUrl.replaceAll("\\$10","?").replaceAll("\\$11","&");
-			}else{
-				return "redirect:/adm";
 			}
+			else
+			{
+				return "redirect:/jogo.jsp?" + user.getId();
+			}		
 		}
-		return "redirect:/adm/login.jsp?error=Usuário e/ou senha inválidos";
+		return "redirect:/index.jsp?error=Usuário e/ou senha inválidos";
 	}
 	
 	@RequestMapping("/adm/logout")
@@ -46,6 +55,5 @@ public class LoginController {
 		
 		return "redirect:/adm";
 	}
-	
 	
 }
