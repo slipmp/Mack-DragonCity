@@ -21,11 +21,11 @@
 	    <img src="Imagens/Logo_jogo.png" />	
     </div>  
     <p class="titulo_centralizado"><em>Seja bem vindo!Ao jogo do Ano, Dragon City!!!!<br/>Para jogar é necessário realizar o login</em></p>
-	<div id="form" action="adm/login.action" method="post">
-    	<form id="form1">		
-    	<input type="text" name="requestUrl" value="jogo.jsp">
-	        <p align="center"><label for="login">Login:</label><input type="text" name="login" id="login" value="${param.usuario}"></p>
-			<p align="center">Senha:<input type="password" name="senha" id="senha" value="${param.senha}"></p>
+	<div>
+    	<form action="adm/login.action" method="post">		
+    	<input type="hidden" name="requestedUrl" value="${requestedUrl}">
+	        <p align="center"><label for="login">Login:</label><input type="text" name="usuario" id="usuario" value="${usuario}"></p>
+			<p align="center">Senha:<input type="password" name="senha" id="senha" value="${senha}"></p>
 			<table align="center">
 				<tr>
 				    <td>Esqueceu a senha?</td>
