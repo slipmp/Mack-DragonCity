@@ -67,7 +67,7 @@ function validaDigitos()
 	var digitosPass = document.getElementById("password").value;
 	var digitosLog =  document.getElementById("login").value;
 
-	alert("pass=" + digitosPass + "&login=" + digitosLog);
+	//alert("pass=" + digitosPass + "&login=" + digitosLog);
 	
     if (digitosPass.length == 0)
     {
