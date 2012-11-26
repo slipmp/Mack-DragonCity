@@ -14,31 +14,56 @@
 		$('#'+id).css('background-image','url('')');
 		*/
 	}
+
+	function criar_novo_jogo(id)
+	{
+		var mensagem = confirm("Você tem certeza que deseja criar um novo jogo?");
+
+		if (mensagem == true)
+		{
+			window.onload = function(){
+				$('novo_jogo').onclick = function(){
+					window.location = "jogo/novojogo.action";
+				}
+			}		
+		}
+	}
+
+	function sair_jogo()
+	{	
+		var mensagem = confirm("Você tem certeza que deseja sair do jogo?");
+
+		if (mensagem == true)
+		{
+			window.exit;	
+		}
+	}	
 </script>
 </head>
 
 <body>
 <div class="cabecalho">
-	<a id="cadastrar_jogador" href="">Cadastrar jogador</a>
+	<a id="cadastrar_jogador" href="/cadastro.jsp">Cadastrar jogador</a>
 	&nbsp;&nbsp;<input id="traco_01" type="image" src="Imagens/bg_cabecalho_traco.gif" align="middle"/>
     <a id="sobre_jogo" href="">Sobre o jogo</a>
     &nbsp;&nbsp;<input id="traco_02" type="image" src="Imagens/bg_cabecalho_traco.gif" align="middle"/>
     <a id="contate-nos" href="">Contate-nos</a>
     &nbsp;&nbsp;<input id="traco_03" type="image" src="Imagens/bg_cabecalho_traco.gif" align="middle"/>
-    <a id="sair" href="">Sair</a>
+    <a id="sair" href="javascript:sair_jogo();">Sair</a>
     &nbsp;&nbsp;<input id="traco_04" type="image" src="Imagens/bg_cabecalho_traco.gif" align="middle"/>
 </div>
 <div class="pontuacao">
 	<label id="qtd_ouro"><b>${qtd_total_ouro}</b></label>
-	<label id="qtd_alimento"><b>${qtd_alimento}</b></label>
-	<label id="qtd_diamante"><b>${qtd_diamente}</b></label>
-	<label id="qtd_dragao"><b>${qtd_dragao}</b></label>       
-	<label id="qtd_pontos"><b>${qtd_pontos}</b></label>    
+	<label id="qtd_alimento"><b>${qtd_total_comida}</b></label>
+	<label id="qtd_diamante"><b>${qtd_total_diamente}</b></label>
+	<label id="qtd_dragao"><b>${qtd_total_dragao}</b></label>       
+	<label id="qtd_pontos"><b>${qtd_total_pontosXP}</b></label>    
 	<label id="nmr_nivel"><b>${nmr_nivel}</b></label>            
-  	<label id="nme_jogador"><b>${nme_jogador}</b></label>
+  	<label id="nme_jogador"><b>Jogador logado: ${nme_jogador}</b></label>
 </div>
 <div class="novoJogo">
-	<a id="novo_jogo" href="">Novo Jogo</a> 
+	<!-- <a id="novo_jogo" href="javascript:criar_novo_jogo('novo_jogo');" title="Novo jogo">Novo Jogo</a>; -->
+	<a id="novo_jogo" href="/jogo/novojogo.action" title="Novo jogo">Novo Jogo</a>;
 </div>
 <div class="fundoConstrucao">
 <!--  <a id="botao1x1" href="javascript:funcaoClick('botao1x1')"></a>

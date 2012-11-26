@@ -33,7 +33,6 @@ public class UserService {
 		User user = dao.getUser(login, CryptUtils.md5(password));
 				
 		if (user == null) {
-			System.out.println("usuario nao encontrado");
 			return null;
 		}
 		

@@ -40,9 +40,37 @@ public class JogoController {
 			session.setAttribute("jogador", jogador);
 			session.setAttribute("jogo", jogo);
 			session.setAttribute("qtd_total_ouro", jogo.getVlrTotalOuro());
-			return "redirect:/jogo.jsp?legal";
+			session.setAttribute("qtd_total_comida", jogo.getVlrTotalComida());
+			session.setAttribute("qtd_total_pontosXP", jogo.getQtdTotalPontosXP());
+			session.setAttribute("qtd_total_dragao", jogo.getListDragao().size());
+			session.setAttribute("nme_jogador", jogador.getNome());
+			
+			return "redirect:/jogo.jsp?" + jogo.getCodigo();
 		}
 		
 		return "redirect:/jogo.jsp";
 	}
+	
+	@RequestMapping("/jogo/novojogo")
+	public String carregarNovoJogo(HttpSession session) {
+		
+		if (session.getAttribute(Constants.USER_ADMIN) != null) {
+			
+			Jogador jogador = (Jogador)session.getAttribute("jogador");
+			Jogo jogo = jogoService.criar_novo_jogo(jogador);
+			
+			session.setAttribute("jogador", jogador);
+			session.setAttribute("jogo", jogo);
+			session.setAttribute("qtd_total_ouro", jogo.getVlrTotalOuro());
+			session.setAttribute("qtd_total_comida", jogo.getVlrTotalComida());
+			session.setAttribute("qtd_total_pontosXP", jogo.getQtdTotalPontosXP());
+			session.setAttribute("qtd_total_dragao", jogo.getListDragao().size());
+			session.setAttribute("nme_jogador", jogador.getNome());
+			
+			return "redirect:/jogo.jsp?" + jogo.getCodigo();
+
+		}
+		
+		return "redirect:index.jsp";
+	}	
 }

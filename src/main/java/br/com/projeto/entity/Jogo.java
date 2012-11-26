@@ -34,7 +34,7 @@ public class Jogo implements java.io.Serializable{
 
 	@Column(name="QtdTotalPontosXP")
     private int qtdTotalPontosXP;
-
+	
     @OneToOne
 	@JoinColumn(name = "IdJogador")
     private Jogador jogador;
