@@ -22,7 +22,7 @@
     </div>  
     <p class="titulo_centralizado"><em>Seja bem vindo!Ao jogo do Ano, Dragon City!!!!<br/>Para jogar é necessário realizar o login</em></p>
 	<div>
-    	<form action="adm/login.action" method="post">		
+    	<form action="jogador/login.action" method="post">		
     	<input type="hidden" name="requestedUrl" value="${requestedUrl}">
 	        <p align="center"><label for="login">Login:</label><input type="text" name="usuario" id="usuario" value="${usuario}"></p>
 			<p align="center">Senha:<input type="password" name="senha" id="senha" value="${senha}"></p>

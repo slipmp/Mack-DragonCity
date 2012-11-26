@@ -19,9 +19,9 @@ public class CadastroController {
 	private CadastroService cadastroService;
 
 	@RequestMapping("/usuario/cadastrar")
-	public String cadastrarUsuario(@RequestParam(value="login",required=true) String login,
+	public String cadastrarJogador(@RequestParam(value="login",required=true) String login,
 						 @RequestParam(value="password",required=true) String password) {
-		cadastroService.cadastrarUsuario(login, password);
+		cadastroService.cadastrarJogador(login, password);
 		return "redirect:/index.jsp";
 	}
 	

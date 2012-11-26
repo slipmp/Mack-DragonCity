@@ -1,19 +1,14 @@
 package br.com.projeto.controller;
 
-import java.util.List;
-
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 
-import br.com.projeto.entity.User;
 import br.com.projeto.entity.Jogador;
 import br.com.projeto.entity.Jogo;
+import br.com.projeto.entity.User;
 import br.com.projeto.service.JogadorService;
 import br.com.projeto.service.JogoService;
 import br.com.projeto.util.Constants;
@@ -59,14 +54,16 @@ public class JogoController {
 			Jogador jogador = (Jogador)session.getAttribute("jogador");
 			Jogo jogo = jogoService.criar_novo_jogo(jogador);
 			
-			session.setAttribute("jogador", jogador);
+			session.setAttribute("jogo", jogo);
+			
+			/*session.setAttribute("jogador", jogador);
 			session.setAttribute("jogo", jogo);
 			session.setAttribute("qtd_total_ouro", jogo.getVlrTotalOuro());
 			session.setAttribute("qtd_total_comida", jogo.getVlrTotalComida());
 			session.setAttribute("qtd_total_pontosXP", jogo.getQtdTotalPontosXP());
 			session.setAttribute("qtd_total_dragao", jogo.getListDragao().size());
 			session.setAttribute("nme_jogador", jogador.getNome());
-			
+			*/
 			return "redirect:/jogo.jsp?" + jogo.getCodigo();
 
 		}

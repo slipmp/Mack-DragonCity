@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 
 import br.com.projeto.dao.GenericDao;
 import br.com.projeto.dao.UserDao;
+import br.com.projeto.entity.Jogador;
 import br.com.projeto.entity.User;
 import br.com.projeto.util.CryptUtils;
 
@@ -18,13 +19,13 @@ public class CadastroService {
 	private UserDao userDao;
 
 	
-	public User cadastrarUsuario(String login, String password) {
-		User user = new User();
-		user.setLogin(login);
-		user.setPassword(CryptUtils.md5(password));
-		userDao.insert(user);
+	public Jogador cadastrarJogador(String login, String password) {
+		Jogador jogador = new Jogador();
+		jogador.setLogin(login);
+		jogador.setSenha(CryptUtils.md5(password));
+		userDao.insert(jogador);
 		
-		return user;
+		return jogador;
 	}
 
 }
