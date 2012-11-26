@@ -20,24 +20,23 @@
   	<div >
    	<form action="usuario/cadastrar.action" method="post" >
    		<p class="titulo_centralizado">Cadastrar Jogador</p>
-		<table style="align:center;width:200px;" >
+		<table class="tabela">
 			<tr>
 			    <td>Login:</td> 
-		            <td><input type="text" name="login" id="login" value="${login}" /></td>
-			</tr>
-	
+		        <td><input type="text" name="login" id="login" value="${login}" onblur="validaDigitos();" /></td>
+			</tr>	
 			<tr>
-    			    <td>Senha:</td>
-    			    <td><input type="password" name="password" id="password" value="${password}"></td>	
+   			    <td>Senha:</td>
+   			    <td><input type="password" name="password" id="password" value="${password}" onblur="validaDigitos();" ></td>	
 			</tr>
 			<tr>
 			    <td>Confirmar:</td>
- 		        <td><input type="password" name="senha_confirmacao" id="senha_confirmacao"></td>
+ 		        <td><input type="password" name="senha_confirmacao" id="senha_confirmacao" onblur="valida();"></td>
 			</tr>
 			<tr><td>&nbsp;</td></tr>
 			<tr>
 			    <td colspan="2">	
-			   		<input type="submit" value="Salvar" class="btns_cadastro" />
+			   		<input type="submit" value="Salvar" class="btns_cadastro" onclick="valida();validaDigitos();" />
 		           	<input type="reset" value="Cancelar"  class="btns_cadastro" />
 		        </td>
             </tr>
@@ -52,3 +51,36 @@
 </div>
 </body>
 </html>
+<script type="text/javascript">
+function valida()
+{
+    if (document.getElementById("password").value != document.getElementById("senha_confirmacao").value)
+    {
+        window.alert ("O campo de confirmação de senha deve ser igual ao campo senha.");
+        return false;
+    }
+    return true;
+}
+
+function validaDigitos()
+{
+	var digitosPass = document.getElementById("password").value;
+	var digitosLog =  document.getElementById("login").value;
+
+	alert("pass=" + digitosPass + "&login=" + digitosLog);
+	
+    if (digitosPass.length == 0)
+    {
+        window.alert ("O campo de senha deve no minímo 4 dígitos.");
+        return false;
+    }
+
+    if(digitosLog.length == 0)
+    {
+    	window.alert ("O campo de Login deve no minímo 4 dígitos.");
+        return false;
+    }
+    
+    return true;
+}
+</script>
