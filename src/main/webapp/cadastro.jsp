@@ -18,7 +18,7 @@
 	   </div>
 	</div> 
   	<div >
-   	<form action="usuario/cadastrar.action" method="post" >
+   	<form action="jogador/cadastrar.action" method="post" >
    		<p class="titulo_centralizado">Cadastrar Jogador</p>
 		<table class="tabela">
 			<tr>

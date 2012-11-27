@@ -3,14 +3,11 @@ package br.com.projeto.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import br.com.projeto.dao.JogadorDao;
+import br.com.projeto.businessrules.JogoRegrasNegocio;
 import br.com.projeto.dao.GenericDao;
 import br.com.projeto.dao.JogoDao;
 import br.com.projeto.entity.Jogador;
 import br.com.projeto.entity.Jogo;
-import br.com.projeto.entity.Mapa;
-import br.com.projeto.entity.User;
-import br.com.projeto.util.CryptUtils;
 
 @Service
 public class JogoService extends GenericDao{
@@ -24,15 +21,14 @@ public class JogoService extends GenericDao{
 		
 	public Jogo criar_novo_jogo(Jogador jogador)
 	{
-		Jogo jogo = new Jogo();
-		jogo.setJogador(jogador);
-		//jogo.setMapa(new Mapa());
-		jogo.setQtdTotalPontosXP(0);
-		jogo.setVlrTotalComida(1000);
-		jogo.setVlrTotalOuro(2000);
-		
+		JogoRegrasNegocio regra_jogo = new JogoRegrasNegocio();
+		System.out.println("passou: Antes do metodo criar regra_jogo.CriarNovoJogo");
+		Jogo jogo = regra_jogo.CriarNovoJogo(jogador);
+		System.out.println("passou: Depois do metodo criar regra_jogo.CriarNovoJogo");
 		jogoDao.insert(jogo);
+		System.out.println("passou: Depois do insert");
 		
-		return jogo;		
+		return jogo;
 	}
+		
 }

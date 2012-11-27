@@ -21,15 +21,15 @@ public class LoginController1 {
 	private static final long serialVersionUID = 1L;
 	
 	@Autowired
-	private JogadorService service;
-
+	private JogadorService serviceJogador;
+	
 	@RequestMapping("/jogador/login")
 	public String login(@RequestParam(value="usuario",required=false) String login,
 						 @RequestParam(value="senha",required=false) String password,
 						 @RequestParam(value="requestedUrl",required=false) String requestedUrl) throws ServletException, IOException {
 		
-		Jogador jogador = service.login(login, password);
-		
+		Jogador jogador = serviceJogador.login(login, password);
+
 		if(jogador!=null)
 		{
 			if(StringUtils.isNotBlank(requestedUrl))
