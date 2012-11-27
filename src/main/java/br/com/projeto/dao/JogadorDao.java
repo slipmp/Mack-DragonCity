@@ -7,8 +7,6 @@ import javax.persistence.Query;
 import org.springframework.stereotype.Repository;
 
 import br.com.projeto.entity.Jogador;
-import br.com.projeto.entity.Jogo;
-import br.com.projeto.entity.User;
 
 @Repository
 public class JogadorDao extends GenericDao {
@@ -29,10 +27,10 @@ public class JogadorDao extends GenericDao {
 		}
 	}
 	
-	public Jogador getJogador(String login,String password) {
-		Query query = super.em.createQuery("from Jogador j where j.login = :login and j.password = :password ");
+	public Jogador getJogador(String login,String senha) {
+		Query query = super.em.createQuery("from Jogador j where j.login = :login and j.senha = :senha ");
 		query.setParameter("login", login);
-		query.setParameter("password", password);
+		query.setParameter("senha", senha);
 		if (query.getResultList().size() == 1) {
 			return (Jogador) query.getResultList().get(0);
 		} else {

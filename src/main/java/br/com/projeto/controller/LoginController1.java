@@ -45,11 +45,11 @@ public class LoginController1 {
 		return "redirect:/index.jsp?error=Usuário e/ou senha inválidos";
 	}
 	
-	@RequestMapping("/adm/logout")
+	@RequestMapping("/jogador/logout")
 	public String logout(HttpSession session) throws Exception {
 		if(session.getAttribute(Constants.USER_ADMIN) != null)
 			session.removeAttribute(Constants.USER_ADMIN);
 		
-		return "redirect:/adm";
+		return "redirect:/index.jsp";
 	}
 }
