@@ -40,6 +40,9 @@ public class Jogador implements java.io.Serializable{
 	@JoinColumn(name = "IdJogo")
     private Jogo jogo;
 
+	@Column(name = "Situacao")
+    private char situacao;
+	
     public int getCodigo() {
         return codigo;
     }
@@ -87,4 +90,17 @@ public class Jogador implements java.io.Serializable{
     public void setJogo(Jogo jogo) {
         this.jogo = jogo;
     }
+
+	public void setSituacao(char situacao) {
+		this.situacao = situacao;
+	}
+
+	public String getSituacao() {
+		if (situacao == 'A')
+			return "Ativo";
+		else if (situacao == 'I')
+			return "Inativo";
+		else
+			return "";
+	}
 }

@@ -15,8 +15,9 @@ public class CadastroController {
 
 	@RequestMapping("/jogador/cadastrar")
 	public String cadastrarJogador(@RequestParam(value="login",required=true) String login,
-						 @RequestParam(value="password",required=true) String password) {
-		jogadorService.cadastrarJogador(login, password);
+						 @RequestParam(value="password",required=true) String password,
+						 @RequestParam(value="nome",required=true) String nome) {
+		jogadorService.cadastrarJogador(login, password, nome);
 		return "redirect:/index.jsp";
 	}
 	

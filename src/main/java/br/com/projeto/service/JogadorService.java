@@ -51,11 +51,13 @@ public class JogadorService {
 		return jogador;
 	}
 	
-	public Jogador cadastrarJogador(String login, String password) 
+	public Jogador cadastrarJogador(String login, String password, String nome) 
 	{
 		Jogador jogador = new Jogador();
 		jogador.setLogin(login);
 		jogador.setSenha(CryptUtils.md5(password));
+		jogador.setNome(nome);
+		jogador.setSituacao('A');
 		jogadorDao.insert(jogador);
 		
 		return jogador;

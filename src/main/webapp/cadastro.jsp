@@ -22,6 +22,10 @@
    		<p class="titulo_centralizado">Cadastrar Jogador</p>
 		<table class="tabela">
 			<tr>
+			    <td>Nome do jogador:</td> 
+		        <td><input type="text" name="nome" id="nome" value="${nome}" onblur="validaDigitos();" /></td>
+			</tr>
+			<tr>
 			    <td>Login:</td> 
 		        <td><input type="text" name="login" id="login" value="${login}" onblur="validaDigitos();" /></td>
 			</tr>	
@@ -66,18 +70,25 @@ function validaDigitos()
 {
 	var digitosPass = document.getElementById("password").value;
 	var digitosLog =  document.getElementById("login").value;
+	var nome =  document.getElementById("nome").value;
+	
 
 	//alert("pass=" + digitosPass + "&login=" + digitosLog);
-	
-    if (digitosPass.length == 0)
+	if (nome.length == 0)
     {
-        window.alert ("O campo de senha deve no minímo 4 dígitos.");
+		window.alert ("O nome deve ser informado.");
         return false;
     }
 
-    if(digitosLog.length == 0)
+	if(digitosLog.length == 0)
     {
-    	window.alert ("O campo de Login deve no minímo 4 dígitos.");
+    	window.alert ("O login deve ser informado.");
+        return false;
+    }
+    
+    if (digitosPass.length == 0)
+    {
+        window.alert ("A senha deve ser informada.");
         return false;
     }
     
