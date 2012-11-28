@@ -101,4 +101,5 @@ public class Jogo implements java.io.Serializable{
     public void setMapa(Mapa mapa) {
         this.mapa = mapa;
     }
+    
 }

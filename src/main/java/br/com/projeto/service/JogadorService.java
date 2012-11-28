@@ -45,7 +45,7 @@ public class JogadorService {
 		if (jogo == null)
 			jogoService.criar_novo_jogo(jogador);
 			
-		session.setAttribute("jogador", jogador);
+		//session.setAttribute("jogador", jogador);
 		session.setAttribute("jogo", jogo);
 		
 		return jogador;

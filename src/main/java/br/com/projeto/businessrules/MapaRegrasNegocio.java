@@ -19,33 +19,36 @@ public class MapaRegrasNegocio
 {
     public Mapa getNovoMapa()
     {
-        Mapa oMapa=new Mapa();
-        List<MapaLocal> oListMapaLocal=new ArrayList();
+        Mapa mapa = new Mapa();
+        List<MapaLocal> lista_mapa_local = new ArrayList();
         
-        oMapa.setoListMapaLocal(oListMapaLocal);
+        mapa.setoListMapaLocal(lista_mapa_local);
         
         for(int x=1;x<=5;x++)
         {
             for(int y=1;y<=6;y++)
             {
-                MapaLocal oMapaLocal=new MapaLocal();
-                oMapaLocal.setMapa(oMapa);
-                oMapaLocal.setPosicaoX(x);
-                oMapaLocal.setPosicaoY(y);
+                MapaLocal mapa_local = new MapaLocal();
+                
+                mapa_local.setMapa(mapa);
+                mapa_local.setPosicaoX(x);
+                mapa_local.setPosicaoY(y);
+                
                 if(x==1 && y==1)
                 {
-                    CasaCentral oCasaCentral=new CasaCentral();
-                    oMapaLocal.setConstrucao(oCasaCentral);
+                    CasaCentral casa_central = new CasaCentral();
+                    mapa_local.setConstrucao(casa_central);
                 }
                 else 
                 {
-                    oMapaLocal.setConstrucao(null);
+                    mapa_local.setConstrucao(null);
                 }
-                oListMapaLocal.add(oMapaLocal);
+                
+                lista_mapa_local.add(mapa_local);
             }
         }
         
-        return oMapa;
+        return mapa;
     }
     
     public MapaLocal getMapaLocalPorPosicao(Mapa oMapa,int x,int y)

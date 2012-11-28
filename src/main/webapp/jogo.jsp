@@ -53,13 +53,13 @@
     &nbsp;&nbsp;<input id="traco_04" type="image" src="Imagens/bg_cabecalho_traco.gif" align="middle"/>
 </div>
 <div class="pontuacao">
-	<label id="qtd_ouro"><b>${jogo.qtd_total_ouro}</b></label>
-	<label id="qtd_alimento"><b>${jogo.qtd_total_comida}</b></label>
-	<label id="qtd_diamante"><b>${jogo.qtd_total_diamente}</b></label>
-	<label id="qtd_dragao"><b>${jogo.qtd_total_dragao}</b></label>       
-	<label id="qtd_pontos"><b>${jogo.qtd_total_pontosXP}</b></label>    
+	<label id="qtd_ouro"><b>${jogo.getVlrTotalOuro()}</b></label>
+	<label id="qtd_alimento"><b>${jogo.getVlrTotalComida()}</b></label>
+	<label id="qtd_diamante"><b>${jogo.getVlrTotalDiamente()}</b></label>
+	<label id="qtd_dragao"><b>${jogo.getListDragao().size()}</b></label>       
+	<label id="qtd_pontos"><b>${jogo.getQtdTotalPontosXP()}</b></label>    
 	<label id="nmr_nivel"><b>${jogo.nmr_nivel}</b></label>            
-  	<label id="nme_jogador"><b>Jogador logado: ${jogador.nome}</b></label>
+  	<label id="nme_jogador"><b>Jogador logado: ${jogo.getJogador().getNome}</b></label>
 </div>
 <div class="novoJogo">
 	<!-- <a id="novo_jogo" href="javascript:criar_novo_jogo('novo_jogo');" title="Novo jogo">Novo Jogo</a>; -->

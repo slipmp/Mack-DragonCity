@@ -22,27 +22,31 @@ public class JogoController {
 	@Autowired
 	private JogoService jogoService;
 	
-	@RequestMapping("/jogo/inicio")
+	@RequestMapping("/jogo/carregar_jogo")
 	public String carregarJogo(HttpSession session) {
 		
-		//if (session.getAttribute(Constants.USER_ADMIN) != null) {
-			
+		if (session.getAttribute(Constants.USER_ADMIN) != null) {		
 			User usuario = (User) session.getAttribute(Constants.USER_ADMIN);
-			Jogador jogador = jogadorService.findByLogin(usuario.getLogin());
+			return "redirect:/adm/login.jsp";
+		}
+		else 
+		{
+			Jogador jogador = (Jogador)session.getAttribute("jogador");
+
 			Jogo jogo = jogoService.findById(jogador.getCodigo());
 			
 			if (jogo == null)
 			{
-				System.out.println("carregar jogo > criar novo jogo");
+				//System.out.println("carregar jogo > criar novo jogo");
 				jogoService.criar_novo_jogo(jogador);
 			}	
-			session.setAttribute("jogador", jogador);
-			session.setAttribute("jogo", jogo);
+			else
+			{
+				session.setAttribute("jogo", jogo);
+			}
 			
-			return "redirect:/jogo.jsp?" + jogo.getCodigo();
-		//}
-		
-		//return "redirect:/jogo.jsp";
+			return "redirect:/jogo.jsp?" + jogador.getCodigo();// + jogo.getCodigo();
+		}
 	}
 	
 	@RequestMapping("/jogo/novojogo")

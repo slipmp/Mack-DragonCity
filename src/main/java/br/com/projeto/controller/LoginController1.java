@@ -26,19 +26,22 @@ public class LoginController1 {
 	@RequestMapping("/jogador/login")
 	public String login(@RequestParam(value="usuario",required=false) String login,
 						 @RequestParam(value="senha",required=false) String password,
-						 @RequestParam(value="requestedUrl",required=false) String requestedUrl) throws ServletException, IOException {
+						 @RequestParam(value="requestedUrl",required=false) String requestedUrl,
+						 HttpSession session) throws ServletException, IOException {
 		
 		Jogador jogador = serviceJogador.login(login, password);
 
 		if(jogador!=null)
 		{
+			session.setAttribute("jogador", jogador);
+			
 			if(StringUtils.isNotBlank(requestedUrl))
 			{		
 				return"redirect:"+requestedUrl.replaceAll("\\$10","?").replaceAll("\\$11","&");
 			}
 			else
 			{
-				return "/jogo/inicio.action";
+				return "/jogo/carregar_jogo.action";
 				//return "redirect:/jogo.jsp?" + user.getId();
 			}		
 		}

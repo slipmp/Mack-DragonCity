@@ -27,9 +27,7 @@ public class UserService {
 
 		ServletRequestAttributes attr = (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();
 		HttpSession session = attr.getRequest().getSession(true);
-		
-		System.out.println("login: " + login + " senha: " + password + " senha criptografada: " + CryptUtils.md5(password));
-		
+			
 		User user = dao.getUser(login, CryptUtils.md5(password));
 				
 		if (user == null) {

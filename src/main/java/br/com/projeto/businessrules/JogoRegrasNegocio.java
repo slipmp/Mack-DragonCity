@@ -9,9 +9,6 @@ import br.com.projeto.entity.Mapa;
 
 /**
  * @author Slipmp
- * @author DayaneB
- * @author Ariella
- * @author Angélica
  */
 public class JogoRegrasNegocio 
 {
@@ -19,23 +16,30 @@ public class JogoRegrasNegocio
     
     public Jogo CriarNovoJogo(Jogador jogador)
     {
-        Jogo jogo = new Jogo();
+    	try
+    	{
+    		Jogo jogo = new Jogo();
+	        
+	        jogador.setData_ultimo_acesso(new Date());
+	        jogo.setJogador(jogador);
+	        
+	        jogo.setQtdTotalPontosXP(0);
+	        jogo.setVlrTotalComida(1000);
+	        jogo.setVlrTotalOuro(2000);
+	        	        
+	        MapaRegrasNegocio mapa_regra_negocio = new MapaRegrasNegocio();
+	        Mapa mapa = mapa_regra_negocio.getNovoMapa();
+      
+	        jogo.setMapa(mapa);
+	        
+	        return jogo;
         
-        jogador.setData_ultimo_acesso(new Date());
-        jogo.setJogador(jogador);
-        
-        jogo.setQtdTotalPontosXP(0);
-        jogo.setVlrTotalComida(1000);
-        jogo.setVlrTotalOuro(2000);
-        
-        //NivelRegrasNegocio oNivelRegrasNegocio=new NivelRegrasNegocio();
-        
-        MapaRegrasNegocio mapa_regra_negocio = new MapaRegrasNegocio();
-        Mapa mapa = mapa_regra_negocio.getNovoMapa();
-        
-        jogo.setMapa(mapa);
-        
-        return jogo;
+    	}
+    	catch (Exception e)
+    	{
+    		System.out.println("Erro: Criar novo jogo" + e.getMessage());
+    		return null;
+    	}
     }
     
     public Jogo LerJogo() throws Exception

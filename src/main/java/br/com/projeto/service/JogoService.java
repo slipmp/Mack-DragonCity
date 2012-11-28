@@ -14,7 +14,7 @@ public class JogoService extends GenericDao{
 	
 	@Autowired
 	private JogoDao jogoDao;
-		
+			
 	public Jogo findById(int idJogador) {
 		return jogoDao.findById(Jogo.class, idJogador);
 	}
@@ -22,11 +22,10 @@ public class JogoService extends GenericDao{
 	public Jogo criar_novo_jogo(Jogador jogador)
 	{
 		JogoRegrasNegocio regra_jogo = new JogoRegrasNegocio();
-		System.out.println("passou: Antes do metodo criar regra_jogo.CriarNovoJogo");
 		Jogo jogo = regra_jogo.CriarNovoJogo(jogador);
-		System.out.println("passou: Depois do metodo criar regra_jogo.CriarNovoJogo");
+		
+		// Marcos pq?: Erro ocorrendo quando insere o jogo setando o "Mapa".
 		jogoDao.insert(jogo);
-		System.out.println("passou: Depois do insert");
 		
 		return jogo;
 	}
