@@ -55,11 +55,11 @@
 <div class="pontuacao">
 	<label id="qtd_ouro"><b>${jogo.getVlrTotalOuro()}</b></label>
 	<label id="qtd_alimento"><b>${jogo.getVlrTotalComida()}</b></label>
-	<label id="qtd_diamante"><b>${jogo.getVlrTotalDiamente()}</b></label>
+	<label id="qtd_diamante"><b></b></label>
 	<label id="qtd_dragao"><b>${jogo.getListDragao().size()}</b></label>       
 	<label id="qtd_pontos"><b>${jogo.getQtdTotalPontosXP()}</b></label>    
-	<label id="nmr_nivel"><b>${jogo.nmr_nivel}</b></label>            
-  	<label id="nme_jogador"><b>Jogador logado: ${jogo.getJogador().getNome}</b></label>
+	<label id="nmr_nivel"><b>${nmr_nivel_jogo}</b></label>            
+  	<label id="nme_jogador"><b>Jogador logado: ${jogo.getJogador().getNome()}</b></label>
 </div>
 <div class="novoJogo">
 	<!-- <a id="novo_jogo" href="javascript:criar_novo_jogo('novo_jogo');" title="Novo jogo">Novo Jogo</a>; -->

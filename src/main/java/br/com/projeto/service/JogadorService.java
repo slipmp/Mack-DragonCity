@@ -41,12 +41,18 @@ public class JogadorService {
 			return null;
 		
 		Jogo jogo = jogoDao.getJogo(jogador.getCodigo());
-
+		
 		if (jogo == null)
-			jogoService.criar_novo_jogo(jogador);
-			
-		//session.setAttribute("jogador", jogador);
+			jogo=jogoService.criar_novo_jogo(jogador);
+		
+		
+		System.out.println("Pontos: " + jogo.getQtdTotalPontosXP());
+
+
+		int nmr_nivel_jogo = jogoService.calcular_nivel(10);//jogo.getQtdTotalPontosXP()); //
+
 		session.setAttribute("jogo", jogo);
+		session.setAttribute("nmr_nivel_jogo", nmr_nivel_jogo);
 		
 		return jogador;
 	}

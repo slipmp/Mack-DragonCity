@@ -30,7 +30,7 @@ public class JogoRegrasNegocio
 	        MapaRegrasNegocio mapa_regra_negocio = new MapaRegrasNegocio();
 	        Mapa mapa = mapa_regra_negocio.getNovoMapa();
       
-	        jogo.setMapa(mapa);
+	        //jogo.setMapa(mapa);
 	        
 	        return jogo;
         

@@ -36,15 +36,10 @@ public class JogoController {
 			Jogo jogo = jogoService.findById(jogador.getCodigo());
 			
 			if (jogo == null)
-			{
-				//System.out.println("carregar jogo > criar novo jogo");
-				jogoService.criar_novo_jogo(jogador);
-			}	
-			else
-			{
-				session.setAttribute("jogo", jogo);
-			}
+				jogo = jogoService.criar_novo_jogo(jogador);
 			
+			session.setAttribute("jogo", jogo);
+						
 			return "redirect:/jogo.jsp?" + jogador.getCodigo();// + jogo.getCodigo();
 		}
 	}
