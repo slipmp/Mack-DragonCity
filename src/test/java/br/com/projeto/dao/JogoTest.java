@@ -11,10 +11,13 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.AbstractTransactionalJUnit4SpringContextTests;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import br.com.projeto.businessrules.MapaRegrasNegocio;
 import br.com.projeto.dao.UserDao;
 
 import br.com.projeto.entity.Jogador;
 import br.com.projeto.entity.Jogo;
+import br.com.projeto.service.JogoService;
+import br.com.projeto.entity.Mapa;
 
 import org.springframework.test.context.transaction.TransactionConfiguration;
 
@@ -33,6 +36,9 @@ public class JogoTest extends AbstractTransactionalJUnit4SpringContextTests {
     @Autowired
     private DriverManagerDataSource ds;
 
+    @Autowired
+	private JogoService jogoService;
+       
     @Test
     public void testIniciandoTestes()
     {
@@ -80,5 +86,20 @@ public class JogoTest extends AbstractTransactionalJUnit4SpringContextTests {
         u.setVlrTotalComida(30);
         dao.insert(u);
         return u;
+    }
+    
+    
+    @Rollback(false) //Esse codigo faz com que tudo que for executado aqui nesse metodo, seja dado Rollback.
+    public void testeCreateJogoCompleto() throws SQLException {
+    	Jogo u = new Jogo();
+        u.setVlrTotalComida(30);
+        MapaRegrasNegocio oMapaRegrasNegocio=new MapaRegrasNegocio();
+        
+        Mapa oMapa;
+        oMapa=oMapaRegrasNegocio.getNovoMapa();
+        u.setMapa(oMapa);
+        
+        dao.insert(u);
+        System.out.println("testCreate Concluido!");
     }
 }
