@@ -126,7 +126,7 @@ body
 	text-align:right;
 	width: 65px;
 }
-
+/*
 #qtd_diamante{
 	position:absolute;
 	display:block;	
@@ -134,13 +134,13 @@ body
 	left:277px;
 	text-align:right;
 	width: 67px;
-}
+}*/
 
 #qtd_dragao{
 	position:absolute;
 	display:block;	
 	top:22px;
-	left:415px;
+	left:277px;
 	text-align:right;
 	width: 50px;
 }
@@ -149,7 +149,7 @@ body
 	position:absolute;
 	display:block;	
 	top:22px;
-	left:522px;
+	left:392px;
 	text-align:right;
 	width: 85px;
 }
@@ -158,7 +158,7 @@ body
 	position:absolute;
 	display:block;	
 	top:20px;
-	left:613px;
+	left:483px;
 	color:#000000;
 	text-align:right;
 	width: 26px;
