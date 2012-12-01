@@ -38,6 +38,7 @@ public class MapaRegrasNegocio
                 {
                     CasaCentral casa_central = new CasaCentral();
                     mapa_local.setConstrucao(casa_central);
+                    casa_central.setMapaLocal(mapa_local);
                 }
                 else 
                 {

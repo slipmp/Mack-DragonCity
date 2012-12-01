@@ -11,6 +11,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.AbstractTransactionalJUnit4SpringContextTests;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import br.com.projeto.businessrules.JogoRegrasNegocio;
 import br.com.projeto.businessrules.MapaRegrasNegocio;
 import br.com.projeto.dao.UserDao;
 
@@ -88,18 +89,20 @@ public class JogoTest extends AbstractTransactionalJUnit4SpringContextTests {
         return u;
     }
     
-    
+    @Test
     @Rollback(false) //Esse codigo faz com que tudo que for executado aqui nesse metodo, seja dado Rollback.
     public void testeCreateJogoCompleto() throws SQLException {
-    	Jogo u = new Jogo();
-        u.setVlrTotalComida(30);
-        MapaRegrasNegocio oMapaRegrasNegocio=new MapaRegrasNegocio();
-        
-        Mapa oMapa;
-        oMapa=oMapaRegrasNegocio.getNovoMapa();
-        u.setMapa(oMapa);
-        
+    	Jogador oJogador=new Jogador();
+    	
+    	oJogador.setLogin("slipmp");
+    	oJogador.setNome("Marcos-naojogavel");
+    	oJogador.setSenha("senha");
+    	oJogador.setSituacao('A');
+    	
+    	JogoRegrasNegocio oJogoRegrasNegocio=new JogoRegrasNegocio();
+        Jogo u=oJogoRegrasNegocio.CriarNovoJogo(oJogador);
+
         dao.insert(u);
-        System.out.println("testCreate Concluido!");
+        System.out.println("testeCreateJogoCompleto Concluido!");
     }
 }

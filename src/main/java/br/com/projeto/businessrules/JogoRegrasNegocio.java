@@ -22,7 +22,7 @@ public class JogoRegrasNegocio
 	        
 	        jogador.setData_ultimo_acesso(new Date());
 	        jogo.setJogador(jogador);
-	        
+	        jogador.setJogo(jogo);
 	        jogo.setQtdTotalPontosXP(0);
 	        jogo.setVlrTotalComida(1000);
 	        jogo.setVlrTotalOuro(2000);
@@ -30,7 +30,7 @@ public class JogoRegrasNegocio
 	        MapaRegrasNegocio mapa_regra_negocio = new MapaRegrasNegocio();
 	        Mapa mapa = mapa_regra_negocio.getNovoMapa();
       
-	        //jogo.setMapa(mapa);
+	        jogo.setMapa(mapa);
 	        
 	        return jogo;
         

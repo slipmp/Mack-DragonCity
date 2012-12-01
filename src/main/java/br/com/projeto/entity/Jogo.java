@@ -37,14 +37,14 @@ public class Jogo implements java.io.Serializable{
 	@Column(name="QtdTotalPontosXP")
     private int qtdTotalPontosXP;
 	
-    @OneToOne
+    @OneToOne(cascade={CascadeType.ALL})
 	@JoinColumn(name = "IdJogador")
     private Jogador jogador;
 
     @OneToMany(mappedBy="jogo",cascade=CascadeType.ALL)
     private List<Dragao> listDragao;
 
-    @OneToOne
+    @OneToOne(cascade={CascadeType.ALL})
 	@JoinColumn(name = "IdMapa")
     private Mapa mapa;
 

@@ -35,7 +35,7 @@ public class MapaLocal implements java.io.Serializable{
 	@JoinColumn(name="IdMapa")
     private Mapa mapa;
 
-	@OneToOne
+	@OneToOne(cascade={CascadeType.ALL})
 	@JoinColumn(name="IdConstrucao")
     private Construcao construcao;
 
