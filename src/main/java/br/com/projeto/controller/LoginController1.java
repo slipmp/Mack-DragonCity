@@ -45,7 +45,7 @@ public class LoginController1 {
 				//return "redirect:/jogo.jsp?" + user.getId();
 			}		
 		}
-		return "redirect:/index.jsp?error=Usuário e/ou senha inválidos";
+		return "redirect:/index.jsp?error=Usuario e/ou senha invalidos";
 	}
 	
 	@RequestMapping("/jogador/logout")

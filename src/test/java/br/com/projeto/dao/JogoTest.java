@@ -90,7 +90,7 @@ public class JogoTest extends AbstractTransactionalJUnit4SpringContextTests {
     }
     
     @Test
-    @Rollback(false) //Esse codigo faz com que tudo que for executado aqui nesse metodo, seja dado Rollback.
+    @Rollback(true) //Esse codigo faz com que tudo que for executado aqui nesse metodo, seja dado Rollback.
     public void testeCreateJogoCompleto() throws SQLException {
     	Jogador oJogador=new Jogador();
     	

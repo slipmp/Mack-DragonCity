@@ -36,7 +36,7 @@ private static final long serialVersionUID = 1L;
 				return "redirect:/adm";
 			}
 		}
-		return "redirect:/adm/login.jsp?error=Usuário e/ou senha inválidos";
+		return "redirect:/adm/login.jsp?error=Usuario e/ou senha invalidos";
 	}
 	
 	@RequestMapping("/adm/logout")

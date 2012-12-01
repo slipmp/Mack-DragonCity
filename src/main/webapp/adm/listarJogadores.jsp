@@ -4,21 +4,24 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>MDragon-City - Adm</title>
+<title>MackDragon-City - Adm</title>
 <%@ include file="/adm/inc/taghead.jsp" %>
 </head>
 <body>
-<form action="<c:url value="/adm/player/listandoPlayers.action" />" method="post">
-    	
+<form method="post">
+ 	<div id="container">
+		<%@ include file="/adm/inc/header.jsp" %>
+    </div>
+    <div align="center">
     	<fieldset>
 		
 			<legend class="fieldset_legend">Lista de Jogadores</legend>
 	    	<table cellpadding="0" cellspacing="0" style="text-align:left">
 	    		<tr>
-	    			<th style="width:20px"><c:out value="id" /></th>
-	    			<th style="width:40px"><c:out value="level" /></th>
-	    			<th style="width:150px"><c:out value="name" /></th>
-	    			<th><c:out value="ativar/desativar" /></th>
+	    			<td style="width:20px"><c:out value="Código" /></td>
+	    			<td style="width:40px"><c:out value="Level" /></td>
+	    			<td style="width:150px"><c:out value="Nome" /></td>
+	    			<td>Ativar/Desativar</td>
 	    		</tr>
 	    		
 	    		<c:forEach items="${listJogadores}" var="item">
@@ -33,7 +36,8 @@
 	    		
 	    	</table>
 		</fieldset>
-    </form>
+	</div>
+   </form>
 </body>
 </html>
 
