@@ -1,5 +1,7 @@
 package br.com.projeto.service;
 
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -67,6 +69,23 @@ public class JogadorService {
 		jogadorDao.insert(jogador);
 		
 		return jogador;
-	}	
+	}
 	
+	public List<Jogador> listarJogadores() {
+		return jogadorDao.listarJogadores();
+	}
+	
+	public Jogador ativarJogador(String idJogador, String ativar) {
+		Jogador jogador = jogadorDao.findById(Jogador.class, Long.parseLong(idJogador));
+		
+		char situacao = ativar.charAt(0);
+		
+		jogador.setSituacao(situacao);
+		jogadorDao.update(jogador);
+		return jogador;
+	}
+	
+	public Jogador findById(String idJogador) {
+		return jogadorDao.findById(Jogador.class, Long.parseLong(idJogador));
+	}
 }

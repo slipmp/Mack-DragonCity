@@ -26,9 +26,9 @@ public class CadastroController {
 		return "redirect:/adm/cadastrar-home.jsp";
 	}
 	
-	@RequestMapping("/adm/players/players-home")
+	@RequestMapping("/adm/players/jogadores-home")
 	public String players() {
-		return "redirect:/adm/players-home.jsp";
+		return "redirect:/adm/jogadores-home.jsp";
 	}
 	
 }
