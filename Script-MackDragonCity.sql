@@ -1,6 +1,6 @@
 -- MySQL dump 10.13  Distrib 5.5.9, for Win32 (x86)
 --
--- Host: localhost    Database: mackenzie
+-- Host: localhost    Database: mackenzie 
 -- ------------------------------------------------------
 -- Server version	5.5.15
 
