@@ -16,7 +16,6 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>Mack - Dragon City</title>
-<!--<script src="enderecoArquivoJquery"></script>-->
 <link href="css/jogo.css" rel="stylesheet" type="text/css" />
 <script>
 	var pontucao = 0;
@@ -28,7 +27,7 @@
 		*/
 	}
 
-	function criar_novo_jogo(id)
+	function criar_novo_jogo()
 	{
 		var mensagem = confirm("Você tem certeza que deseja criar um novo jogo?");
 
@@ -47,9 +46,12 @@
 		var mensagem = confirm("Você tem certeza que deseja sair do jogo?");
 
 		if (mensagem == true)
-		{
-			window.exit;	
-		}
+			window.location = "/index.jsp";
+	}
+
+	function contactar()
+	{	
+		alert("Opção indisponível no momento.");
 	}	
 </script>
 </head>
@@ -58,9 +60,9 @@
 <div class="cabecalho">
 	<a id="cadastrar_jogador" href="/cadastro.jsp">Cadastrar jogador</a>
 	&nbsp;&nbsp;<input id="traco_01" type="image" src="Imagens/bg_cabecalho_traco.gif" align="middle"/>
-    <a id="sobre_jogo" href="">Sobre o jogo</a>
+    <a id="sobre_jogo" href="javascript:criar_novo_jogo();">Sobre o jogo</a>
     &nbsp;&nbsp;<input id="traco_02" type="image" src="Imagens/bg_cabecalho_traco.gif" align="middle"/>
-    <a id="contate-nos" href="">Contate-nos</a>
+    <a id="contate-nos" href="javascript:criar_novo_jogo();">Contate-nos</a>
     &nbsp;&nbsp;<input id="traco_03" type="image" src="Imagens/bg_cabecalho_traco.gif" align="middle"/>
     <a id="sair" href="javascript:sair_jogo();">Sair</a>
     &nbsp;&nbsp;<input id="traco_04" type="image" src="Imagens/bg_cabecalho_traco.gif" align="middle"/>
@@ -74,8 +76,8 @@
   	<label id="nme_jogador"><b>Jogador logado: ${jogo.getJogador().getNome()}</b></label>
 </div>
 <div class="novoJogo">
-	<!-- <a id="novo_jogo" href="javascript:criar_novo_jogo('novo_jogo');" title="Novo jogo">Novo Jogo</a>; -->
-	<a id="novo_jogo" href="/jogo/novojogo.action" title="Novo jogo">Novo Jogo</a>;
+	 <a id="novo_jogo" href="javascript:criar_novo_jogo();" title="Novo jogo">Novo Jogo</a>;
+	<!-- <a id="novo_jogo" href="/jogo/novojogo.action" title="Novo jogo">Novo Jogo</a>; -->
 </div>
 <div class="fundoConstrucao">
 <!--  <a id="botao1x1" href="javascript:funcaoClick('botao1x1')"></a>
@@ -84,132 +86,151 @@
     
   
 <%
+	String html_saida = "";
 	Jogo jogo = (Jogo)session.getAttribute("jogo");
-
-	JogoRegrasNegocio jogo_regras_negocio = new JogoRegrasNegocio();
-	MapaRegrasNegocio mapa_regras_negocio = new MapaRegrasNegocio();
-
-	 String html_saida = "table width=\"810\" height=\"371\" border=\"0\" align=\"center\" cellpadding=\"0\" cellspacing=\"0\">";
 	
-	for (int i=0; i<5; i++)
+	if (jogo != null)
 	{
-		html_saida += "<tr>";
+		JogoRegrasNegocio jogo_regras_negocio = new JogoRegrasNegocio();
+		MapaRegrasNegocio mapa_regras_negocio = new MapaRegrasNegocio();
+	
+		html_saida = "<table width=\"810\" height=\"371\" border=\"0\" align=\"center\" cellpadding=\"0\" cellspacing=\"0\">";
 		
-		for (int j=0; j<6; j++)
-		{
-			MapaLocal mapa_local = mapa_regras_negocio.getMapaLocalPorPosicao(jogo.getMapa(), i, j);
-			
-			html_saida += "<th width=\"135\" height=\"80\" align=\"left\" valign=\"top\" scope=\"col\">";
-			
-			if (mapa_local != null && mapa_local.getConstrucao() != null)
+		if (jogo.getMapa() != null)
+		{		
+			for (int i=0; i<5; i++)
 			{
-				if (mapa_local.getConstrucao() instanceof CasaCentral)
+				html_saida += "<tr>";
+				
+				for (int j=0; j<6; j++)
 				{
-					CasaCentral casa_central = (CasaCentral)mapa_local.getConstrucao();
+					MapaLocal mapa_local = mapa_regras_negocio.getMapaLocalPorPosicao(jogo.getMapa(), i, j);
 					
-					if (casa_central.getOvo() != null)
+					html_saida += "<th width=\"135\" height=\"80\" align=\"left\" valign=\"top\" scope=\"col\">";
+					
+					if (mapa_local != null && mapa_local.getConstrucao() != null)
 					{
-						html_saida += "<input type=\"image\" name=\"btn_casa_central\" id=\"btn_casa_central\" src=\"Imagens/btn_casa_central.gif\" title=\"Casa central\"/>";
+						if (mapa_local.getConstrucao() instanceof CasaCentral)
+						{
+							CasaCentral casa_central = (CasaCentral)mapa_local.getConstrucao();
+							
+							if (casa_central.getOvo() != null)
+							{
+								html_saida += "<input type=\"image\" name=\"btn_casa_central\" id=\"btn_casa_central\" src=\"Imagens/btn_casa_central.gif\" title=\"Casa central\"/>";
+							}
+							else 
+							{
+								String nme_tipo_dragao = casa_central.getOvo().getDragaoTipo().getNomeTipoDragao();
+								String nme_imagem = "";
+								String nme_titulo = "";
+									
+								if (nme_tipo_dragao == "Terra")
+								{
+									nme_imagem = "Imagens/btn_ovo_terra_chocadeira.gif";
+									nme_titulo = "Ovo - Terra";
+								}
+								else if (nme_tipo_dragao == "Fogo")
+								{
+									nme_imagem = "Imagens/btn_ovo_fogo_chocadeira.gif";
+									nme_titulo = "Ovo - Fogo";
+								}
+								else if (nme_tipo_dragao == "Água")
+								{
+									nme_imagem = "Imagens/btn_ovo_aquatico_chocadeira.gif";
+									nme_titulo = "Ovo - Água";
+								}
+								else if (nme_tipo_dragao == "Gelo")
+								{
+									nme_imagem = "Imagens/btn_ovo_gelo_chocadeira.gif";
+									nme_titulo = "Ovo - Gelo";
+								}
+								else if (nme_tipo_dragao == "Planta")
+								{
+									nme_imagem = "Imagens/btn_ovo_vegetal_chocadeira.gif";
+									nme_titulo = "Ovo - Vegetal";
+								}
+								else if (nme_tipo_dragao == "Aço")
+								{
+									nme_imagem = "Imagens/btn_ovo_metal_chocadeira.gif";
+									nme_titulo = "Ovo - Metal";
+								}
+								else if (nme_tipo_dragao == "Raio")
+								{
+									nme_imagem = "Imagens/btn_ovo_eletrico_chocadeira.gif";
+									nme_titulo = "Ovo - Elétrico";
+								}
+								
+								html_saida += "<input type=\"image\" name=\"btn_casa_central\" id=\"btn_casa_central\" src=\"" + nme_imagem + "\" title=\"" + nme_titulo + "\"/>";					
+							}
+						}
+						else if (mapa_local.getConstrucao() instanceof Habitat)
+						{
+							Dragao dragao = ((Habitat)mapa_local.getConstrucao()).getoDragao();
+							String tipo_habitat = ((Habitat)mapa_local.getConstrucao()).getHabitatTipo().getTipo();
+							
+							if (dragao != null)
+							{
+								String nme_tipo_dragao = dragao.getDragaoTipo().getNomeTipoDragao();
+								String nme_titulo = "Dragão " + dragao.getNomeDragao() + " - Nível: " + dragao.getLevel();
+								String nme_imagem = dragao.getImagem();
+								
+								html_saida += "<input type=\"image\" name=\"btn_habitat\" id=\"btn_habitat\" src=\"" + nme_imagem + "\" title=\"" + nme_titulo + "\"/>";
+							}
+							else
+							{
+								String nme_imagem = "";
+								String nme_titulo = "Habitat "  + tipo_habitat;
+								
+								if (tipo_habitat == "Terra")
+									nme_imagem = "Imagens/btn_habitat_terra.gif";
+								else if (tipo_habitat == "Fogo")
+									nme_imagem = "Imagens/btn_habitat_fogo.gif";
+								else if (tipo_habitat == "Água")
+									nme_imagem = "Imagens/btn_habitat_aquatico.gif";
+								else if (tipo_habitat == "Gelo")
+									nme_imagem = "Imagens/btn_habitat_gelo.gif";
+								else if (tipo_habitat == "Planta")
+									nme_imagem = "Imagens/btn_habitat_vegetal.gif";
+								else if (tipo_habitat == "Aço")
+									nme_imagem = "Imagens/btn_habitat_metal.gif";
+								else if (tipo_habitat == "Raio")
+									nme_imagem = "Imagens/btn_habitat_eletrico.gif";
+								
+								html_saida += "<input type=\"image\" name=\"btn_habitat\" id=\"btn_habitat\" src=\"" + nme_imagem + "\" title=\"" + nme_titulo + "\"/>";
+							}
+						}
+						else if (mapa_local.getConstrucao() instanceof Fazenda)
+						{
+							html_saida += "<input type=\"image\" name=\"btn_fazenda\" id=\"btn_fazenda\" src=\"btn_fazenda.gif\" title=\"Fazenda\"/>";
+						}
 					}
 					else 
 					{
-						String nme_tipo_dragao = casa_central.getOvo().getDragaoTipo().getNomeTipoDragao();
-						String nme_imagem = "";
-						String nme_titulo = "";
-							
-						if (nme_tipo_dragao == "Terra")
-						{
-							nme_imagem = "Imagens/btn_ovo_terra_chocadeira.gif";
-							nme_titulo = "Ovo - Terra";
-						}
-						else if (nme_tipo_dragao == "Fogo")
-						{
-							nme_imagem = "Imagens/btn_ovo_fogo_chocadeira.gif";
-							nme_titulo = "Ovo - Fogo";
-						}
-						else if (nme_tipo_dragao == "Água")
-						{
-							nme_imagem = "Imagens/btn_ovo_aquatico_chocadeira.gif";
-							nme_titulo = "Ovo - Água";
-						}
-						else if (nme_tipo_dragao == "Gelo")
-						{
-							nme_imagem = "Imagens/btn_ovo_gelo_chocadeira.gif";
-							nme_titulo = "Ovo - Gelo";
-						}
-						else if (nme_tipo_dragao == "Planta")
-						{
-							nme_imagem = "Imagens/btn_ovo_vegetal_chocadeira.gif";
-							nme_titulo = "Ovo - Vegetal";
-						}
-						else if (nme_tipo_dragao == "Aço")
-						{
-							nme_imagem = "Imagens/btn_ovo_metal_chocadeira.gif";
-							nme_titulo = "Ovo - Metal";
-						}
-						else if (nme_tipo_dragao == "Raio")
-						{
-							nme_imagem = "Imagens/btn_ovo_eletrico_chocadeira.gif";
-							nme_titulo = "Ovo - Elétrico";
-						}
-						
-						html_saida += "<input type=\"image\" name=\"btn_casa_central\" id=\"btn_casa_central\" src=\"" + nme_imagem + "\" title=\"" + nme_titulo + "\"/>";					
+						html_saida += "<input type=\"image\" name=\"btn_sem_construcao\" id=\"btn_sem_construcao\" src=\"btn_sem_construcao.gif\" title=\"Clique para construir\"/>";
 					}
-				}
-				else if (mapa_local.getConstrucao() instanceof Habitat)
-				{
-					Dragao dragao = ((Habitat)mapa_local.getConstrucao()).getoDragao();
-					String tipo_habitat = ((Habitat)mapa_local.getConstrucao()).getHabitatTipo().getTipo();
 					
-					if (dragao != null)
-					{
-						String nme_tipo_dragao = dragao.getDragaoTipo().getNomeTipoDragao();
-						String nme_titulo = "Dragão " + dragao.getNomeDragao() + " - Nível: " + dragao.getLevel();
-						String nme_imagem = dragao.getImagem();
-						
-						html_saida += "<input type=\"image\" name=\"btn_habitat\" id=\"btn_habitat\" src=\"" + nme_imagem + "\" title=\"" + nme_titulo + "\"/>";
-					}
-					else
-					{
-						String nme_imagem = "";
-						String nme_titulo = "Habitat "  + tipo_habitat;
-						
-						if (tipo_habitat == "Terra")
-							nme_imagem = "Imagens/btn_habitat_terra.gif";
-						else if (tipo_habitat == "Fogo")
-							nme_imagem = "Imagens/btn_habitat_fogo.gif";
-						else if (tipo_habitat == "Água")
-							nme_imagem = "Imagens/btn_habitat_aquatico.gif";
-						else if (tipo_habitat == "Gelo")
-							nme_imagem = "Imagens/btn_habitat_gelo.gif";
-						else if (tipo_habitat == "Planta")
-							nme_imagem = "Imagens/btn_habitat_vegetal.gif";
-						else if (tipo_habitat == "Aço")
-							nme_imagem = "Imagens/btn_habitat_metal.gif";
-						else if (tipo_habitat == "Raio")
-							nme_imagem = "Imagens/btn_habitat_eletrico.gif";
-						
-						html_saida += "<input type=\"image\" name=\"btn_habitat\" id=\"btn_habitat\" src=\"" + nme_imagem + "\" title=\"" + nme_titulo + "\"/>";
-					}
+					html_saida += "</th>";			
 				}
-				else if (mapa_local.getConstrucao() instanceof Fazenda)
-				{
-					html_saida += "<input type=\"image\" name=\"btn_fazenda\" id=\"btn_fazenda\" src=\"btn_fazenda.gif\" title=\"Fazenda\"/>";
-				}
-			}
-			else 
-			{
-				html_saida += "<input type=\"image\" name=\"btn_sem_construcao\" id=\"btn_sem_construcao\" src=\"btn_sem_construcao.gif\" title=\"Clique para construir\"/>";
+				
+				html_saida += "</tr>";
 			}
 			
-			html_saida += "</th>";			
+			html_saida += "</table>";
 		}
-		
-		html_saida += "</tr>";
+		else
+		{
+			html_saida += "<tr>";
+			html_saida += "		<td id = \"erro\">Nenhum mapa foi encontrado. Atualize a página novamente." ;
+			html_saida += "</tr>";
+			html_saida += "</table>";
+		}
 	}
-
-	html_saida = "</table>";
+	
+	session.setAttribute("html_body", html_saida); 
 %>  	
+
+<div> ${html_body} </div>
+
 	
 <!-- 	 <table width="810" height="371" border="0" align="center" cellpadding="0" cellspacing="0">
   		<tr>

@@ -9,22 +9,28 @@ import br.com.projeto.dao.GenericDao;
 import br.com.projeto.dao.JogoDao;
 import br.com.projeto.entity.Jogador;
 import br.com.projeto.entity.Jogo;
-import br.com.projeto.entity.Nivel;
 
 @Service
 public class JogoService extends GenericDao{
 	
 	@Autowired
 	private JogoDao jogoDao;
-			
-	public Jogo findById(int idJogador) {
-		return jogoDao.findById(Jogo.class, idJogador);
+	
+	public Jogo carregar_jogo(int id) 
+	{
+		
+		return jogoDao.findById(Jogo.class, id);
+		//return jogoDao.getJogo(id);
 	}
 		
 	public Jogo criar_novo_jogo(Jogador jogador)
 	{
+		// Cria o novo jogo.
 		JogoRegrasNegocio regra_jogo = new JogoRegrasNegocio();
 		Jogo jogo = regra_jogo.CriarNovoJogo(jogador);
+		
+		// Relaciona o novo jogo ao jogador.
+		jogador.setJogo(jogo);
 		
 		// Marcos pq?: Erro ocorrendo quando insere o jogo setando o "Mapa".
 		jogoDao.insert(jogo);
@@ -37,5 +43,7 @@ public class JogoService extends GenericDao{
 		NivelRegrasNegocio regra_nivel  = new NivelRegrasNegocio();
 		int nmr_nivel = regra_nivel.getNivelEquivalente(qtdTotalPontosXP).getCodigo();
 		return nmr_nivel;
-	}		
+	}	
+	
+	
 }

@@ -27,9 +27,8 @@ private static final long serialVersionUID = 1L;
 	@RequestMapping("/adm/login")
 	public String login(@RequestParam(value="usuario",required=false) String login,
 						 @RequestParam(value="senha",required=false) String password,
-						 @RequestParam(value="requestedUrl",required=false) String requestedUrl) throws ServletException, IOException {
-		System.out.println("Usuario = " + login + " senha = " + password + " requestedUrl = " + requestedUrl);
-		
+						 @RequestParam(value="requestedUrl",required=false) String requestedUrl) throws ServletException, IOException 
+	{
 		if(service.login(login, password)!=null){
 			if(StringUtils.isNotBlank(requestedUrl)){		
 				return"redirect:"+requestedUrl.replaceAll("\\$10","?").replaceAll("\\$11","&");

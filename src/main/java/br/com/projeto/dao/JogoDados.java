@@ -47,9 +47,9 @@ public class JogoDados
         }
     }
     
-    public Jogo LerJogo() throws Exception
+    public Jogo LerJogo(int cdg_jogo) throws Exception
     {
-        try
+    	try
         {
             FileInputStream oFileInputStream = new FileInputStream(NOME_JOGO);
             

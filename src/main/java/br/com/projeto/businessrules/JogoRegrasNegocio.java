@@ -37,14 +37,22 @@ public class JogoRegrasNegocio
     	}
     	catch (Exception e)
     	{
-    		System.out.println("Erro: Criar novo jogo" + e.getMessage());
+    		System.out.println("Erro ao Criar novo jogo: " + e.getMessage());
     		return null;
     	}
     }
     
-    public Jogo LerJogo() throws Exception
+    public Jogo LerJogo(int cdg_jogo) throws Exception
     {
-        return jogoDados.LerJogo();
+    	try
+    	{
+    		return jogoDados.LerJogo(cdg_jogo);
+    	}
+    	catch (Exception e)
+    	{
+    		System.out.println("Erro ao Ler jogo: " + e.getMessage());
+    		return null;
+    	}
     }
     public void GravarJogo(Jogo oJogo) throws Exception
     {
