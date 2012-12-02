@@ -42,7 +42,6 @@ public class LoginController1 {
 			else
 			{
 				return "/jogo/carregar_jogo.action";
-				//return "redirect:/jogo.jsp?" + user.getId();
 			}		
 		}
 		return "redirect:/index.jsp?error=Usuario e/ou senha invalidos";

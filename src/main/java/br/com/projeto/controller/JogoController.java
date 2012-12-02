@@ -28,30 +28,38 @@ public class JogoController {
 			Jogador jogador = (Jogador)session.getAttribute("jogador");
 			
 			if (jogador.getJogo()== null)
-				System.out.println("jogador: " + jogador.getCodigo() + " " + jogador);
-				//jogo = jogoService.criar_novo_jogo(jogador);
+				jogo = jogoService.criarNovoJogo(jogador);
 			else 
-				jogo = jogoService.carregar_jogo(jogador.getJogo().getCodigo());
+				jogo = jogoService.carregarJogo(jogador.getJogo().getCodigo());
 			
-			session.setAttribute("jogo", jogo);
+			System.out.println("Jogador: " + jogador.getCodigo());
+			System.out.println("Jogo: " + jogador.getJogo().getCodigo());
+			System.out.println("Jogo: " + jogo);
+			System.out.println("Ouro: " + jogo.getVlrTotalOuro());
+			System.out.println("Commida: " + jogo.getVlrTotalComida());
+			System.out.println("Pontos: " + jogo.getQtdTotalPontosXP());
+			
+			//session.setAttribute("jogo", jogo);
 									
-			return "redirect:/jogo.jsp?";
+			return "redirect:/jogo.jsp?" + jogo.getCodigo();
 		}
 		else 
 			return "redirect:/index.jsp?Erro:Sessao+nao+iniciada";
 	}
 	
 	@RequestMapping("/jogo/novojogo")
-	public String carregarNovoJogo(HttpSession session) {
-		
-		if (session.getAttribute(Constants.USER_ADMIN) != null) {
-			
+	public String carregarNovoJogo(HttpSession session) 
+	{
+		if (session != null)
+		{
 			Jogador jogador = (Jogador)session.getAttribute("jogador");
-			Jogo jogo = jogoService.criar_novo_jogo(jogador);
+			Jogo jogo = jogoService.criarNovoJogo(jogador);
 			
 			session.setAttribute("jogo", jogo);
+		
 			return "redirect:/jogo.jsp?" + jogo.getCodigo();
 		}	
+		
 		return "redirect:index.jsp";
 	}	
 }

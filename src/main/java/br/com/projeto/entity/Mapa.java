@@ -5,6 +5,7 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
@@ -37,7 +38,7 @@ public class Mapa implements java.io.Serializable{
         this.codigo = codigo;
     }
     
-    @OneToMany(mappedBy="mapa",cascade=CascadeType.ALL)
+    @OneToMany(mappedBy="mapa",cascade=CascadeType.ALL, fetch=FetchType.EAGER)
     private List<MapaLocal> oListMapaLocal;
 
     public List<MapaLocal> getoListMapaLocal() {

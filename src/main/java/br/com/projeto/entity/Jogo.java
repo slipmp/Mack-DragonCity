@@ -5,6 +5,7 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
@@ -41,7 +42,7 @@ public class Jogo implements java.io.Serializable{
 	@JoinColumn(name = "IdJogador")
     private Jogador jogador;
 
-    @OneToMany(mappedBy="jogo",cascade=CascadeType.ALL)
+    @OneToMany(mappedBy="jogo",cascade=CascadeType.ALL) //, fetch=FetchType.EAGER)
     private List<Dragao> listDragao;
 
     @OneToOne(cascade={CascadeType.ALL})

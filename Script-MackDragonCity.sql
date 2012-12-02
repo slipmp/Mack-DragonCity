@@ -1,6 +1,6 @@
 -- MySQL dump 10.13  Distrib 5.5.9, for Win32 (x86)
 --
--- Host: localhost    Database: mackenzie 
+-- Host: localhost    Database: mackenzie
 -- ------------------------------------------------------
 -- Server version	5.5.15
 
@@ -127,7 +127,7 @@ CREATE TABLE `tbdragaoestado` (
   PRIMARY KEY (`Id`),
   KEY `FKFF7ABDF6EE20385C` (`IdDragaoTipo`),
   CONSTRAINT `FKFF7ABDF6EE20385C` FOREIGN KEY (`IdDragaoTipo`) REFERENCES `tbdragaotipo` (`Id`)
-) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=30 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -136,7 +136,7 @@ CREATE TABLE `tbdragaoestado` (
 
 LOCK TABLES `tbdragaoestado` WRITE;
 /*!40000 ALTER TABLE `tbdragaoestado` DISABLE KEYS */;
-INSERT INTO `tbdragaoestado` VALUES (1,NULL,0,0,'Ovo',1),(2,NULL,1,5,'Beb',1),(3,NULL,6,12,'Semi-Adulto',1),(4,NULL,13,20,'Adulto',1),(5,NULL,0,0,'Ovo',2),(6,NULL,1,5,'Beb',2),(7,NULL,6,12,'Semi-Adulto',2),(8,NULL,13,20,'Adulto',2),(9,NULL,0,0,'Ovo',3),(11,NULL,6,12,'Semi-Adulto',3),(12,NULL,13,20,'Adulto',3),(13,NULL,0,0,'Ovo',4),(14,NULL,1,5,'Beb',4),(15,NULL,6,12,'Semi-Adulto',4),(16,NULL,13,20,'Adulto',4),(17,NULL,0,0,'Ovo',5),(18,NULL,1,5,'Beb',5),(19,NULL,6,12,'Semi-Adulto',5),(20,NULL,13,20,'Adulto',5),(21,NULL,0,0,'Ovo',6),(22,NULL,1,5,'Beb',6),(23,NULL,6,12,'Semi-Adulto',6),(24,NULL,13,20,'Adulto',6);
+INSERT INTO `tbdragaoestado` VALUES (1,'Imagens/btn_fogo_ovo.gif',0,0,'Ovo',1),(2,'Imagens/btn_fogo_filhote.gif',1,5,'Beb',1),(3,'Imagens/btn_fogo_jovem.gif',6,12,'Semi-Adulto',1),(4,'Imagens/btn_fogo_adulto.gif',13,20,'Adulto',1),(5,'Imagens/btn_aquatico_ovo.gif',0,0,'Ovo',2),(6,'Imagens/btn_aquatico_filhote.gif',1,5,'Beb',2),(7,'Imagens/btn_aquatico_jovem.gif',6,12,'Semi-Adulto',2),(8,'Imagens/btn_aquatico_adulto.gif',13,20,'Adulto',2),(9,'Imagens/btn_gelo_ovo.gif',0,0,'Ovo',3),(11,'Imagens/btn_gelo_jovem.gif',6,12,'Semi-Adulto',3),(12,'Imagens/btn_gelo_adulto.gif',13,20,'Adulto',3),(13,'Imagens/btn_vegetal_ovo.gif',0,0,'Ovo',4),(14,'Imagens/btn_vegetal_filhote.gif',1,5,'Beb',4),(15,'Imagens/btn_vegetal_jovem.gif',6,12,'Semi-Adulto',4),(16,'Imagens/btn_vegetal_adulto.gif',13,20,'Adulto',4),(17,'Imagens/btn_metal_ovo.gif',0,0,'Ovo',5),(18,'Imagens/btn_metal_filhote.gif',1,5,'Beb',5),(19,'Imagens/btn_metal_jovem.gif',6,12,'Semi-Adulto',5),(20,'Imagens/btn_metal_adulto.gif',13,20,'Adulto',5),(21,'Imagens/btn_eletrico_ovo.gif',0,0,'Ovo',6),(22,'Imagens/btn_eletrico_filhote.gif',1,5,'Beb',6),(23,'Imagens/btn_eletrico_jovem.gif',6,12,'Semi-Adulto',6),(24,'Imagens/btn_eletrico_adulto.gif',13,20,'Adulto',6),(25,'Imagens/btn_gelo_filhote.gif',1,5,'Beb',3),(26,'Imagens/btn_terra_ovo.gif',0,0,'0v0',7),(27,'Imagens/btn_terra_filhote.gif',1,5,'Beb',7),(28,'Imagens/btn_terra_jovem.gif',6,12,'Semi-Adulto',7),(29,'Imagens/btn_terra_adulto.gif',13,20,'Adulto',7);
 /*!40000 ALTER TABLE `tbdragaoestado` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -158,7 +158,7 @@ CREATE TABLE `tbdragaotipo` (
   PRIMARY KEY (`Id`),
   KEY `FKB6C4BBC45A6A4D14` (`oHabitatTipo_ID`),
   CONSTRAINT `FKB6C4BBC45A6A4D14` FOREIGN KEY (`oHabitatTipo_ID`) REFERENCES `tbhabitattipo` (`ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -167,7 +167,7 @@ CREATE TABLE `tbdragaotipo` (
 
 LOCK TABLES `tbdragaotipo` WRITE;
 /*!40000 ALTER TABLE `tbdragaotipo` DISABLE KEYS */;
-INSERT INTO `tbdragaotipo` VALUES (1,1,'Fogo',10,10,100,1),(2,3,'?gua',20,20,150,2),(3,5,'Gelo',30,30,200,3),(4,7,'Planta',40,40,250,4),(5,10,'A',50,50,300,5),(6,15,'Raio',100,100,400,6);
+INSERT INTO `tbdragaotipo` VALUES (1,1,'Fogo',10,10,100,1),(2,3,'Água',20,20,150,2),(3,5,'Gelo',30,30,200,3),(4,7,'Planta',40,40,250,4),(5,10,'Aço',50,50,300,5),(6,15,'Raio',100,100,400,6),(7,1,'Terra',10,10,100,7);
 /*!40000 ALTER TABLE `tbdragaotipo` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -291,7 +291,7 @@ CREATE TABLE `tbhabitattipo` (
   `Tipo` varchar(255) DEFAULT NULL,
   `Valor` int(11) DEFAULT NULL,
   PRIMARY KEY (`ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -300,7 +300,7 @@ CREATE TABLE `tbhabitattipo` (
 
 LOCK TABLES `tbhabitattipo` WRITE;
 /*!40000 ALTER TABLE `tbhabitattipo` DISABLE KEYS */;
-INSERT INTO `tbhabitattipo` VALUES (1,30,'Fogo',100),(2,60,'?gua',150),(3,90,'Gelo',200),(4,120,'Planta',250),(5,150,'A',300),(6,180,'Raio',400);
+INSERT INTO `tbhabitattipo` VALUES (1,30,'Fogo',100),(2,60,'Água',150),(3,90,'Gelo',200),(4,120,'Planta',250),(5,150,'Aço',300),(6,180,'Raio',400),(7,30,'Terra',100);
 /*!40000 ALTER TABLE `tbhabitattipo` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -322,7 +322,7 @@ CREATE TABLE `tbjogador` (
   PRIMARY KEY (`ID`),
   KEY `FK10599BA5B34ECEA` (`IdJogo`),
   CONSTRAINT `FK10599BA5B34ECEA` FOREIGN KEY (`IdJogo`) REFERENCES `tbjogo` (`ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -331,6 +331,7 @@ CREATE TABLE `tbjogador` (
 
 LOCK TABLES `tbjogador` WRITE;
 /*!40000 ALTER TABLE `tbjogador` DISABLE KEYS */;
+INSERT INTO `tbjogador` VALUES (5,NULL,'dayanepbp','Dayane Priscila Bortolin Pereira','202cb962ac59075b964b07152d234b70',NULL,'A');
 /*!40000 ALTER TABLE `tbjogador` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -470,8 +471,31 @@ INSERT INTO `tbusuario` VALUES (1,'2012-10-10 00:00:00','adm','b09c600fddc573f11
 UNLOCK TABLES;
 
 --
--- Dumping routines for database 'mackenzie'
+-- Table structure for table `usuario`
 --
+
+DROP TABLE IF EXISTS `usuario`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `usuario` (
+  `ID` bigint(20) NOT NULL,
+  `DATA_INSERCAO` date DEFAULT NULL,
+  `LOGIN` varchar(255) DEFAULT NULL,
+  `SENHA` varchar(255) DEFAULT NULL,
+  `DATA_ATUALIZACAO` date DEFAULT NULL,
+  PRIMARY KEY (`ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `usuario`
+--
+
+LOCK TABLES `usuario` WRITE;
+/*!40000 ALTER TABLE `usuario` DISABLE KEYS */;
+INSERT INTO `usuario` VALUES (1,NULL,'admin','e10adc3949ba59abbe56e057f20f883e',NULL);
+/*!40000 ALTER TABLE `usuario` ENABLE KEYS */;
+UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -482,4 +506,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2012-12-01  8:05:28
+-- Dump completed on 2012-12-01 23:15:48

@@ -16,14 +16,12 @@ public class JogoService extends GenericDao{
 	@Autowired
 	private JogoDao jogoDao;
 	
-	public Jogo carregar_jogo(int id) 
+	public Jogo carregarJogo(int id) 
 	{
-		
 		return jogoDao.findById(Jogo.class, id);
-		//return jogoDao.getJogo(id);
 	}
 		
-	public Jogo criar_novo_jogo(Jogador jogador)
+	public Jogo criarNovoJogo(Jogador jogador)
 	{
 		// Cria o novo jogo.
 		JogoRegrasNegocio regra_jogo = new JogoRegrasNegocio();
@@ -35,10 +33,11 @@ public class JogoService extends GenericDao{
 		// Marcos pq?: Erro ocorrendo quando insere o jogo setando o "Mapa".
 		jogoDao.insert(jogo);
 		
+		System.out.println("Passou" + jogo.getCodigo());
 		return jogo;
 	}
 	
-	public int calcular_nivel(int qtdTotalPontosXP)
+	public int calcularNivel(int qtdTotalPontosXP)
 	{
 		NivelRegrasNegocio regra_nivel  = new NivelRegrasNegocio();
 		int nmr_nivel = regra_nivel.getNivelEquivalente(qtdTotalPontosXP).getCodigo();
