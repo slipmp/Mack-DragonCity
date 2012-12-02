@@ -4,17 +4,26 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import br.com.projeto.businessrules.JogoRegrasNegocio;
+import br.com.projeto.businessrules.MapaRegrasNegocio;
 import br.com.projeto.businessrules.NivelRegrasNegocio;
+import br.com.projeto.dao.DragaoTipoDao;
 import br.com.projeto.dao.GenericDao;
 import br.com.projeto.dao.JogoDao;
+import br.com.projeto.entity.CasaCentral;
+import br.com.projeto.entity.Dragao;
+import br.com.projeto.entity.DragaoTipo;
 import br.com.projeto.entity.Jogador;
 import br.com.projeto.entity.Jogo;
+import br.com.projeto.entity.MapaLocal;
 
 @Service
 public class JogoService extends GenericDao{
 	
 	@Autowired
 	private JogoDao jogoDao;
+	
+	@Autowired
+	private DragaoTipoDao dragaoTipoDao;
 	
 	public Jogo carregarJogo(int id) 
 	{
@@ -44,5 +53,48 @@ public class JogoService extends GenericDao{
 		return nmr_nivel;
 	}	
 	
+	public String validarOvoCasaCentral(Jogo jogo, int cdgTipoDragaoEscolhido)
+	{
+		DragaoTipo dragaoTipo =  dragaoTipoDao.findById(DragaoTipo.class, cdgTipoDragaoEscolhido);
+		
+		if (dragaoTipo != null)
+		{
+			NivelRegrasNegocio nivel_regras_negocio = new NivelRegrasNegocio();
+			Dragao dragao = new Dragao();
+			dragao.setDragaoTipo(dragaoTipo);
+			
+			if (dragaoTipo.getLevelJogadorRequerido() > nivel_regras_negocio.getNivelEquivalente(jogo.getQtdTotalPontosXP()).getCodigo())
+			{
+				dragaoTipo = null;
+				
+				return "Você não possui level para adquirir esse dragão!";
+			}
+			else if (dragaoTipo.getValor() > jogo.getVlrTotalOuro())
+			{
+				dragaoTipo = null;
+				return "Você não possui Ouro suficiente para aquirir esse dragão!";
+			}
+		}
+		
+		return "";
+	}
 	
+	public String criarOvoCasaCentral(Jogo jogo, int cdgTipoDragaoEscolhido, String nomeDragao)
+	{
+		DragaoTipo dragaoTipo =  dragaoTipoDao.findById(DragaoTipo.class, cdgTipoDragaoEscolhido);
+		
+		MapaRegrasNegocio mapaRegrasNegocio = new MapaRegrasNegocio();
+		MapaLocal mapaLocal = mapaRegrasNegocio.getMapaLocalPorPosicao(jogo.getMapa(), 1, 1);
+		CasaCentral casaCentral = ((CasaCentral)mapaLocal.getConstrucao());
+		Dragao dragao = new Dragao();
+		dragao.setDragaoTipo(dragaoTipo);
+		
+		jogo.setVlrTotalOuro(jogo.getVlrTotalOuro() - dragao.getValor());
+		dragao.setNomeDragao(nomeDragao);
+		casaCentral.setOvo(dragao);
+		
+		jogo.setQtdTotalPontosXP(jogo.getQtdTotalPontosXP() + dragao.getDragaoTipo().getPontosXPFornece());
+		
+		return "Você ganhou " + dragao.getDragaoTipo().getPontosXPFornece() + " pontos XP!";
+	}
 }
