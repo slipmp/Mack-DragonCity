@@ -8,5 +8,4 @@ import br.com.projeto.entity.DragaoTipo;
  */
 public class DragaoRegrasNegocio {
  
-
 }

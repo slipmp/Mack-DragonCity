@@ -11,14 +11,20 @@
 <%@page import="br.com.projeto.entity.Habitat"%>
 <%@page import="br.com.projeto.entity.Dragao"%>
 <%@page import="br.com.projeto.entity.Fazenda"%>
+<%@page import="br.com.projeto.businessrules.DragaoRegrasNegocio"%>
+<%@page import="br.com.projeto.dao.DragaoTipoDao"%>
 
 
-<%@page import="net.sf.cglib.core.Converter"%><html xmlns="http://www.w3.org/1999/xhtml">
+<%@page import="br.com.projeto.businessrules.NivelRegrasNegocio"%><html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>Mack - Dragon City</title>
 <link href="css/jogo.css" rel="stylesheet" type="text/css" />
-<script>
+<script type="text/javascript" src="<c:url value='/js/jquery-1.8.2.min.js' />"></script>
+<script type="text/javascript" src="<c:url value='/js/jquery.selectbox-0.2.min.js' />"></script>
+<script type="text/javascript" src="<c:url value='/js/jquery-ui-1.9.1.custom.min.js' />"></script>
+
+<script language="javascript" type="text/javascript">
 	var pontucao = 0;
 	function funcaoClick(id){
 		alert(id);
@@ -49,10 +55,92 @@
 		alert("Opção indisponível no momento.");
 	}
 
-	function alertar_opcao_indisponivel()
-	{	
-		alert("Opção indisponível no momento.");
-	}		
+	function teste()
+	{
+	}
+	        
+	function casa_central_clicado(sta_possui_ovo, nme_tipo_dragao, nme_nome_dragao, nme_tipo_habitat)
+	{
+		var mensagem = "";
+		
+		if (sta_possui_ovo = true)
+		{
+			mensagem = confirm("Não existe Ovo de Dragão aqui. Deseja criar um?");
+
+			if (mensagem = true)
+			{
+				do 
+				{
+					mensagem = prompt("Escolha um tipo de Dragao: \n\n" + 
+									  "1 - Dragão de Fogo\n" +
+									  "2 - Dragão de Água\n" +
+							  		  "3 - Dragão de Gelo\n" +
+					  		  		  "4 - Dragão de Planta\n" +
+					  		  		  "5 - Dragão de Metal\n" +
+					  		  		  "6 - Dragão de Aço\n" +
+									  "7 - Dragão de Terra\n" +
+									  "0 - Sair\n");
+					  
+				} while (mensagem == null || mensagem == "");
+
+				if (mensagem == "0")
+					return;
+
+				var idCdgTipoDragaoEscolhido = mensagem;
+
+ 		    	$.ajax({
+						url: "/jogo/casacentral/validacao.action", 
+						type: "post",
+					 	data: {idCdgTipoDragaoEscolhido: idCdgTipoDragaoEscolhido},
+					 	dataType: "String",
+					 	success: function (response, textStatus, jqXHR) {
+					 		
+			 				if (response !== "") {
+			 					alert(response);
+			 					return;
+			 				}
+					 	},
+				        error: function(jqXHR, textStatus, errorThrown){
+				           console.log("[DragonCity] Ocorreu o seguinte erro: " + textStatus, errorThrown);
+				        } 
+ 	  			});						
+				//alert("Chamar método jogo/casacentral.action do tipo escolhido: " + mensagem);
+				//window.location = "jogo/casacentral/validacao.action");
+
+				var nomeDragao = "";
+					
+				do {
+					nomeDragao = prompt("Dê um nome ao seu dragão: ");
+				} while (nomeDragao == null || nomeDragao == "");
+
+				//var retorno = window.location = "jogo/casacentral/criarovo.action";
+
+ 		    	$.ajax({
+						url: "jogo/casacentral/criarovo.action", 
+						type: "post",
+					 	data: {idCdgTipoDragaoEscolhido: idCdgTipoDragaoEscolhido, nomeDragao: nomeDragao},
+					 	dataType: "String",
+					 	success: function (response, textStatus, jqXHR) {
+
+					 		if (response !== "") {
+			 					alert(response);
+			 					return;
+			 				}
+					 	},
+				        error: function(jqXHR, textStatus, errorThrown){
+				           console.log("[DragonCity] Ocorreu o seguinte erro: " + textStatus, errorThrown);
+				        } 
+ 	  			});						
+			}	
+		}
+		else
+		{
+			mensagem = "Já existe um Ovo de " + nme_tipo_dragao + " aqui. O nome dele é " + nme_nome_dragao + ".";
+			mensagem += "\nClique em um habitat do tipo " + nme_tipo_habitat + " para criar o dradão.";
+			alert(mensagem);
+		}
+	}		 
+	
 </script>
 </head>
 
@@ -104,6 +192,9 @@
 			MapaRegrasNegocio mapa_regras_negocio = new MapaRegrasNegocio();
 		
 			html_saida = "<table width=\"810\" height=\"371\" border=\"0\" align=\"center\" cellpadding=\"0\" cellspacing=\"0\">";
+			html_saida += "<input type=\"hidden\" name=\"retorno\" value=\"${retorno}\">";
+			html_saida += "<input type=\"hidden\" name=\"nomeDragao\" value=\"${nomeDragao}\">";
+			
 			
 			if (jogo.getMapa() != null)
 			{		
@@ -124,17 +215,20 @@
 								CasaCentral casa_central = (CasaCentral)mapa_local.getConstrucao();
 								
 								System.out.println("casacentral: " + casa_central.getCodigo()); 
-								//CASA CENTRAL AQUI
+								
 								if (casa_central.getOvo() == null)
 								{
-									System.out.println("casacentral-ovo: NULL (Chocadeira vazia)"); 
-									html_saida += "<input type=\"image\" name=\"btn_casa_central\" id=\"btn_casa_central\" src=\"Imagens/btn_casa_central.gif\" title=\"Casa central\"/>";
+									System.out.println("casacentral-ovo: NULL (Chocadeira vazia)");
+									html_saida += "<input type=\"image\" name=\"btn_casa_central\" id=\"btn_casa_central\" src=\"Imagens/btn_casa_central.gif\" title=\"Casa central\" onClick=\"javascript:casa_central_clicado(false, '', '', '')\"/>";  // href=\"javascript:casa_central_clicado(false, '', '', '');\" />";
 								}
 								else 
 								{
 									String nme_tipo_dragao = casa_central.getOvo().getDragaoTipo().getNomeTipoDragao();
+									String nme_nome_dragao = casa_central.getOvo().getNomeDragao();
+									String nme_tipo_habitat = casa_central.getOvo().getDragaoTipo().getoHabitatTipo().getTipo();
 									String nme_imagem = "";
-									String nme_titulo = "";
+									String nme_titulo = ""; 
+									
 									System.out.println("casacentral-ovo: Chocadeira com ovo " + nme_tipo_dragao);
 									
 									if (nme_tipo_dragao == "Terra")
@@ -173,7 +267,7 @@
 										nme_titulo = "Ovo - Elétrico";
 									}
 									
-									html_saida += "<input type=\"image\" name=\"btn_casa_central\" id=\"btn_casa_central\" src=\"" + nme_imagem + "\" title=\"" + nme_titulo + "\"/>";					
+									html_saida += "<input type=\"image\" name=\"btn_casa_central\" id=\"btn_casa_central\" onClick=\"javascript:casa_central_clicado(true, '" + nme_tipo_dragao + "', '" + nme_nome_dragao + "','" + nme_tipo_habitat + "')\" src=\"" + nme_imagem + "\" title=\"" + nme_titulo + "\"/>";					
 								}
 
 
@@ -237,10 +331,15 @@
 <div> ${html_body} </div>
 
 	
-<!-- 	 <table width="810" height="371" border="0" align="center" cellpadding="0" cellspacing="0">
+ 	<!--  <table width="810" height="371" border="0" align="center" cellpadding="0" cellspacing="0">
   		<tr>
         	<th width="135" height="80" align="left" valign="top" scope="col">
-        		<input type="image" name="btn_terra_ovo30" id="btn_terra_ovo30" src="Imagens/btn_casa_central.gif" title="Casa central"/>			
+        	<a href="javascript:sair_jogo();"> 
+    			 <img src="Imagens/btn_casa_central.gif" name="btn_terra_ovo30" />
+			</a>		
+            </th>
+            <th width="135" height="80" align="left" valign="top" scope="col">
+            	<input type="image" onclick="func('hello')" src="Imagens/btn_casa_central.gif"/>
             </th>
             <th width="135" height="80" align="left" valign="top" scope="col">
                 <input type="image" name="btn_terra_ovo" id="btn_terra_ovo" src="Imagens/btn_terra_ovo.gif" />          	
@@ -253,8 +352,8 @@
                 <input type="image" name="btn_terra_ovo4" id="btn_terra_ovo4" src="Imagens/btn_terra_adulto.gif" />          	</th>
             <th width="135" height="80" align="left" valign="top" scope="col">
                 <input type="image" name="btn_terra_ovo5" id="btn_terra_ovo5" src="Imagens/btn_vegetal_ovo.gif" />          	</th>
-      </tr>
-      <tr>
+      
+            <tr>
         <th width="135" height="51" align="left" valign="top" scope="row">
             	<input type="image" name="btn_terra_ovo6" id="btn_terra_ovo6" src="Imagens/btn_vegetal_filhote.gif" />        </th>
             <td width="135" height="51" align="left" valign="top">
