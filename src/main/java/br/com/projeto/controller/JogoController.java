@@ -68,32 +68,27 @@ public class JogoController {
 	{
 		System.out.println("Entrou - Validar casa central controller");
 		System.out.println("Tipo de dragao: " + idCdgTipoDragaoEscolhido);
+		
 		Jogo jogo = (Jogo)session.getAttribute("jogo");
 		
-		//int cdgTipoDragaoEscolhido = Integer.parseInt((String)session.getAttribute("IdCdgTipoDragaoEscolhido"));
+		int cdgTipoDragaoEscolhido = Integer.parseInt((String)session.getAttribute("IdCdgTipoDragaoEscolhido"));
 		
-		//String retorno = jogoService.validarOvoCasaCentral(jogo, idCdgTipoDragaoEscolhido);
-		//return retorno;
-		
-		return "ssssss";
-		
-		//return "redirect:jogo.jsp?" + jogo.getCodigo();
+		String retorno = jogoService.validarOvoCasaCentral(jogo, cdgTipoDragaoEscolhido);
+		return retorno;
 	}
 	
 	@RequestMapping("/jogo/casacentral/criarovo")
-	public String CriarOvoCasaCentral(@RequestParam(value="nome_dragao",required=false) String nomeDragao,
-			 HttpSession session)
+	public @ResponseBody String CriarOvoCasaCentral(@RequestParam(value="idCdgTipoNomeDragao", required=true) String idCdgTipoDragaoEscolhido,
+													@RequestParam(value="nomeDragao",required=false) String nomeDragao,
+													HttpSession session)
 	{
 		System.out.println("Entrou - Criar ovo na casa central controller");
 		Jogo jogo = (Jogo)session.getAttribute("jogo");
 
-		//int cdg_tipo_dragao_escolhido = Integer.parseInt((String)session.getAttribute("cdg_tipo_dragao_escolhido"));		
+		int cdg_tipo_dragao_escolhido = Integer.parseInt(idCdgTipoDragaoEscolhido);		
 		
-		//String retorno = jogoService.criarOvoCasaCentral(jogo, cdg_tipo_dragao_escolhido, nomeDragao);
-		//return retorno;
-		
-		//return "aaa";
-		return "redirect:/jogo.jsp?retorno=aaaa";
+		String retorno = jogoService.criarOvoCasaCentral(jogo, cdg_tipo_dragao_escolhido, nomeDragao);
+		return retorno;
 	}
 	
 	

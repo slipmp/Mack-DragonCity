@@ -94,8 +94,7 @@
 					 	data: {idCdgTipoDragaoEscolhido: idCdgTipoDragaoEscolhido},
 					 	dataType: "String",
 					 	success: function (response, textStatus, jqXHR) {
-					 		alert(success);
-					 		alert(response);
+					 		
 			 				if (response !== "") {
 			 					alert(response);
 			 					return;
@@ -108,18 +107,30 @@
 				//alert("Chamar método jogo/casacentral.action do tipo escolhido: " + mensagem);
 				//window.location = "jogo/casacentral/validacao.action");
 
-				var nome_dragao = "";
+				var nomeDragao = "";
 					
 				do {
-					nome_dragao = prompt("Dê um nome ao seu dragão: ");
-				} while (nome_dragao == null || nome_dragao == "");
+					nomeDragao = prompt("Dê um nome ao seu dragão: ");
+				} while (nomeDragao == null || nomeDragao == "");
 
 				//var retorno = window.location = "jogo/casacentral/criarovo.action";
-				
-				if (retorno != "")
-				{
-					alert(retorno);
-				} 
+
+ 		    	$.ajax({
+						url: "jogo/casacentral/criarovo.action", 
+						type: "post",
+					 	data: {idCdgTipoDragaoEscolhido: idCdgTipoDragaoEscolhido, nomeDragao: nomeDragao},
+					 	dataType: "String",
+					 	success: function (response, textStatus, jqXHR) {
+
+					 		if (response !== "") {
+			 					alert(response);
+			 					return;
+			 				}
+					 	},
+				        error: function(jqXHR, textStatus, errorThrown){
+				           console.log("[DragonCity] Ocorreu o seguinte erro: " + textStatus, errorThrown);
+				        } 
+ 	  			});						
 			}	
 		}
 		else
