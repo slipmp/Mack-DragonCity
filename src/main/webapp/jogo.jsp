@@ -47,7 +47,12 @@
 	function alertar_opcao_indisponivel()
 	{	
 		alert("Opção indisponível no momento.");
-	}	
+	}
+
+	function alertar_opcao_indisponivel()
+	{	
+		alert("Opção indisponível no momento.");
+	}		
 </script>
 </head>
 
@@ -68,20 +73,19 @@
 	if (session.getAttribute("jogo") != null && session.getAttribute("jogo") != "" )
 	{
 		Jogo jogo = (Jogo)session.getAttribute("jogo");
-		String nmr_nivel_jogo = (String)session.getAttribute("$nmr_nivel_jogo");
+		
 		System.out.println("Total de Ouro: " + jogo.getVlrTotalOuro()); 
 		html_cabecalho =  "<label id=\"qtd_ouro\"><b>" + jogo.getVlrTotalOuro() + "</b></label>";
 		html_cabecalho += "<label id=\"qtd_alimento\"><b>" + jogo.getVlrTotalComida() + "</b></label>";
 		html_cabecalho += "<label id=\"qtd_dragao\"><b>" + 0 + "</b></label>"; //jogo.getListDragao().size()
 		html_cabecalho += "<label id=\"qtd_pontos\"><b>" + jogo.getQtdTotalPontosXP() + "</b></label>";
-		html_cabecalho += "<label id=\"nmr_nivel\"><b>" + nmr_nivel_jogo + "</b></label>";
+		html_cabecalho += "<label id=\"nmr_nivel\"><b>" + session.getAttribute("nmr_nivel_jogo") + "</b></label>";
 		html_cabecalho += "<label id=\"nme_jogador\"><b>Jogador logado: " + jogo.getJogador().getNome() + "</b></label>";
 		
 		session.setAttribute("html_cabecalho", html_cabecalho); 
 	}
 %>  	
 <div class="pontuacao"> ${html_cabecalho} </div>  	
-</div>
 <div class="novoJogo">
 	 <a id="novo_jogo" href="javascript:criar_novo_jogo();" title="Novo jogo">Novo Jogo</a>;
 </div>
