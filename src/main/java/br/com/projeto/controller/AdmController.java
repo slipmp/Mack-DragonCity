@@ -18,10 +18,12 @@ public class AdmController {
 	@Autowired
 	private JogadorService jogadorService;
 
-	@RequestMapping("/adm/listarJogadores/")
+	@RequestMapping("/adm/listarJogadores")
 	public String listarjogadores(HttpSession session)  {
+		System.out.println("entrou no list");
+		
 		List<Jogador> listJogadores = jogadorService.listarJogadores();
-		session.setAttribute("listJogadores", listJogadores);
+		session.setAttribute("listJogadores", listJogadores);	
 		
 		return "redirect:/adm/listarJogadores.jsp";
 	}

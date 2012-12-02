@@ -1,7 +1,6 @@
 package br.com.projeto.web.adm;
 
 import java.io.IOException;
-import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpSession;
@@ -12,7 +11,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+//import br.com.projeto.entity.Jogador;
 import br.com.projeto.entity.User;
+//import br.com.projeto.service.JogadorService;
 import br.com.projeto.service.UserService;
 import br.com.projeto.util.Constants;
 
@@ -25,6 +26,8 @@ public class LoginController {
 	
 	@Autowired
 	private UserService service;
+	//@Autowired
+	//private JogadorService serviceJogador;
 
 
 	@RequestMapping("/adm/login")
@@ -32,21 +35,17 @@ public class LoginController {
 						 @RequestParam(value="senha",required=false) String password,
 						 @RequestParam(value="requestedUrl",required=false) String requestedUrl) throws ServletException, IOException {
 		
+		
 		User user = service.login(login, password);
 		
-		if(user!=null)
-		{
-			if(StringUtils.isNotBlank(requestedUrl))
-			{		
-				return"redirect:"+requestedUrl.replaceAll("\\$10","?").replaceAll("\\$11","&");
-			}
-			else
-			{
-				return "/jogo/inicio.action";
-				//return "redirect:/jogo.jsp?" + user.getId();
-			}		
-		}
-		return "redirect:/index.jsp?error=Usuário e/ou senha inválidos";
+		if (user != null) {	
+			return "listarJogadores.action";
+			//return "redirect:/adm/listarJogadores.jsp";
+		 }
+		
+		//return "listarJogadores.action";
+		return "redirect:/adm/login.jsp?error=UsuArio e/ou senha invAlidos";
+			
 	}
 	
 	@RequestMapping("/adm/logout")
