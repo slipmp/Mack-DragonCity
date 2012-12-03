@@ -18,14 +18,16 @@
 	    	<table cellpadding="0" cellspacing="0" style="text-align:left">
 	    		<tr>
 	    			<td style="width:20px"><c:out value="Código" /></td>
-	    			<td style="width:40px"><c:out value="Level" /></td>
-	    			<td style="width:150px"><c:out value="Nome" /></td>
+	    			<td style="width:250px"><c:out value="Nome" /></td>
+	    			<td style="width:150px"><c:out value="Login" /></td>
 	    			<td> Ativo/Inativo</td>
 	    		</tr>	    		
-	    		<c:forEach items="${listJogadores}" var="listJogadores">
+	    		<c:forEach items="${listJogadores}" var="item">
 	    			<tr>
-		    			<td>${listJogadores}</td>
-		    	
+		    			<td>${item.getCodigo()}</td>
+		    			<td>${item.getNome()}</td>
+		    			<td>${item.getLogin()}</td>
+		    			<td>X</td>
 	    			</tr>
 	    		</c:forEach>
 	    		

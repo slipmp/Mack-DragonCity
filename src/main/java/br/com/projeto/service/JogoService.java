@@ -68,12 +68,12 @@ public class JogoService extends GenericDao{
 			if (dragaoTipo.getLevelJogadorRequerido() > nivel_regras_negocio.getNivelEquivalente(jogo.getQtdTotalPontosXP()).getCodigo())
 			{
 				dragaoTipo = null;
-				return "Você não possui level para adquirir esse dragão!";
+				return "Voce nao possui level para adquirir esse dragao!";
 			}
 			else if (dragaoTipo.getValor() > jogo.getVlrTotalOuro())
 			{
 				dragaoTipo = null;
-				return "Você não possui Ouro suficiente para aquirir esse dragão!";
+				return "Voce nao possui Ouro suficiente para aquirir esse dragao!";
 			}
 		}
 		
@@ -98,6 +98,6 @@ public class JogoService extends GenericDao{
 		jogo.setQtdTotalPontosXP(jogo.getQtdTotalPontosXP() + dragao.getDragaoTipo().getPontosXPFornece());
 		jogoDao.update(jogo);
 		
-		return "Você ganhou " + dragao.getDragaoTipo().getPontosXPFornece() + " pontos XP!";
+		return "Voce ganhou " + dragao.getDragaoTipo().getPontosXPFornece() + " pontos XP!";
 	}
 }

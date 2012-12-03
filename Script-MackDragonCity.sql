@@ -1,4 +1,4 @@
--- MySQL dump 10.13  Distrib 5.5.9, for Win32 (x86)
+﻿-- MySQL dump 10.13  Distrib 5.5.9, for Win32 (x86)
 --
 -- Host: localhost    Database: mackenzie
 -- ------------------------------------------------------
@@ -466,7 +466,7 @@ CREATE TABLE `tbusuario` (
 
 LOCK TABLES `tbusuario` WRITE;
 /*!40000 ALTER TABLE `tbusuario` DISABLE KEYS */;
-INSERT INTO `tbusuario` VALUES (1,'2012-10-10 00:00:00','adm','b09c600fddc573f117449b3723f23d64','2012-10-10 00:00:00'),(2,'2012-11-26 00:00:00','admin','b09c600fddc573f117449b3723f23d64',NULL);
+INSERT INTO `tbusuario` VALUES (1,'2012-10-10 00:00:00','adm','b09c600fddc573f117449b3723f23d64','2012-10-10 00:00:00'),(2,'2012-11-26 00:00:00','admin','e10adc3949ba59abbe56e057f20f883e',NULL);
 /*!40000 ALTER TABLE `tbusuario` ENABLE KEYS */;
 UNLOCK TABLES;
 
