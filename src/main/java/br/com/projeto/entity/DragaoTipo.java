@@ -28,7 +28,7 @@ public class DragaoTipo  implements java.io.Serializable{
 	@Column(name="LevelJogadorRequerido")
     private int levelJogadorRequerido;
 
-	@OneToOne(fetch=FetchType.LAZY)
+	@OneToOne(fetch=FetchType.EAGER)
     private HabitatTipo oHabitatTipo;  
     
 	@Column(name="Valor")

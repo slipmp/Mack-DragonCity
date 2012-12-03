@@ -15,14 +15,16 @@
 <%@page import="br.com.projeto.dao.DragaoTipoDao"%>
 
 
-<%@page import="br.com.projeto.businessrules.NivelRegrasNegocio"%><html xmlns="http://www.w3.org/1999/xhtml">
+<%@page import="br.com.projeto.businessrules.NivelRegrasNegocio"%>
+<%@page import="br.com.projeto.entity.HabitatTipo"%><html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>Mack - Dragon City</title>
 <link href="css/jogo.css" rel="stylesheet" type="text/css" />
-<script type="text/javascript" src="<c:url value='/js/jquery-1.8.2.min.js' />"></script>
+<!-- <script type="text/javascript" src="<c:url value='/js/jquery-1.8.2.min.js' />"></script>
 <script type="text/javascript" src="<c:url value='/js/jquery.selectbox-0.2.min.js' />"></script>
 <script type="text/javascript" src="<c:url value='/js/jquery-ui-1.9.1.custom.min.js' />"></script>
+-->
 
 <script language="javascript" type="text/javascript">
 	var pontucao = 0;
@@ -63,11 +65,11 @@
 	{
 		var mensagem = "";
 		
-		if (sta_possui_ovo = true)
+		if (sta_possui_ovo == false)
 		{
 			mensagem = confirm("Não existe Ovo de Dragão aqui. Deseja criar um?");
 
-			if (mensagem = true)
+			if (mensagem == true)
 			{
 				do 
 				{
@@ -98,73 +100,142 @@
 
 				
 				alert(retorno);
- 		    	/*$.ajax({
-						url: "/jogo/casacentral/validacao.action", 
-						type: "post",
-					 	data: {idCdgTipoDragaoEscolhido: idCdgTipoDragaoEscolhido},
-					 	dataType: "json",
-					 	success: function (response, textStatus, jqXHR) {
-					 		
-			 				if (response !== "") {
-			 					alert(response);
-			 					return;
-			 				}
-					 	},
-				        error: function(jqXHR, textStatus, errorThrown){
-				           console.log("[DragonCity] Ocorreu o seguinte erro: " + textStatus, errorThrown);
-				        } 
- 	  			});	*/
- 	  									
-				//alert("Chamar método jogo/casacentral.action do tipo escolhido: " + mensagem);
-				
-				//window.location = "jogo/casacentral/validacao.action?CdgTipoDragaoEscolhido="+mensagem;
-
-				//if (document.getElementById('retorno').value != "")
-				//{
-					//alert(document.getElementById('retorno').value);
-				//}
-								
-				/*
-				document.getElementById('nomeDragao').value = nomeDragao;
-				
-				window.location = "jogo/casacentral/criarovo.action";
-
-				if (document.getElementById('retorno').value != "")
-				{
-					alert(document.getElementById('retorno').value);
-				}
-				
-				//VOLTAR CODIGO
-				/*$.ajax({
-					url: "/jogo/casacentral/criarovo.action", 
-					type: "post",
-				 	data: {idCdgTipoDragaoEscolhido: idCdgTipoDragaoEscolhido, nomeDragao: nomeDragao},
-				 	dataType: "json",
-				 	success: function (response, textStatus, jqXHR) {
-				 		
-		 				if (response !== "") {
-		 					alert(response);
-		 					return;
-		 				}
-				 	},
-			        error: function(jqXHR, textStatus, errorThrown){
-			           console.log("[DragonCity] Ocorreu o seguinte erro: " + textStatus, errorThrown);
-			        } 
-	  			});*/				
  		    }	
 		}
 		else
 		{
 			mensagem = "Já existe um Ovo de " + nme_tipo_dragao + " aqui. O nome dele é " + nme_nome_dragao + ".";
-			mensagem += "\nClique em um habitat do tipo " + nme_tipo_habitat + " para criar o dradão.";
+			mensagem += "\nClique em um habitat do tipo " + nme_tipo_habitat + " para criar o dragão.";
 			alert(mensagem);
 		}
-	}		 
-	
+	}
+
+	function botao_clicado(x, y)
+	{
+		var mensagem = "";
+
+		mensagem = confirm("Não existe construções aqui. Deseja construir?");
+
+		if (mensagem == true)
+		{
+			var cdgTipoConstrucao = "";
+			
+			do {
+				cdgTipoConstrucao = prompt("O que deseja construir?\n\n" +
+									"1 - Fazenda\n" +
+									"2 - Habitat\n" +
+									"0 - Sair\n") 
+			} while (cdgTipoConstrucao == null || cdgTipoConstrucao == "");
+
+			//ATENCAO: Validar a quantidade de ouro existente.
+			
+			if (cdgTipoConstrucao == 1)
+			{
+				var retorno = window.location = "jogo/construirFazenda.action?posicaoX=" + x + "&posicaoY=" + y;
+			}
+			else
+			{ 
+				var cdgTipoHabitatEscolhido = "";
+
+				do
+				{
+					cdgTipoHabitatEscolhido = prompt("Escolha um tipo de Habitat: \n\n" + 
+						  "1 - Habitat de Fogo\n" +
+						  "2 - Habitat de Água\n" +
+				  		  "3 - Habitat de Gelo\n" +
+		  		  		  "4 - Habitat de Planta\n" +
+		  		  		  "5 - Habitat de Metal\n" +
+		  		  		  "6 - Habitat de Aço\n" +
+						  "7 - Habitat de Terra\n" +
+						  "0 - Sair\n");		  
+				} while (cdgTipoHabitatEscolhido == null || cdgTipoHabitatEscolhido == "");
+
+				if (cdgTipoHabitatEscolhido == 0)
+					return;
+				else  
+				{
+					var retorno = window.location = "jogo/construirHabitat.action?posicaoX=" + x + "&posicaoY=" + y + "&cdgTipoHabitatEscolhido=" + cdgTipoHabitatEscolhido;
+				}
+			}
+		}
+	}
+			 
+	function habitat_clicado(x, y, cdgTipoHabitat, staHabitatComOvo)
+	{
+		if (staHabitatComOvo == false)
+		{
+			var cdgTipoDragaoChocadeira = document.getElementById('btn_casa_central').value;
+			
+			if (cdgTipoDragaoChocadeira == "")
+			{
+				alert("Habitat sem dragão. Para colocar aqui é necessário criar um Ovo na Casa Central.");
+				return;
+			}
+			else 
+			{
+				if (cdgTipoHabitat == cdgTipoDragaoChocadeira)
+				{
+					var retorno = window.location = "jogo/inserirOvoHabitat?posicaoX=" + x + "&posicaoY=" + y + "&cdgTipoHabitatEscolhido=" + cdgTipoDragaoChocadeira;
+					
+				}
+				else 
+				{
+					alert("O ovo deve ser do mesmo tipo para colocá-lo no seu habitat.");
+					return;
+				}
+			}
+		}
+		else
+		{
+			var retorno = window.location = "jogo/adicionarOuroPontosDragao.action?posicaoX=" + x + "&posicaoY=" + y;
+
+			var qtdAlimento = "";
+			
+			do
+			{
+				var qtdAlimento = confirm(retorno + "\nInforme a quantidade de alimentos ou \n0 - Sair");
+			} while (qtdAlimento == null || qtdAlimento == "");
+
+			if (qtdAlimento <= 0)
+				return;
+			else  
+			{
+				//Validar c/ a total de alimentos no jogo. 
+				var retorno = window.location = "jogo/alimentarDragao.action?posicaoX=" + x + "&posicaoY=" + y + "&qtdAlimento=" + qtdAlimento;
+
+				alert(retorno);	
+			}
+		}
+	}	
+
+	function getURLVars()
+	{
+		var vars = [];
+		var pedaco;
+		var inteira = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
+
+		for (var i = 0; i < inteira.length; i++)
+		{
+			pedaco = inteira[i].split('=');
+			pedaco[1] = unescape(pedaco[1]);
+			vars.push(pedaco[0]);
+
+			vars[pedaco[0]] = pedaco[1];
+		}
+
+		if (vars['retorno']!= "undefined")
+			alert(vars['retorno']);		
+	}
+
+	function fazenda_clicado()
+	{
+		window.location = "jogo/adicionarAlimento.action?";
+	}
+
 </script>
 </head>
 
-<body>
+<body onload="getURLVars()">
 <div class="cabecalho">
 	<a id="cadastrar_jogador" href="/cadastro.jsp">Cadastrar jogador</a>
 	&nbsp;&nbsp;<input id="traco_01" type="image" src="Imagens/bg_cabecalho_traco.gif" align="middle"/>
@@ -215,6 +286,7 @@
 			html_saida += "<input type=\"hidden\" name=\"retorno\" id=\"retorno\" value=\"${retorno}\">";
 			html_saida += "<input type=\"hidden\" name=\"CdgTipoDragaoEscolhido\" id=\"CdgTipoDragaoEscolhido\" value=\"${CdgTipoDragaoEscolhido}\">";
 			html_saida += "<input type=\"hidden\" name=\"nomeDragao\" id=\"nomeDragao\" value=\"${nomeDragao}\">";
+			html_saida += "<input type=\"hidden\" name=\"qtdTotalOuro\" id=\"qtdTotalOuro\" value=\"${qtdTotalOuro}\">";
 			
 			
 			if (jogo.getMapa() != null)
@@ -235,12 +307,9 @@
 							{
 								CasaCentral casa_central = (CasaCentral)mapa_local.getConstrucao();
 								
-								System.out.println("casacentral: " + casa_central.getCodigo()); 
-								
 								if (casa_central.getOvo() == null)
 								{
-									System.out.println("casacentral-ovo: NULL (Chocadeira vazia)");
-									html_saida += "<input type=\"image\" name=\"btn_casa_central\" id=\"btn_casa_central\" src=\"Imagens/btn_casa_central.gif\" title=\"Casa central\" onClick=\"javascript:casa_central_clicado(false, '', '', '')\"/>";  // href=\"javascript:casa_central_clicado(false, '', '', '');\" />";
+									html_saida += "<input type=\"image\" name=\"btn_casa_central\" id=\"btn_casa_central\" value=\"\" src=\"Imagens/btn_casa_central.gif\" title=\"Casa central\" onClick=\"javascript:casa_central_clicado(false, '', '', '')\"/>";  // href=\"javascript:casa_central_clicado(false, '', '', '');\" />";
 								}
 								else 
 								{
@@ -249,71 +318,118 @@
 									String nme_tipo_habitat = casa_central.getOvo().getDragaoTipo().getoHabitatTipo().getTipo();
 									String nme_imagem = "";
 									String nme_titulo = ""; 
+									String cdg_tipo_ovo = "";
 									
-									System.out.println("casacentral-ovo: Chocadeira com ovo " + nme_tipo_dragao);
-									
-									if (nme_tipo_dragao == "Terra")
+									if (nme_tipo_dragao.equals("Terra"))
 									{
 										nme_imagem = "Imagens/btn_ovo_terra_chocadeira.gif";
-										nme_titulo = "Ovo - Terra";
+										cdg_tipo_ovo = "7";
 									}
-									else if (nme_tipo_dragao == "Fogo")
+									else if (nme_tipo_dragao.equals("Fogo"))
 									{
 										nme_imagem = "Imagens/btn_ovo_fogo_chocadeira.gif";
-										nme_titulo = "Ovo - Fogo";
+										cdg_tipo_ovo = "1";
 									}
-									else if (nme_tipo_dragao == "Água")
+									else if (nme_tipo_dragao.equals("Água"))
 									{
 										nme_imagem = "Imagens/btn_ovo_aquatico_chocadeira.gif";
-										nme_titulo = "Ovo - Água";
+										cdg_tipo_ovo = "2";
 									}
-									else if (nme_tipo_dragao == "Gelo")
+									else if (nme_tipo_dragao.equals("Gelo"))
 									{
 										nme_imagem = "Imagens/btn_ovo_gelo_chocadeira.gif";
-										nme_titulo = "Ovo - Gelo";
+										cdg_tipo_ovo = "3";
 									}
-									else if (nme_tipo_dragao == "Planta")
+									else if (nme_tipo_dragao.equals("Planta"))
 									{
 										nme_imagem = "Imagens/btn_ovo_vegetal_chocadeira.gif";
-										nme_titulo = "Ovo - Vegetal";
+										cdg_tipo_ovo = "4";
 									}
-									else if (nme_tipo_dragao == "Aço")
+									else if (nme_tipo_dragao.equals("Aço"))
 									{
 										nme_imagem = "Imagens/btn_ovo_metal_chocadeira.gif";
-										nme_titulo = "Ovo - Metal";
+										cdg_tipo_ovo = "5";
 									}
-									else if (nme_tipo_dragao == "Raio")
+									else if (nme_tipo_dragao.equals("Raio"))
 									{
 										nme_imagem = "Imagens/btn_ovo_eletrico_chocadeira.gif";
-										nme_titulo = "Ovo - Elétrico";
+										cdg_tipo_ovo = "6";
 									}
 									
-									html_saida += "<input type=\"image\" name=\"btn_casa_central\" id=\"btn_casa_central\" onClick=\"javascript:casa_central_clicado(true, '" + nme_tipo_dragao + "', '" + nme_nome_dragao + "','" + nme_tipo_habitat + "')\" src=\"" + nme_imagem + "\" title=\"" + nme_titulo + "\"/>";					
+									nme_titulo = "Ovo de " + nme_tipo_habitat + ": " + nme_nome_dragao;
+									
+									html_saida += "<input type=\"image\" name=\"btn_casa_central\" id=\"btn_casa_central\" value=\""+cdg_tipo_ovo+"\" onClick=\"javascript:casa_central_clicado(true, '" + nme_tipo_dragao + "', '" + nme_nome_dragao + "','" + nme_tipo_habitat + "')\" src=\"" + nme_imagem + "\" title=\"" + nme_titulo + "\"/>";
 								}
-
-
-
-								
 							}
 							else if (mapa_local.getConstrucao() instanceof Habitat)
 							{
-								System.out.println("Passou no Habitat");
 								Dragao dragao = ((Habitat)mapa_local.getConstrucao()).getoDragao();
-								System.out.println("Dragao: " + dragao.getCodigo());
-								String tipo_habitat = ((Habitat)mapa_local.getConstrucao()).getHabitatTipo().getTipo();
-								System.out.println("Tipo Habitat: " + tipo_habitat);
 								
 								//HABITAT AQUI
+								if (dragao != null)
+								{
+									String nme_tipo_dragao = dragao.getDragaoTipo().getNomeTipoDragao();
+									String nme_titulo = "Dragão " + dragao.getNomeDragao() + " - Nível: " + dragao.getLevel();
+									String nme_imagem = dragao.getImagem();
+									int  cdg_tipo_dragao = dragao.getDragaoTipo().getCodigo();
+								
+									html_saida += "<input type=\"image\" name=\"btn_habitat\" id=\"btn_habitat\" src=\"" + nme_imagem + "\" title=\"" + nme_titulo + "\" onClick=\"javascript:habitat_clicado(" + i + "," + j + ",'" + cdg_tipo_dragao + "', true)\"/>";
+								}
+								else
+								{
+									HabitatTipo habitatTipo = ((Habitat)mapa_local.getConstrucao()).getHabitatTipo();
+									
+									String nme_imagem = "";
+									String cdg_tipo_habitat = "";
+									String nme_titulo = "Habitat "  + habitatTipo.getTipo();
+									
+									if (habitatTipo.getTipo().equals("Terra"))
+									{
+										nme_imagem = "Imagens/btn_habitat_terra.gif";
+										cdg_tipo_habitat = "7";
+									}
+									else if (habitatTipo.getTipo().equals("Fogo"))
+									{
+										nme_imagem = "Imagens/btn_habitat_fogo.gif";
+										cdg_tipo_habitat = "1";
+									}
+									else if (habitatTipo.getTipo().equals("Água"))
+									{
+										nme_imagem = "Imagens/btn_habitat_aquatico.gif";
+										cdg_tipo_habitat = "2";
+									}
+									else if (habitatTipo.getTipo().equals("Gelo"))
+									{
+										nme_imagem = "Imagens/btn_habitat_gelo.gif";
+										cdg_tipo_habitat = "3";
+									}
+									else if (habitatTipo.getTipo().equals("Planta"))
+									{
+										nme_imagem = "Imagens/btn_habitat_vegetal.gif";
+										cdg_tipo_habitat = "4";
+									}
+									else if (habitatTipo.getTipo().equals("Aço"))
+									{
+										nme_imagem = "Imagens/btn_habitat_metal.gif";
+										cdg_tipo_habitat = "5";
+									}
+									else if (habitatTipo.getTipo().equals("Raio"))
+									{
+										nme_imagem = "Imagens/btn_habitat_eletrico.gif";
+										cdg_tipo_habitat = "6";
+									}
+									html_saida += "<input type=\"image\" name=\"btn_habitat\" id=\"btn_habitat\" src=\"" + nme_imagem + "\" title=\"" + nme_titulo + "\" onClick=\"javascript:habitat_clicado(" + i + "," + j + "," + cdg_tipo_habitat + ", false)\"/>";
+								}
 							}
 							else if (mapa_local.getConstrucao() instanceof Fazenda)
 							{
 								System.out.println("Passou na fazenda");
-								html_saida += "<input type=\"image\" name=\"btn_fazenda\" id=\"btn_fazenda\" src=\"Imagens/btn_fazenda.gif\" title=\"Fazenda\"/>";
+								html_saida += "<input type=\"image\" name=\"btn_fazenda\" id=\"btn_fazenda\" src=\"Imagens/btn_fazenda.gif\" title=\"Fazenda\" onClick=\"javascript:fazenda_clicado()\" />";
 							}
 						}
 						else 
 						{
-							html_saida += "<input type=\"image\" name=\"btn_sem_construcao\" id=\"btn_sem_construcao\" src=\"Imagens/btn_sem_construcao.gif\" title=\"Clique para construir\"/>";
+							html_saida += "<input type=\"image\" name=\"btn_sem_construcao\" id=\"btn_sem_construcao\" src=\"Imagens/btn_sem_construcao.gif\" title=\"Clique para construir\" onClick=\"javascript:botao_clicado(" + i + "," + j + ")\" />";
 						}
 						
 						html_saida += "</th>";			

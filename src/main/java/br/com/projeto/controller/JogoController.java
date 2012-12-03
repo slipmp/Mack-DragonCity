@@ -80,10 +80,76 @@ public class JogoController {
 		if (retorno == "")
 			retorno = jogoService.criarOvoCasaCentral(jogo, Integer.parseInt(cdgTipoDragaoEscolhido), nomeDragao);
 
-		//return "redirect:/jogo.jsp?" + jogo.getCodigo() + "&retorno="+retorno;
-		return "";
+		return "redirect:/jogo.jsp?" + jogo.getCodigo() + "&retorno="+retorno;
+	}
+	
+	@RequestMapping("/jogo/construirFazenda")
+	public  String construirFazenda(@RequestParam(value="posicaoX", required=true) String posicaoX,
+									   @RequestParam(value="posicaoY",required=true) String posicaoY,
+									   HttpSession session)
+	{
+		Jogo jogo = (Jogo)session.getAttribute("jogo");
+		String retorno = jogoService.construirFazenda(jogo, Integer.parseInt(posicaoX), Integer.parseInt(posicaoY));
+		
+		return "redirect:/jogo.jsp?" + jogo.getCodigo() + "&retorno="+retorno;
+	}
+	
+	@RequestMapping("/jogo/construirHabitat")
+	public  String construirHabitat(@RequestParam(value="posicaoX", required=true) String posicaoX,
+									   @RequestParam(value="posicaoY",required=true) String posicaoY,
+									   @RequestParam(value="cdgTipoHabitatEscolhido",required=true) String cdgTipoHabitatEscolhido,
+									   
+									   HttpSession session)
+	{
+		Jogo jogo = (Jogo)session.getAttribute("jogo");
+		String retorno = jogoService.construirHabitat(jogo, Integer.parseInt(posicaoX), Integer.parseInt(posicaoY), Integer.parseInt(cdgTipoHabitatEscolhido));
+		
+		return "redirect:/jogo.jsp?" + jogo.getCodigo() + "&retorno="+retorno;
+	}
+	
+	@RequestMapping("/jogo/adicionarOuroPontosDragao")
+	public  String adicionarOuroPontosDragao(@RequestParam(value="posicaoX", required=true) String posicaoX,
+			   								@RequestParam(value="posicaoY",required=true) String posicaoY,
+			   								HttpSession session)
+	{
+		Jogo jogo = (Jogo)session.getAttribute("jogo");
+		String retorno = jogoService.adicionarOuroPontosDragao(jogo, Integer.parseInt(posicaoX), Integer.parseInt(posicaoY));
+		
+		return "redirect:/jogo.jsp?" + jogo.getCodigo() + "&retorno="+retorno;
+	}
+
+	@RequestMapping("/jogo/alimentarDragao")
+	public  String alimentarDragao(@RequestParam(value="posicaoX", required=true) String posicaoX,
+									@RequestParam(value="posicaoY",required=true) String posicaoY,
+									@RequestParam(value="qtdAlimento", required=true) String qtdAlimento,
+									HttpSession session)
+	{
+		Jogo jogo = (Jogo)session.getAttribute("jogo");
+		String retorno = jogoService.alimentarDragao(jogo, Integer.parseInt(posicaoX), Integer.parseInt(posicaoY), Integer.parseInt(qtdAlimento));
+		
+		return "redirect:/jogo.jsp?" + jogo.getCodigo() + "&retorno="+retorno;
 	}	
+	
+	@RequestMapping("/jogo/adicionarAlimento")
+	public  String adicionarAlimento(HttpSession session)
+	{
+		Jogo jogo = (Jogo)session.getAttribute("jogo");
+		String retorno = jogoService.adicionarAlimento(jogo);
+		
+		return "redirect:/jogo.jsp?" + jogo.getCodigo() + "&retorno="+retorno;
+	}	
+	
+	@RequestMapping("/jogo/inserirOvoHabitat")
+	public  String inserirOvoHabitat(int posicaoX, int posicaoY, HttpSession session)
+	{
+		Jogo jogo = (Jogo)session.getAttribute("jogo");
+		String retorno = jogoService.inserirOvoHabitat(jogo, posicaoX, posicaoY);
+		
+		return "redirect:/jogo.jsp?" + jogo.getCodigo() + "&retorno="+retorno;
+	}	
+	
 	/*public @ResponseBody String validarOvoCasaCentral(@RequestParam(value="idCdgTipoNomeDragao", required=true) String idCdgTipoDragaoEscolhido,
+	 * 
 			HttpSession session)
 	{
 		System.out.println("Entrou - Validar casa central controller");
@@ -97,7 +163,7 @@ public class JogoController {
 		return retorno;
 	}*/
 	
-	@RequestMapping("/jogo/casacentral/criarovo")
+	/*@RequestMapping("/jogo/casacentral/criarovo")
 	public  String CriarOvoCasaCentral(@RequestParam(value="CdgTipoDragaoEscolhido", required=true) String cdgTipoDragaoEscolhido,
 									   @RequestParam(value="nomeDragao",required=true) String nomeDragao,
 									   HttpSession session)
