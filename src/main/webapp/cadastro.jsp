@@ -3,8 +3,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
 	<title>Dragon City</title>
-	<link href="css/Estilos.css" rel="stylesheet" type="text/css" />
 	<%@ include file="/adm/inc/taghead.jsp" %>
+	<link href="css/Estilos.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
 <div id="conteudo">
@@ -12,7 +12,7 @@
 	   <div id="logo"><img src="Imagens/Logo_mackenzie_fundo.png" /></div>
 	   <div id="links">
 		   <ul class="menu">	
-		   	   <li><a href="index.jsp">Início|</a></li>		   
+		   	   <li><a href="index.jsp">Início</a></li>		   
 			   <li><a href="sobre.html">|Sobre o Jogo|</a></li>
 			   <li><a href="contato.html">Contate-nos</a></li>
 		   </ul>

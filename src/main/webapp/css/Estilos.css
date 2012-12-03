@@ -1,15 +1,17 @@
 body
 {
 }
-.menu li{display:inline}
+.menu li{display:inline !important;}
 body{margin:0px}
 #header {height:90px; margin:0 auto;background-image: url('../Imagens/Footer.png');}
 #logo {width:100px; float:left;}
-#links {float:right; margin-top:40px;}
+#links {float:right; margin-top:40px;color: #000 !important}
 #conteudo {width:1023px;margin:0 auto;}
 #form {display:block;clear:both}
 #footer {width:100px; float:left;background-image: url('../../Imagens/Footer.png');}
 .SeparadorHorizontalFiltro{height:2px; background-color:#dfdfdf;}
-.titulo_centralizado{text-align:center;font-family:Arial; font-weight:bold;font-size:20px;}
+.titulo_centralizado{text-align:center;font-family:Arial; font-weight:bold;font-size:20px;color: #000 !important;}
 .btns_cadastro{width:60px;height:29px}
 .tabela{align:center;width:250px;}
+.menu a{color: #000 !important;}
+.erro{color:#ff0000;font-family:Arial; font-weight:bold;}

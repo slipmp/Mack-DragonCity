@@ -2,8 +2,8 @@
 <html>
 <head>
 		<title>MackDragon City</title>
-		<link rel="stylesheet" type="text/css" href="css/Estilos.css" /> 
 		<%@ include file="/adm/inc/taghead.jsp" %>
+		<link rel="stylesheet" type="text/css" href="css/Estilos.css" /> 		
 </head>
 <body>
 <div id="conteudo">
@@ -11,7 +11,7 @@
 	   <div id="logo"><img src="Imagens/Logo_mackenzie_fundo.png" /></div>
 	   <div id="links">
 		   <ul class="menu">
-			   <li><a href="cadastro.jsp">Cadastrar Jogador|</a></li>
+			   <li><a href="cadastro.jsp">Cadastrar Jogador</a></li>
 			   <li><a href="sobre.html">|Sobre o Jogo</a></li>
 			   <li><a href="contato.html">|Contate-nos</a></li>
 		   </ul>
@@ -36,7 +36,7 @@
 				<tr>
 	                <td colspan="2" align="center"><input type="submit" class="btn_enviar" value="Entrar"/></td>
 				</tr>
-				<tr><td colspan="2"><strong> &nbsp; <label class="error" generated="true" ><%=erro%></label></strong></td></tr>
+				<tr><td colspan="2"><strong> &nbsp; <label class="erro" generated="true" ><%=erro%></label></strong></td></tr>
 				<tr>
 				    <td>Primeiro acesso?</td>
 			        <td><a href="/cadastro.jsp">Clique aqui e cadastre-se</a></td>

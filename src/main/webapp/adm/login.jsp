@@ -36,7 +36,7 @@
 				%>
 				<strong>&nbsp;
 				
-				<label for="email" generated="true">
+				<label style="color:#ff0000;font-weight:bold;" for="email" generated="true">
 				<%=erro%>
 				</label>
 				</strong>
