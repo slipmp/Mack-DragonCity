@@ -17,20 +17,23 @@
 				
 				<p>
 					<label for="email" class="left">Login :</label>
-					<input type="text" name="usuario" id="usuario" value="${param.usuario}"/>
+					<input type="text" name="usuario" id="usuario" value="${usuario}"/>
 				</p>
 				<p>					
 					<label for="password" class="left">Senha :</label>
-					<input type="password" name="senha" id="senha" value="${param.senha}"/>
+					<input type="password" name="senha" id="senha" value="${senha}"/>
 				</p>
 				<ul class="btns_form mt_20">
 					<li><input type="submit" value="Acessar" /></li>
 				</ul>
 				<strong>&nbsp;
-				<label class="error" for="email" generated="true">${error}</label>
+				
+				<label class="error" for="email" generated="true">
+				<%=request.getParameter("error")%>
+				</label>
 				</strong>
 			</fieldset>
-		</form>
+		</form> 
     </div>
 </body>
 </html>

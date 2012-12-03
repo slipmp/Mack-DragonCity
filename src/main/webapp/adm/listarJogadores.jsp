@@ -9,41 +9,42 @@
 </head>
 <body>
 <form method="post">
- 	<div id="container">
+  	<div id="container">
 		<%@ include file="/adm/inc/header.jsp" %>
     </div>
-    <div align="center">
-    	<fieldset>
-		
+    <div align="center">    
+    	<fieldset>		
 			<legend class="fieldset_legend">Lista de Jogadores</legend>
 	    	<table cellpadding="0" cellspacing="0" style="text-align:left">
 	    		<tr>
 	    			<td style="width:20px"><c:out value="Código" /></td>
 	    			<td style="width:40px"><c:out value="Level" /></td>
 	    			<td style="width:150px"><c:out value="Nome" /></td>
-	    			<td>Ativar/Desativar</td>
-	    		</tr>
-	    		
+	    			<td> Ativo/Inativo</td>
+	    		</tr>	    		
 	    		<c:forEach items="${listJogadores}" var="item">
 	    			<tr>
 		    			<td><c:out value="${item.id}" /></td>
-		    			<td><c:out value="${item.level}" /></td>
+		    		<!--  	<td><c:out value="${item.level}" /></td>
 	    				<td><c:out value="${item.name}" /></td>
 	    				<td><input type="checkbox" <c:if test="${item.ativo}">checked='checked'</c:if> value="${item.id}/${item.name}" />
 	    				<span id="${item.id}" style="color:red;"></span></td>
+	    			-->
 	    			</tr>
 	    		</c:forEach>
 	    		
 	    	</table>
 		</fieldset>
-	</div>
+		 </div>
    </form>
+
 </body>
 </html>
 
 <script type="text/javascript">
 		$(document).ready(function() {
-			
+		
+			///alert("entrou no javascript");
 			$(":checkbox").click(function(){
 				var string = $(this).attr("value");
 				var idJogador = string.split("/")[0];

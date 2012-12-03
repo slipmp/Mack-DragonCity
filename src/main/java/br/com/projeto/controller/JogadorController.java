@@ -21,6 +21,7 @@ public class JogadorController {
 	@RequestMapping("/adm/jogador/ativarJogador")
 	public @ResponseBody void ativarJogador(@RequestParam(value="idJogador", required=true) String idJogador,
 						 @RequestParam(value="ativar", required=true) String ativar) {
+		System.out.println("Entrou no controle ativar ");
 		jogadorService.ativarJogador(idJogador, ativar);
 	}
 }

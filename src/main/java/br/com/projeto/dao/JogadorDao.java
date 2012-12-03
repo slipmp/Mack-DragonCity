@@ -42,6 +42,8 @@ public class JogadorDao extends GenericDao {
 	@Transactional()
 	public List<Jogador> listarJogadores() {
 		Query query = super.em.createQuery("from Jogador ");
+		
+		System.out.println("query= " + query.getResultList());
 		return (List<Jogador>) query.getResultList();
 	}
 }

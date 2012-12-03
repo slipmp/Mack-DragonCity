@@ -20,6 +20,8 @@ public class UserDao extends GenericDao {
 		Query query = super.em.createQuery("from User u where u.login = :login and u.password = :password ");
 		query.setParameter("login", login);
 		query.setParameter("password", password);
+		
+		System.out.println("query.getResultList().size()= " + query.getResultList().size());
 		if (query.getResultList().size() == 1) {
 			return (User) query.getResultList().get(0);
 		} else {

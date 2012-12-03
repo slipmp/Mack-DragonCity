@@ -32,7 +32,7 @@ public class User {
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "data_atualizacao", nullable = true)
 	private Calendar updateDate;
-
+		
 	public User() {
 		this.insertDate = Calendar.getInstance();
 	}
@@ -81,7 +81,4 @@ public class User {
 	public String toString() {
 		return login;
 	}
-
-
-
 }
