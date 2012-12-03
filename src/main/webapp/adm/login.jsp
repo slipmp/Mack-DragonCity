@@ -26,10 +26,18 @@
 				<ul class="btns_form mt_20">
 					<li><input type="submit" value="Acessar" /></li>
 				</ul>
+				
+				<%String erro = request.getParameter("error");
+			
+				if(erro == null){
+					erro ="";				
+				}
+				
+				%>
 				<strong>&nbsp;
 				
-				<label class="error" for="email" generated="true">
-				<%=request.getParameter("error")%>
+				<label for="email" generated="true">
+				<%=erro%>
 				</label>
 				</strong>
 			</fieldset>

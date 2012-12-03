@@ -1,7 +1,7 @@
 <%@ include file="/inc/init.jsp" %>
 <html>
 <head>
-		<title>Dragon City</title>
+		<title>MackDragon City</title>
 		<link rel="stylesheet" type="text/css" href="css/Estilos.css" /> 
 		<%@ include file="/adm/inc/taghead.jsp" %>
 </head>
@@ -11,9 +11,9 @@
 	   <div id="logo"><img src="Imagens/Logo_mackenzie_fundo.png" /></div>
 	   <div id="links">
 		   <ul class="menu">
-			   <li><a href="#">Cadastrar Jogador|</a></li>
-			   <li><a href="#">Sobre o Jogo|</a></li>
-			   <li><a href="#">Contate-nos</a></li>
+			   <li><a href="cadastro.jsp">Cadastrar Jogador|</a></li>
+			   <li><a href="sobre.html">|Sobre o Jogo</a></li>
+			   <li><a href="contato.html">|Contate-nos</a></li>
 		   </ul>
 	   </div>
 	</div> 
@@ -26,20 +26,22 @@
     	<input type="hidden" name="requestedUrl" value="${requestedUrl}">
 	        <p align="center"><label for="login">Login:</label><input type="text" name="usuario" id="usuario" value="${usuario}"></p>
 			<p align="center">Senha:<input type="password" name="senha" id="senha" value="${senha}"></p>
-			<table align="center">
+			
+			<%String erro = request.getParameter("error");			
+				if(erro == null){
+					erro ="";				
+				}			
+			%>			
+			<table class="tabela">	
 				<tr>
-				    <td>Esqueceu a senha?</td>
-			        <td><a href="esqueceu_senha.html">Clique aqui</a></td>
-	                <td rowspan="2"><input type="submit" class="btn_enviar" value="Entrar"/></td>
-				</tr>		
+	                <td colspan="2" align="center"><input type="submit" class="btn_enviar" value="Entrar"/></td>
+				</tr>
+				<tr><td colspan="2"><strong> &nbsp; <label class="error" generated="true" ><%=erro%></label></strong></td></tr>
 				<tr>
 				    <td>Primeiro acesso?</td>
 			        <td><a href="/cadastro.jsp">Clique aqui e cadastre-se</a></td>
 				</tr>
 			</table>
-			<p align="center"> </p>
-			<p align="center"></p>	
-			<strong> &nbsp; <label class="error" for="login" generated="true" >${error}</label></strong>		
 		</form>
 	</div>    
 	

@@ -21,8 +21,11 @@ public class JogadorDao extends GenericDao {
 		query.setParameter("login", login);
 		
 		if (query.getResultList().size() == 1) {
+			System.out.println("list dao =" + (Jogador) query.getResultList().get(0));
 			return (Jogador) query.getResultList().get(0);
+			
 		} else {
+			System.out.println("list esta nulo");
 			return null;
 		}
 	}
@@ -43,7 +46,7 @@ public class JogadorDao extends GenericDao {
 	public List<Jogador> listarJogadores() {
 		Query query = super.em.createQuery("from Jogador ");
 		
-		System.out.println("query= " + query.getResultList());
+		System.out.println("query= " + (List<Jogador>)query.getResultList());
 		return (List<Jogador>) query.getResultList();
 	}
 }

@@ -22,14 +22,10 @@
 	    			<td style="width:150px"><c:out value="Nome" /></td>
 	    			<td> Ativo/Inativo</td>
 	    		</tr>	    		
-	    		<c:forEach items="${listJogadores}" var="item">
+	    		<c:forEach items="${listJogadores}" var="listJogadores">
 	    			<tr>
-		    			<td><c:out value="${item.id}" /></td>
-		    		<!--  	<td><c:out value="${item.level}" /></td>
-	    				<td><c:out value="${item.name}" /></td>
-	    				<td><input type="checkbox" <c:if test="${item.ativo}">checked='checked'</c:if> value="${item.id}/${item.name}" />
-	    				<span id="${item.id}" style="color:red;"></span></td>
-	    			-->
+		    			<td>${listJogadores}</td>
+		    	
 	    			</tr>
 	    		</c:forEach>
 	    		
