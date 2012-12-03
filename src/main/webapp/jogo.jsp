@@ -88,11 +88,21 @@
 
 				var idCdgTipoDragaoEscolhido = mensagem;
 
- 		    	$.ajax({
+				var nomeDragao = "";
+				
+				do {
+					nomeDragao = prompt("Dê um nome ao seu dragão: ");
+				} while (nomeDragao == null || nomeDragao == "");
+
+				var retorno = window.location = "jogo/casacentral.action?cdgTipoDragaoEscolhido="+mensagem+"&nomeDragao="+nomeDragao;
+
+				
+				alert(retorno);
+ 		    	/*$.ajax({
 						url: "/jogo/casacentral/validacao.action", 
 						type: "post",
 					 	data: {idCdgTipoDragaoEscolhido: idCdgTipoDragaoEscolhido},
-					 	dataType: "String",
+					 	dataType: "json",
 					 	success: function (response, textStatus, jqXHR) {
 					 		
 			 				if (response !== "") {
@@ -103,35 +113,45 @@
 				        error: function(jqXHR, textStatus, errorThrown){
 				           console.log("[DragonCity] Ocorreu o seguinte erro: " + textStatus, errorThrown);
 				        } 
- 	  			});						
+ 	  			});	*/
+ 	  									
 				//alert("Chamar método jogo/casacentral.action do tipo escolhido: " + mensagem);
-				//window.location = "jogo/casacentral/validacao.action");
+				
+				//window.location = "jogo/casacentral/validacao.action?CdgTipoDragaoEscolhido="+mensagem;
 
-				var nomeDragao = "";
-					
-				do {
-					nomeDragao = prompt("Dê um nome ao seu dragão: ");
-				} while (nomeDragao == null || nomeDragao == "");
+				//if (document.getElementById('retorno').value != "")
+				//{
+					//alert(document.getElementById('retorno').value);
+				//}
+								
+				/*
+				document.getElementById('nomeDragao').value = nomeDragao;
+				
+				window.location = "jogo/casacentral/criarovo.action";
 
-				//var retorno = window.location = "jogo/casacentral/criarovo.action";
-
- 		    	$.ajax({
-						url: "jogo/casacentral/criarovo.action", 
-						type: "post",
-					 	data: {idCdgTipoDragaoEscolhido: idCdgTipoDragaoEscolhido, nomeDragao: nomeDragao},
-					 	dataType: "String",
-					 	success: function (response, textStatus, jqXHR) {
-
-					 		if (response !== "") {
-			 					alert(response);
-			 					return;
-			 				}
-					 	},
-				        error: function(jqXHR, textStatus, errorThrown){
-				           console.log("[DragonCity] Ocorreu o seguinte erro: " + textStatus, errorThrown);
-				        } 
- 	  			});						
-			}	
+				if (document.getElementById('retorno').value != "")
+				{
+					alert(document.getElementById('retorno').value);
+				}
+				
+				//VOLTAR CODIGO
+				/*$.ajax({
+					url: "/jogo/casacentral/criarovo.action", 
+					type: "post",
+				 	data: {idCdgTipoDragaoEscolhido: idCdgTipoDragaoEscolhido, nomeDragao: nomeDragao},
+				 	dataType: "json",
+				 	success: function (response, textStatus, jqXHR) {
+				 		
+		 				if (response !== "") {
+		 					alert(response);
+		 					return;
+		 				}
+				 	},
+			        error: function(jqXHR, textStatus, errorThrown){
+			           console.log("[DragonCity] Ocorreu o seguinte erro: " + textStatus, errorThrown);
+			        } 
+	  			});*/				
+ 		    }	
 		}
 		else
 		{
@@ -192,8 +212,9 @@
 			MapaRegrasNegocio mapa_regras_negocio = new MapaRegrasNegocio();
 		
 			html_saida = "<table width=\"810\" height=\"371\" border=\"0\" align=\"center\" cellpadding=\"0\" cellspacing=\"0\">";
-			html_saida += "<input type=\"hidden\" name=\"retorno\" value=\"${retorno}\">";
-			html_saida += "<input type=\"hidden\" name=\"nomeDragao\" value=\"${nomeDragao}\">";
+			html_saida += "<input type=\"hidden\" name=\"retorno\" id=\"retorno\" value=\"${retorno}\">";
+			html_saida += "<input type=\"hidden\" name=\"CdgTipoDragaoEscolhido\" id=\"CdgTipoDragaoEscolhido\" value=\"${CdgTipoDragaoEscolhido}\">";
+			html_saida += "<input type=\"hidden\" name=\"nomeDragao\" id=\"nomeDragao\" value=\"${nomeDragao}\">";
 			
 			
 			if (jogo.getMapa() != null)

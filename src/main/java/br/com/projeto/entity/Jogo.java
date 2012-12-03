@@ -42,7 +42,7 @@ public class Jogo implements java.io.Serializable{
 	@JoinColumn(name = "IdJogador")
     private Jogador jogador;
 
-    @OneToMany(mappedBy="jogo",cascade=CascadeType.ALL) //, fetch=FetchType.EAGER)
+    @OneToMany(mappedBy="jogo",cascade=CascadeType.ALL )
     private List<Dragao> listDragao;
 
     @OneToOne(cascade={CascadeType.ALL})

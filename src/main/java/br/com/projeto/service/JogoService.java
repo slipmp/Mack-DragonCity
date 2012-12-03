@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 import br.com.projeto.businessrules.JogoRegrasNegocio;
 import br.com.projeto.businessrules.MapaRegrasNegocio;
 import br.com.projeto.businessrules.NivelRegrasNegocio;
+import br.com.projeto.dao.DragaoDao;
 import br.com.projeto.dao.DragaoTipoDao;
 import br.com.projeto.dao.GenericDao;
 import br.com.projeto.dao.JogoDao;
@@ -24,6 +25,9 @@ public class JogoService extends GenericDao{
 	
 	@Autowired
 	private DragaoTipoDao dragaoTipoDao;
+	
+	@Autowired
+	private DragaoDao dragaoDao;
 	
 	public Jogo carregarJogo(int id) 
 	{
@@ -60,13 +64,10 @@ public class JogoService extends GenericDao{
 		if (dragaoTipo != null)
 		{
 			NivelRegrasNegocio nivel_regras_negocio = new NivelRegrasNegocio();
-			Dragao dragao = new Dragao();
-			dragao.setDragaoTipo(dragaoTipo);
-			
+		
 			if (dragaoTipo.getLevelJogadorRequerido() > nivel_regras_negocio.getNivelEquivalente(jogo.getQtdTotalPontosXP()).getCodigo())
 			{
 				dragaoTipo = null;
-				
 				return "Você não possui level para adquirir esse dragão!";
 			}
 			else if (dragaoTipo.getValor() > jogo.getVlrTotalOuro())
@@ -83,17 +84,19 @@ public class JogoService extends GenericDao{
 	{
 		DragaoTipo dragaoTipo =  dragaoTipoDao.findById(DragaoTipo.class, cdgTipoDragaoEscolhido);
 		
+		Dragao dragao = new Dragao();
+		dragao.setDragaoTipo(dragaoTipo);
+		dragao.setNomeDragao(nomeDragao);
+		dragaoDao.insert(dragao); 
+		
 		MapaRegrasNegocio mapaRegrasNegocio = new MapaRegrasNegocio();
 		MapaLocal mapaLocal = mapaRegrasNegocio.getMapaLocalPorPosicao(jogo.getMapa(), 1, 1);
 		CasaCentral casaCentral = ((CasaCentral)mapaLocal.getConstrucao());
-		Dragao dragao = new Dragao();
-		dragao.setDragaoTipo(dragaoTipo);
-		
-		jogo.setVlrTotalOuro(jogo.getVlrTotalOuro() - dragao.getValor());
-		dragao.setNomeDragao(nomeDragao);
 		casaCentral.setOvo(dragao);
 		
+		jogo.setVlrTotalOuro(jogo.getVlrTotalOuro() - dragao.getValor());
 		jogo.setQtdTotalPontosXP(jogo.getQtdTotalPontosXP() + dragao.getDragaoTipo().getPontosXPFornece());
+		jogoDao.update(jogo);
 		
 		return "Você ganhou " + dragao.getDragaoTipo().getPontosXPFornece() + " pontos XP!";
 	}

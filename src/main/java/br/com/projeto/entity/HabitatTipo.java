@@ -27,7 +27,7 @@ public class HabitatTipo implements java.io.Serializable{
 	@Column(name = "Tipo")
     private String tipo;
     
-	@OneToOne(fetch=FetchType.LAZY,mappedBy="oHabitatTipo",cascade=CascadeType.ALL)
+	@OneToOne(fetch=FetchType.EAGER,mappedBy="oHabitatTipo",cascade=CascadeType.ALL)
     private DragaoTipo oDragaoTipo;
     
     @Column(name = "Valor")
