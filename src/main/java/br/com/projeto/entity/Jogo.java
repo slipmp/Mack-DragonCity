@@ -5,15 +5,12 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
-
-import org.hibernate.annotations.Cascade;
 
 @Entity
 @Table(name = "tbJogo")
@@ -48,6 +45,11 @@ public class Jogo implements java.io.Serializable{
     @OneToOne(cascade={CascadeType.ALL})
 	@JoinColumn(name = "IdMapa")
     private Mapa mapa;
+    
+    public Jogo()
+    {
+        listDragao = null;
+    }    
 
     public int getCodigo() {
         return codigo;

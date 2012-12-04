@@ -40,7 +40,7 @@ public class LoginController {
 		
 		if (user != null) {	
 			return "listarJogadores.action";
-			//return "redirect:/adm/listarJogadores.jsp"; // Este caminho loga mas nao mostra a lista
+			//return "redirect:/adm/listarJogadores.jsp"; // Este caminho loga mas não mostra a lista
 		 }
 		
 		//return "listarJogadores.action";

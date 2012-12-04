@@ -16,7 +16,9 @@
 
 
 <%@page import="br.com.projeto.businessrules.NivelRegrasNegocio"%>
-<%@page import="br.com.projeto.entity.HabitatTipo"%><html xmlns="http://www.w3.org/1999/xhtml">
+<%@page import="br.com.projeto.entity.HabitatTipo"%>
+<%@page import="br.com.projeto.entity.DragaoEstado"%>
+<%@page import="br.com.projeto.dao.DragaoEstadoDao"%><html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>Mack - Dragon City</title>
@@ -27,15 +29,7 @@
 -->
 
 <script language="javascript" type="text/javascript">
-	var pontucao = 0;
-	function funcaoClick(id){
-		alert(id);
-		/*
-		pontuacao += 10;
-		$('#'+id).css('background-image','url('')');
-		*/
-	}
-
+	
 	function criar_novo_jogo()
 	{
 		var mensagem = confirm("Você tem certeza que deseja criar um novo jogo?");
@@ -56,11 +50,7 @@
 	{	
 		alert("Opção indisponível no momento.");
 	}
-
-	function teste()
-	{
-	}
-	        
+		        
 	function casa_central_clicado(sta_possui_ovo, nme_tipo_dragao, nme_nome_dragao, nme_tipo_habitat)
 	{
 		var mensagem = "";
@@ -78,8 +68,8 @@
 									  "2 - Dragão de Água\n" +
 							  		  "3 - Dragão de Gelo\n" +
 					  		  		  "4 - Dragão de Planta\n" +
-					  		  		  "5 - Dragão de Metal\n" +
-					  		  		  "6 - Dragão de Aço\n" +
+					  		  		  "5 - Dragão de Aço\n" +
+					  		  		  "6 - Dragão de Raio\n" +
 									  "7 - Dragão de Terra\n" +
 									  "0 - Sair\n");
 					  
@@ -96,10 +86,8 @@
 					nomeDragao = prompt("Dê um nome ao seu dragão: ");
 				} while (nomeDragao == null || nomeDragao == "");
 
-				var retorno = window.location = "jogo/casacentral.action?cdgTipoDragaoEscolhido="+mensagem+"&nomeDragao="+nomeDragao;
+				window.location = "jogo/casacentral.action?cdgTipoDragaoEscolhido="+mensagem+"&nomeDragao="+nomeDragao;
 
-				
-				alert(retorno);
  		    }	
 		}
 		else
@@ -127,11 +115,11 @@
 									"0 - Sair\n") 
 			} while (cdgTipoConstrucao == null || cdgTipoConstrucao == "");
 
-			//ATENCAO: Validar a quantidade de ouro existente.
+			//Validar quantidade total de comida.
 			
 			if (cdgTipoConstrucao == 1)
 			{
-				var retorno = window.location = "jogo/construirFazenda.action?posicaoX=" + x + "&posicaoY=" + y;
+				window.location = "jogo/construirFazenda.action?posicaoX=" + x + "&posicaoY=" + y;
 			}
 			else
 			{ 
@@ -144,8 +132,8 @@
 						  "2 - Habitat de Água\n" +
 				  		  "3 - Habitat de Gelo\n" +
 		  		  		  "4 - Habitat de Planta\n" +
-		  		  		  "5 - Habitat de Metal\n" +
-		  		  		  "6 - Habitat de Aço\n" +
+		  		  		  "5 - Habitat de Aço\n" +
+		  		  		  "6 - Habitat de Raio\n" +
 						  "7 - Habitat de Terra\n" +
 						  "0 - Sair\n");		  
 				} while (cdgTipoHabitatEscolhido == null || cdgTipoHabitatEscolhido == "");
@@ -154,7 +142,7 @@
 					return;
 				else  
 				{
-					var retorno = window.location = "jogo/construirHabitat.action?posicaoX=" + x + "&posicaoY=" + y + "&cdgTipoHabitatEscolhido=" + cdgTipoHabitatEscolhido;
+					window.location = "jogo/construirHabitat.action?posicaoX=" + x + "&posicaoY=" + y + "&cdgTipoHabitatEscolhido=" + cdgTipoHabitatEscolhido;
 				}
 			}
 		}
@@ -175,7 +163,7 @@
 			{
 				if (cdgTipoHabitat == cdgTipoDragaoChocadeira)
 				{
-					var retorno = window.location = "jogo/inserirOvoHabitat?posicaoX=" + x + "&posicaoY=" + y + "&cdgTipoHabitatEscolhido=" + cdgTipoDragaoChocadeira;
+					window.location = "jogo/inserirOvoHabitat.action?posicaoX=" + x + "&posicaoY=" + y;
 					
 				}
 				else 
@@ -187,55 +175,55 @@
 		}
 		else
 		{
-			var retorno = window.location = "jogo/adicionarOuroPontosDragao.action?posicaoX=" + x + "&posicaoY=" + y;
+			window.location = "jogo/adicionarOuroPontosDragao.action?posicaoX=" + x + "&posicaoY=" + y;
 
 			var qtdAlimento = "";
 			
 			do
 			{
-				var qtdAlimento = confirm(retorno + "\nInforme a quantidade de alimentos ou \n0 - Sair");
+				qtdAlimento = prompt(document.getElementById('retorno').value + "\nInforme a quantidade de alimentos \nou 0 - Sair");
 			} while (qtdAlimento == null || qtdAlimento == "");
 
 			if (qtdAlimento <= 0)
 				return;
 			else  
 			{
-				//Validar c/ a total de alimentos no jogo. 
-				var retorno = window.location = "jogo/alimentarDragao.action?posicaoX=" + x + "&posicaoY=" + y + "&qtdAlimento=" + qtdAlimento;
+				var qtdTotalAlimento = document.getElementById('qtdTotalComida').value;
 
-				alert(retorno);	
+				if (qtdTotalAlimento <= 0)
+				{
+					alert("Vôce não possui alimento suficiente para utilizar.");
+					return;
+				}
+				
+				window.location = "jogo/alimentarDragao.action?posicaoX=" + x + "&posicaoY=" + y + "&qtdAlimento=" + qtdAlimento;
+
 			}
 		}
 	}	
 
-	function getURLVars()
-	{
-		var vars = [];
-		var pedaco;
-		var inteira = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
-
-		for (var i = 0; i < inteira.length; i++)
-		{
-			pedaco = inteira[i].split('=');
-			pedaco[1] = unescape(pedaco[1]);
-			vars.push(pedaco[0]);
-
-			vars[pedaco[0]] = pedaco[1];
-		}
-
-		if (vars['retorno']!= "undefined")
-			alert(vars['retorno']);		
-	}
-
 	function fazenda_clicado()
 	{
-		window.location = "jogo/adicionarAlimento.action?";
+		window.location = "jogo/adicionarAlimento.action";
+	}
+
+	function alertar_retorno()
+	{
+		var retorno = document.getElementById('retorno').value;
+
+		if (retorno == '')
+			return;
+		else
+		{
+			alert(retorno);
+			document.getElementById('retorno').value = "";
+		}
 	}
 
 </script>
 </head>
 
-<body onload="getURLVars()">
+<body onload="alertar_retorno()">
 <div class="cabecalho">
 	<a id="cadastrar_jogador" href="/cadastro.jsp">Cadastrar jogador</a>
 	&nbsp;&nbsp;<input id="traco_01" type="image" src="Imagens/bg_cabecalho_traco.gif" align="middle"/>
@@ -256,7 +244,7 @@
 		System.out.println("Total de Ouro: " + jogo.getVlrTotalOuro()); 
 		html_cabecalho =  "<label id=\"qtd_ouro\"><b>" + jogo.getVlrTotalOuro() + "</b></label>";
 		html_cabecalho += "<label id=\"qtd_alimento\"><b>" + jogo.getVlrTotalComida() + "</b></label>";
-		html_cabecalho += "<label id=\"qtd_dragao\"><b>" + 0 + "</b></label>"; //jogo.getListDragao().size()
+		html_cabecalho += "<label id=\"qtd_dragao\"><b>" + session.getAttribute("qtdTotalDragao") + "</b></label>"; //jogo.getListDragao().size()
 		html_cabecalho += "<label id=\"qtd_pontos\"><b>" + jogo.getQtdTotalPontosXP() + "</b></label>";
 		html_cabecalho += "<label id=\"nmr_nivel\"><b>" + session.getAttribute("nmr_nivel_jogo") + "</b></label>";
 		html_cabecalho += "<label id=\"nme_jogador\"><b>Jogador logado: " + jogo.getJogador().getNome() + "</b></label>";
@@ -270,9 +258,10 @@
 </div>
 <div class="fundoConstrucao">
  
-<%
+<%	
 	String html_saida = "";
-
+	int qtdTotalDragao = 0;
+	
 	if (session.getAttribute("jogo") != null && session.getAttribute("jogo") != "" )
 	{
 		Jogo jogo = (Jogo)session.getAttribute("jogo");
@@ -283,11 +272,10 @@
 			MapaRegrasNegocio mapa_regras_negocio = new MapaRegrasNegocio();
 		
 			html_saida = "<table width=\"810\" height=\"371\" border=\"0\" align=\"center\" cellpadding=\"0\" cellspacing=\"0\">";
-			html_saida += "<input type=\"hidden\" name=\"retorno\" id=\"retorno\" value=\"${retorno}\">";
-			html_saida += "<input type=\"hidden\" name=\"CdgTipoDragaoEscolhido\" id=\"CdgTipoDragaoEscolhido\" value=\"${CdgTipoDragaoEscolhido}\">";
-			html_saida += "<input type=\"hidden\" name=\"nomeDragao\" id=\"nomeDragao\" value=\"${nomeDragao}\">";
-			html_saida += "<input type=\"hidden\" name=\"qtdTotalOuro\" id=\"qtdTotalOuro\" value=\"${qtdTotalOuro}\">";
-			
+			html_saida += "<input type=\"hidden\" name=\"retorno\" id=\"retorno\" value=\"" + session.getAttribute("retorno") + "\">";
+			html_saida += "<input type=\"hidden\" name=\"qtdTotalOuro\" id=\"qtdTotalOuro\" value=\"" + session.getAttribute("qtdTotalOuro") + "\">";
+			html_saida += "<input type=\"hidden\" name=\"qtdTotalOuro\" id=\"qtdTotalComida\" value=\"" + session.getAttribute("qtdTotalComida") + "\">";
+		
 			
 			if (jogo.getMapa() != null)
 			{		
@@ -368,12 +356,76 @@
 								//HABITAT AQUI
 								if (dragao != null)
 								{
+									qtdTotalDragao++;
 									String nme_tipo_dragao = dragao.getDragaoTipo().getNomeTipoDragao();
 									String nme_titulo = "Dragão " + dragao.getNomeDragao() + " - Nível: " + dragao.getLevel();
-									String nme_imagem = dragao.getImagem();
-									int  cdg_tipo_dragao = dragao.getDragaoTipo().getCodigo();
-								
-									html_saida += "<input type=\"image\" name=\"btn_habitat\" id=\"btn_habitat\" src=\"" + nme_imagem + "\" title=\"" + nme_titulo + "\" onClick=\"javascript:habitat_clicado(" + i + "," + j + ",'" + cdg_tipo_dragao + "', true)\"/>";
+									String nme_imagem = "";
+									
+									if (nme_tipo_dragao.equals("Terra"))
+									{
+										if (dragao.getLevel() >= 1 && dragao.getLevel() <= 5)
+											nme_imagem = "Imagens/btn_terra_filhote.gif";
+										else if (dragao.getLevel() >= 6 && dragao.getLevel() <= 12)
+											nme_imagem = "Imagens/btn_terra_jovem.gif";
+										else 
+											nme_imagem = "Imagens/btn_terra_adulto.gif";
+									}
+									else if (nme_tipo_dragao.equals("Fogo"))
+									{
+										if (dragao.getLevel() >= 1 && dragao.getLevel() <= 5)
+											nme_imagem = "Imagens/btn_fogo_filhote.gif";
+										else if (dragao.getLevel() >= 6 && dragao.getLevel() <= 12)
+											nme_imagem = "Imagens/btn_fogo_jovem.gif";
+										else 
+											nme_imagem = "Imagens/btn_fogo_adulto.gif";
+									}
+									else if (nme_tipo_dragao.equals("Água"))
+									{
+										if (dragao.getLevel() >= 1 && dragao.getLevel() <= 5)
+											nme_imagem = "Imagens/btn_aquatico_filhote.gif";
+										else if (dragao.getLevel() >= 6 && dragao.getLevel() <= 12)
+											nme_imagem = "Imagens/btn_aquatico_jovem.gif";
+										else 
+											nme_imagem = "Imagens/btn_aquatico_adulto.gif";
+									}
+									else if (nme_tipo_dragao.equals("Gelo"))
+									{
+										if (dragao.getLevel() >= 1 && dragao.getLevel() <= 5)
+											nme_imagem = "Imagens/btn_gelo_filhote.gif";
+										else if (dragao.getLevel() >= 6 && dragao.getLevel() <= 12)
+											nme_imagem = "Imagens/btn_gelo_jovem.gif";
+										else 
+											nme_imagem = "Imagens/btn_gelo_adulto.gif";
+									}
+									else if (nme_tipo_dragao.equals("Planta"))
+									{
+										if (dragao.getLevel() >= 1 && dragao.getLevel() <= 5)
+											nme_imagem = "Imagens/btn_vegetal_filhote.gif";
+										else if (dragao.getLevel() >= 6 && dragao.getLevel() <= 12)
+											nme_imagem = "Imagens/btn_vegetal_jovem.gif";
+										else 
+											nme_imagem = "Imagens/btn_vegetal_adulto.gif";
+									}
+									else if (nme_tipo_dragao.equals("Aço"))
+									{
+										if (dragao.getLevel() >= 1 && dragao.getLevel() <= 5)
+											nme_imagem = "Imagens/btn_metal_filhote.gif";
+										else if (dragao.getLevel() >= 6 && dragao.getLevel() <= 12)
+											nme_imagem = "Imagens/btn_metal_jovem.gif";
+										else 
+											nme_imagem = "Imagens/btn_metal_adulto.gif";
+									}
+									else if (nme_tipo_dragao.equals("Raio"))
+									{
+										if (dragao.getLevel() >= 1 && dragao.getLevel() <= 5)
+											nme_imagem = "Imagens/btn_eletrico_filhote.gif";
+										else if (dragao.getLevel() >= 6 && dragao.getLevel() <= 12)
+											nme_imagem = "Imagens/btn_eletrico_jovem.gif";
+										else 
+											nme_imagem = "Imagens/btn_eletrico_adulto.gif";
+									}									
+									
+									html_saida += "<input type=\"image\" name=\"btn_habitat\" id=\"btn_habitat\" src=\"" + nme_imagem + "\" title=\"" + nme_titulo + "\" onClick=\"javascript:habitat_clicado(" + i + "," + j + ",'" + dragao.getDragaoTipo().getCodigo() + "', true)\"/>";
 								}
 								else
 								{
@@ -423,7 +475,6 @@
 							}
 							else if (mapa_local.getConstrucao() instanceof Fazenda)
 							{
-								System.out.println("Passou na fazenda");
 								html_saida += "<input type=\"image\" name=\"btn_fazenda\" id=\"btn_fazenda\" src=\"Imagens/btn_fazenda.gif\" title=\"Fazenda\" onClick=\"javascript:fazenda_clicado()\" />";
 							}
 						}
@@ -461,7 +512,7 @@
 			html_saida += "</table>";
 		}		
 	}
-
+	session.setAttribute("qtdTotalDragao", qtdTotalDragao);
 	session.setAttribute("html_body", html_saida); 
 %>  	
 

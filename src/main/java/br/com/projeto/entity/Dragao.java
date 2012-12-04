@@ -3,9 +3,9 @@ package br.com.projeto.entity;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 
@@ -29,11 +29,11 @@ public class Dragao extends Entidade implements java.io.Serializable{
 	@Column(name = "Level")
     private int level;
 
-	@ManyToOne(cascade=CascadeType.ALL)
+	@ManyToOne(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
 	@JoinColumn(name = "IdJogo")
     private Jogo jogo;
 
-	@ManyToOne(cascade=CascadeType.ALL)
+	@ManyToOne(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
 	@JoinColumn(name = "IdDragaoTipo")
     private DragaoTipo dragaoTipo;
 
@@ -82,9 +82,11 @@ public class Dragao extends Entidade implements java.io.Serializable{
         this.dragaoTipo = dragaoTipo;
     }
 
-    public DragaoEstado getDragaoEstado()
+    /*public DragaoEstado getDragaoEstado()
     {
-        DragaoEstado oDragaoEstado=new DragaoEstado();
-        return oDragaoEstado;
-    }
+        DragaoEstadoDao dragaoEstadoDao = new DragaoEstadoDao();
+        DragaoEstado dragaoEstado = dragaoEstadoDao.getDragaoEstado(this.level, getDragaoTipo().getCodigo());
+        
+        return dragaoEstado;
+    }*/
 }

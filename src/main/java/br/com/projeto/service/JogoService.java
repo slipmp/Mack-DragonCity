@@ -101,12 +101,12 @@ public class JogoService extends GenericDao{
 	public String criarOvoCasaCentral(Jogo jogo, int cdgTipoDragaoEscolhido, String nomeDragao)
 	{
 		DragaoTipo dragaoTipo =  dragaoTipoDao.findById(DragaoTipo.class, cdgTipoDragaoEscolhido);
-		
+
 		Dragao dragao = new Dragao();
 		dragao.setDragaoTipo(dragaoTipo);
 		dragao.setNomeDragao(nomeDragao);
-		dragao.setJogo(jogo);
-		dragaoDao.insert(dragao); 
+		//dragao.setJogo(jogo); 
+		dragaoDao.insert(dragao);
 		
 		MapaRegrasNegocio mapaRegrasNegocio = new MapaRegrasNegocio();
 		MapaLocal mapaLocal = mapaRegrasNegocio.getMapaLocalPorPosicao(jogo.getMapa(), 1, 1);
@@ -117,8 +117,9 @@ public class JogoService extends GenericDao{
 		jogo.setVlrTotalOuro(jogo.getVlrTotalOuro() - dragao.getValor());
 		jogo.setQtdTotalPontosXP(jogo.getQtdTotalPontosXP() + dragao.getDragaoTipo().getPontosXPFornece());
 		jogoDao.update(jogo);
-		
+				
 		return "Você ganhou " + dragao.getDragaoTipo().getPontosXPFornece() + " pontos XP!";
+		
 	}
 	
 	public String construirFazenda(Jogo jogo, int posicaoX, int posicaoY)
@@ -159,14 +160,21 @@ public class JogoService extends GenericDao{
 	public String inserirOvoHabitat(Jogo jogo, int posicaoX, int posicaoY)
 	{
 		MapaRegrasNegocio mapaRegrasNegocio = new MapaRegrasNegocio();
-		MapaLocal mapaLocal = mapaRegrasNegocio.getMapaLocalPorPosicao(jogo.getMapa(), posicaoX, posicaoY);
-		
-		Habitat habitat = (Habitat)mapaLocal.getConstrucao();
+		MapaLocal mapaLocal = mapaRegrasNegocio.getMapaLocalPorPosicao(jogo.getMapa(), 1, 1);
 		CasaCentral casaCentral = ((CasaCentral)mapaLocal.getConstrucao());
+		Dragao dragao = casaCentral.getOvo();
+		casaCentral.setOvo(null);
+		casaCentralDao.update(casaCentral);
 		
-		//habitat.setoDragao(casaCentral)
+		mapaLocal = mapaRegrasNegocio.getMapaLocalPorPosicao(jogo.getMapa(), posicaoX, posicaoY);
+		Habitat habitat = (Habitat)mapaLocal.getConstrucao();
+		habitat.setoDragao(dragao);
+		habitatDao.update(habitat);
 		
-		return "";
+		jogo.setQtdTotalPontosXP(jogo.getQtdTotalPontosXP()+50);
+		jogoDao.update(jogo);
+		
+		return "Parabéns!!!Você ganhou 50 pontos de XP!";
 	}
 	
 	public String adicionarOuroPontosDragao(Jogo jogo, int posicaoX, int posicaoY)
@@ -190,6 +198,11 @@ public class JogoService extends GenericDao{
 		Habitat habitat = (Habitat)mapaLocal.getConstrucao();
 		habitat.getoDragao().setTotalExperiencia(habitat.getoDragao().getTotalExperiencia() + qtdAlimento);
 		habitatDao.update(habitat);
+		
+		Dragao dragao = habitat.getoDragao();
+		dragao.setTotalExperiencia(habitat.getoDragao().getTotalExperiencia() + qtdAlimento);
+		dragao.setLevel(habitat.getoDragao().getLevel());
+		dragaoDao.update(dragao);
 		
 		jogo.setVlrTotalComida(jogo.getVlrTotalComida() - qtdAlimento);
 		jogoDao.update(jogo);
