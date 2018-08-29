@@ -1,26 +1,16 @@
-﻿Mack-DragonCity
+﻿Mackenzie-DragonCity
 ===============
 
-Trabalho do Mack-DragonCity - Pós-Graduação - Projeto e Desenvolvimento de Sistemas
+Project developed as an assignment of my post graduate education at Mackenzie University on December, 2012.
 
-Antes de iniciar o Projeto execute o script de bando de dados "Script-MackDragonCity.sql"
-Além dele criar o banco de dados, ele já alimenta os dados necessários para iniciar o jogo.
+Before starting the Project run the database script "Script-MackDragonCity.sql" In addition to creating the database, it already feeds the data needed to start the game.
 
+Prerequisites: Install Maven, since no IDE reference is here in the repository. Run the command: mvn eclipse: eclipse
 
-Pré-requisitos:
-Instalar o Maven, pois não se têm nenhuma referência de nenhuma IDE aqui no repositório.
-Execute o comando:
-mvn eclipse:eclipse
+To create the necessary files for the use of the project in Eclipse 2009 of the VM established in class class.
 
-Para criar os arquivos necessários para o uso do projeto no Eclipse 2009 da VM estabelicido em classe de aula.
+Important Remarks: 1st To execute the project do: mvn install jetty: run-war
 
-Observações Importantes:
-1º Para executar o projeto faça:
-mvn install jetty:run-war
+Any doubt, please contact us:
 
-
-
-Qualquer dúvida, por favor entre em contato:
-
-Marcos Paulo
-slipmp@hotmail.com
+Marcos Paulo slipmp@gmail.com
